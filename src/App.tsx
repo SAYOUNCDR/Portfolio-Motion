@@ -1,5 +1,7 @@
 import "./App.css";
+import AboutMe from "./Components/AboutMe";
 import BottomDock from "./Components/BottomDock";
+import AboutContent from "./Components/ContentAbout";
 
 function App() {
   return (
@@ -16,8 +18,11 @@ function App() {
       />
 
       {/* Main content */}
-      <main className="h-screen bg-gray-50 max-w-4xl mx-auto flex items-center flex-col py-20">
+      <main className="min-h-screen bg-black max-w-3xl mx-auto flex items-center flex-col py-20">
+        <AboutMe />
+        <AboutContent />
         <BottomDock />
+        
       </main>
     </>
   );
