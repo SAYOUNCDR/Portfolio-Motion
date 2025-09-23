@@ -1,5 +1,36 @@
+"use client";
+
 import { Mail } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
+
+interface SocialIconProps {
+    icon: React.ReactNode;
+    username: string;
+    link: string;
+}
+
+const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
+    return (
+        <a href={link} target="_blank" rel="noopener noreferrer">
+            <motion.div
+                className="flex items-center bg-black text-white px-3 py-2 rounded-lg cursor-pointer overflow-hidden w-12 border border-zinc-700 hover:border-gray-500 transition"
+                whileHover={{ width: 165 }}
+                transition={{ type: "spring", stiffness: 300, damping: 24 }}
+            >
+                <div className="text-2xl">{icon}</div>
+                <motion.span
+                    className="ml-3 whitespace-nowrap opacity-0"
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                >
+                    {username}
+                </motion.span>
+            </motion.div>
+        </a>
+    );
+};
 
 export default function AboutMe() {
     const [showTooltip, setShowTooltip] = useState(false);
@@ -18,19 +49,38 @@ export default function AboutMe() {
                     </div>
                 </div>
 
-
                 {/* Right - Info */}
-                <div className="md:w-2/3 p-6 pl-2 flex flex-col justify-center">
+                <div className="relative md:w-2/3 pt-4 pl-2 flex flex-col justify-center">
                     {/* Header */}
                     <div className="flex items-center gap-4 mb-3">
                         <h1 className="text-3xl font-bold text-white">Sayoun ⚡</h1>
-                        {/* <span className="flex items-center gap-2 px-3 py-1 rounded-lg border border-green-500 text-green-500 text-sm font-medium">
-                            <span className="h-2 w-2 rounded-full bg-green-500"></span>
-                            Available
-                        </span> */}
                     </div>
 
-                    <p className="text-gray-400 text-lg mb-8">Full Stack AI Developer</p>
+                    <p className="text-gray-400 text-lg">Full Stack AI Developer</p>
+                        <p className="text-white text-lg absolute top-5 right-0">📍India</p>
+                    {/* Social Icons */}
+                    <div className="flex flex-wrap gap-3 my-3">
+                        <SocialIcon
+                            icon={<SiLeetcode />}
+                            username="sayoun_parui"
+                            link="https://leetcode.com/u/Sayoun_parui/"
+                        />
+                        <SocialIcon
+                            icon={<SiCodeforces />}
+                            username="sayounfalut"
+                            link="https://codeforces.com/profile/sayounfalut"
+                        />
+                        <SocialIcon
+                            icon={<SiGithub />}
+                            username="SAYOUNCDR"
+                            link="https://github.com/SAYOUNCDR"
+                        />
+                        <SocialIcon
+                            icon={<SiBuymeacoffee />}
+                            username="BuyMeACoffee"
+                            link="#"
+                        />
+                    </div>
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-3">
@@ -39,10 +89,10 @@ export default function AboutMe() {
                             href="#"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center bg-[#18181b] border border-[#27272a] 
-                                        rounded-lg px-3 py-2 text-white font-medium text-xs 
-                                        gap-2 shadow transition hover:border-gray-500 
-                                        focus:outline-none whitespace-nowrap"
+                            className="flex items-center bg-[#18181b] border border-[#c2c2c2] border-dashed
+                          rounded-lg px-3 py-2 text-white font-medium text-xs 
+                          gap-2 shadow transition hover:border-gray-500 
+                          focus:outline-none whitespace-nowrap"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +113,7 @@ export default function AboutMe() {
                             </svg>
                             Download CV
                         </a>
+
                         {/* Mail Button */}
                         <div className="relative">
                             <a
@@ -71,17 +122,24 @@ export default function AboutMe() {
                                 onMouseLeave={() => setShowTooltip(false)}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-3 py-2 rounded-lg text-white text-xs font-medium border border-[#27272a] bg-[#18181b] shadow transition hover:border-gray-500 focus:outline-none"
+                                className="flex items-center gap-2 px-3 py-2 rounded-lg text-white text-xs font-medium border border-[#c2c2c2] border-dashed bg-[#18181b] shadow transition hover:border-gray-500 focus:outline-none"
                             >
                                 <Mail className="w-4 h-4 text-gray-400" />
                                 Email Me
                             </a>
 
                             {showTooltip && (
-                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-xs rounded bg-gray-800 text-white whitespace-nowrap z-10 border border-[#27272a] shadow">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 5 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-xs rounded bg-white text-black whitespace-nowrap z-10"
+                                >
                                     0xsyn.dev@gmail.com
-                                </div>
+                                </motion.div>
                             )}
+
                         </div>
                     </div>
                 </div>
