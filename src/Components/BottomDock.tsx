@@ -13,7 +13,7 @@ export default function BottomDock() {
 
     return (
         <div className="fixed bottom-6 left-0 right-0 flex justify-center items-center">
-            <div className="relative bg-black border border-zinc-700 px-3 py-2 rounded-xl flex items-center gap-4 ">
+            <div className="relative bg-black/30 border border-zinc-700 px-3 py-2 rounded-xl flex items-center gap-4 backdrop-blur-md">
                 {/* GitHub */}
                 <a href="#" target="_blank" className="group relative flex">
                     <FaGithub className="text-white text-xl" />

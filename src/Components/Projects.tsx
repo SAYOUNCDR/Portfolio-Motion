@@ -51,9 +51,9 @@ const Projects = () => {
     ];
 
     return (
-        <section className="py-16 px-4 bg-black text-white min-h-screen w-full">
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold mb-12 text-center">Projects</h2>
+        <section className="py-16 px-6 bg-black text-white min-h-screen">
+            <div className="w-full max-w-3xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">Projects</h2>
 
                 <div className="space-y-8">
                     {projects.map((project) => (
