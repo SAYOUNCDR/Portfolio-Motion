@@ -33,9 +33,9 @@ const Projects = () => {
                     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
                 },
             ],
-            githubUrl: "https://github.com/username/z",
+            githubUrl: "#",
             liveUrl: "#",
-            image: "src/assets/Fuji-Dark.png",
+            image: "../public/Fuji-Dark.png",
             videolink: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Example
         },
         {
@@ -56,9 +56,9 @@ const Projects = () => {
                     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
                 },
             ],
-            githubUrl: "https://github.com/username/z",
+            githubUrl: "#",
             liveUrl: "#",
-            image: "src/assets/Dark_window.png",
+            image: "../public/Dark_window.png",
             videolink: "https://www.youtube.com/embed/9bZkp7q19f0", // Example
         },
     ];

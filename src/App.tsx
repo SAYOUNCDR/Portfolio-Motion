@@ -19,7 +19,7 @@ function App() {
         height={100}
         decoding="async"
         className="relative top-6 left-7 size-12"
-        src="src/assets/arrow.gif"
+        src="../public/arrow.gif"
       />
 
       {/* Main content */}
