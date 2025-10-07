@@ -48,7 +48,7 @@ export default function Newsletter() {
   const stars = Array.from({ length: 20 });
 
   return (
-    <div className="text-white flex flex-col items-center gap-3 w-full max-w-3xl mx-auto p-6 mt-20">
+    <div className="text-white flex flex-col items-center gap-3 w-full max-w-3xl mx-auto p-6 mt-20  rounded-lg ">
       {/* Header */}
       <h1 className="text-lg font-semibold">Stay Updated</h1>
       <p className="text-sm text-gray-400">
@@ -83,7 +83,7 @@ export default function Newsletter() {
         </motion.div>
         <button
           type="submit"
-          className="px-4 py-[10px] bg-gray-700 hover:bg-gray-600 
+          className="px-4 py-[10px] bg-slate-900 hover:bg-gray-800 
                      text-white rounded-md font-semibold text-sm cursor-pointer"
         >
           Subscribe
