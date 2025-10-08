@@ -35,7 +35,7 @@ const Projects = () => {
             ],
             githubUrl: "#",
             liveUrl: "#",
-            image: "../public/Fuji-Dark.png",
+            image: "/Fuji-Dark.png",
             videolink: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Example
         },
         {
@@ -58,7 +58,7 @@ const Projects = () => {
             ],
             githubUrl: "#",
             liveUrl: "#",
-            image: "../public/Dark_window.png",
+            image: "/Dark_window.png",
             videolink: "https://www.youtube.com/embed/9bZkp7q19f0", // Example
         },
     ];

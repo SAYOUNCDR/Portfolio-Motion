@@ -42,7 +42,7 @@ export default function AboutMe() {
                 <div className="md:w-1/4 p-6 pr-4 flex justify-center md:justify-start relative">
                     <div className="w-40 h-40 rounded-lg overflow-hidden relative">
                         <img
-                            src="../public/Profile.jpg"
+                            src="/Profile.jpg"
                             alt="Sayoun"
                             className="w-full h-full object-cover"
                         />
