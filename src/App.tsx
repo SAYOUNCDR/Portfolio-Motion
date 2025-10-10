@@ -6,6 +6,7 @@ import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
 import Newsletter from "./Components/Newsletter";
+import OpenSource from "./Components/Opensource";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         </div> */}
 
         <Projects />
+        <OpenSource />
         <Blogs />
         <Newsletter />
 

@@ -83,14 +83,14 @@ export default function AboutMe() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-5 pl-[2px]">
                         {/* Resume/CV Button */}
                         <a
                             href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center bg-[#18181b] border border-[#c2c2c2] border-dashed
-                          rounded-lg px-3 py-2 text-white font-medium text-xs 
+                          rounded-lg px-4 py-2 text-white font-medium text-xs 
                           gap-2 shadow transition hover:border-gray-500 
                           focus:outline-none whitespace-nowrap"
                         >
@@ -111,7 +111,7 @@ export default function AboutMe() {
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <path d="m7 10 5 5 5-5"></path>
                             </svg>
-                            Download CV
+                            Resume
                         </a>
 
                         {/* Mail Button */}
