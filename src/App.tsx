@@ -6,7 +6,7 @@ import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
 import Newsletter from "./Components/Newsletter";
-import OpenSource from "./Components/Opensource";
+import OpenSource from "./Components/OpenSource";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 
 function App() {
