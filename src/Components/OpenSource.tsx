@@ -11,6 +11,15 @@ interface Contribution {
 
 const contributions: Contribution[] = [
     {
+        repo: "pqoqubbw/icons",
+        company: "Lucide Animated",
+        companyUrl: "https://lucide-animated.com/",
+        prUrl: "https://github.com/pqoqubbw/icons/pull/167",
+        description: "Open Source Animated Icon Library built on top of lucid icons.",
+        contribution:
+            "Added git-merge animated icon #167",
+    },
+    {
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
         companyUrl: "https://github.com/EbookFoundation/free-programming-books",
@@ -19,6 +28,7 @@ const contributions: Contribution[] = [
         contribution:
             "Added TypeScript Cheat Sheet covering TS basics, React, and Node/Express.",
     },
+
 ];
 
 const OpenSource = () => {
