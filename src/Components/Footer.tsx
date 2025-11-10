@@ -13,25 +13,26 @@ export default function Footer() {
             <div className="relative max-w-4xl mx-auto px-6 flex flex-col gap-10">
                 {/* Brand & mantra */}
                 <div className="space-y-5 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm text-xs text-zinc-300 tracking-wide">
-                        <Heart className="size-3 text-pink-400" />
-                        <span>Built with focus, curiosity & far too much caffeine</span>
+                    <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm text-xs text-zinc-300 tracking-wide overflow-hidden">
+                        {/* Shine overlay (slightly brighter) */}
+                        <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shine-smooth bg-gradient-to-r from-transparent via-white/30 to-transparent [mask-image:linear-gradient(to_right,transparent,black_40%,black_60%,transparent)]" />
+                        <Heart className="size-3 text-pink-400 relative" />
+                        <span className="relative transition-colors duration-300 group-hover:text-white">Built with focus, curiosity & far too much caffeine</span>
                     </div>
                     <h3 className="text-xl font-semibold tracking-tight text-white">
-                        Sayoun 
+                        Sayoun
                     </h3>
                     <p className="text-sm leading-relaxed text-zinc-400 max-w-xl mx-auto">
                         Crafting smooth, accessible interfaces & micro–interactions. Shipping ideas fast, polishing the details slower. Always learning.
                     </p>
                 </div>
 
-              
-
-
-
                 {/* Divider accent */}
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
-
+                {/* Centered fading rule */}
+                <div className="w-full flex items-center">
+                    <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
+                </div>
                 {/* Meta */}
                 <div className="flex flex-col items-center gap-2 text-[11px] text-zinc-500">
                     <p>
