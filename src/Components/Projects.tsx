@@ -19,27 +19,10 @@ type Project = {
 
 const projects: Project[] = [
     {
-        title: "Ecliptix UI",
-        period: "May 2025 - May 2025",
+        title: "ElevateX",
+        period: "June 2025 - July 2025",
         description:
-            "A beautiful and accessible component library built with Next.js, Tailwind CSS, and Framer Motion. Create stunning interfaces with ease.",
-        video: {
-            src: "/videos/Polysee.mp4",
-            autoPlay: true,
-            loop: true,
-            muted: true,
-            playsInline: true,
-            className: "h-40 w-full object-cover object-top rounded-t-lg",
-        },
-        tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-        website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
-    },
-    {
-        title: "PixLayer",
-        period: "April 2025 - April 2025",
-        description:
-            "A dynamic web project that blends text and images through innovative layering and masking techniques to create captivating visuals.",
+            "A Collaborative platform designed to connect aspiring entrepreneurs with seasoned mentors, fostering innovation and business growth through shared expertise.",
         video: {
             src: "/videos/ElevateX.mp4",
             autoPlay: true,
@@ -52,6 +35,24 @@ const projects: Project[] = [
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
     },
+    {
+        title: "PolySee",
+        period: "Oct 2025 - Oct 2025",
+        description:
+            "A Rag based ai assistant for college queries that can be fed with documents by admins and verified then embedded into vectorDB to answer questions related to them.",
+        video: {
+            src: "/videos/Polysee.mp4",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+    },
+
 ];
 
 const Projects = () => {
@@ -66,7 +67,18 @@ const Projects = () => {
                             key={project.title}
                             className="rounded-2xl text-white flex flex-col overflow-hidden border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 transition-all duration-300 ease-out hover:shadow-lg hover:border-zinc-700 hover:-translate-y-1 h-full"
                         >
-                            <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
+                            {project.website.url ? (
+                                <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
+                                    <video
+                                        src={project.video.src}
+                                        autoPlay={project.video.autoPlay}
+                                        loop={project.video.loop}
+                                        muted={project.video.muted}
+                                        playsInline={project.video.playsInline}
+                                        className={project.video.className}
+                                    />
+                                </a>
+                            ) : (
                                 <video
                                     src={project.video.src}
                                     autoPlay={project.video.autoPlay}
@@ -75,7 +87,7 @@ const Projects = () => {
                                     playsInline={project.video.playsInline}
                                     className={project.video.className}
                                 />
-                            </a>
+                            )}
 
                             <div className="flex flex-col px-3 py-2">
                                 <h3 className="font-semibold tracking-tight text-base mt-1 pb-2">{project.title}</h3>
@@ -95,15 +107,17 @@ const Projects = () => {
                             </div>
 
                             <div className="flex items-center gap-2 px-3 pb-3">
-                                <a
-                                    href={project.website.url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="flex items-center gap-1 px-2 py-1 text-[10px] font-semibold bg-white text-black rounded-md shadow border border-neutral-200 hover:bg-neutral-100 transition-colors"
-                                >
-                                    <Globe className="size-3" />
-                                    <span>{project.website.label}</span>
-                                </a>
+                                {project.website.url && (
+                                    <a
+                                        href={project.website.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center gap-1 px-2 py-1 text-[10px] font-semibold bg-white text-black rounded-md shadow border border-neutral-200 hover:bg-neutral-100 transition-colors"
+                                    >
+                                        <Globe className="size-3" />
+                                        <span>{project.website.label}</span>
+                                    </a>
+                                )}
 
                                 {project.github?.url && (
                                     <a
