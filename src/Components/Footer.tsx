@@ -29,10 +29,6 @@ export default function Footer() {
 
                 {/* Divider accent */}
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
-                {/* Centered fading rule */}
-                <div className="w-full flex items-center">
-                    <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
-                </div>
                 {/* Meta */}
                 <div className="flex flex-col items-center gap-2 text-[11px] text-zinc-500">
                     <p>
