@@ -14,8 +14,10 @@ import {
     SiDocker,
     SiPython,
     SiLangchain,
+    SiFramer,
+    SiZod,
 } from "react-icons/si";
-import { FaPuzzlePiece, FaRocket, FaCode, FaCoffee, FaCogs } from "react-icons/fa";
+import { FaRocket, FaCode, FaCoffee} from "react-icons/fa";
 
 type Skill = {
     name: string;
@@ -34,8 +36,8 @@ const skills: Skill[] = [
     { name: "MongoDB", icon: <SiMongodb size={14} /> },
     { name: "MySQL", icon: <SiMysql size={14} /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss size={14} /> },
-    { name: "Framer Motion", icon: <FaCogs size={14} /> },
-    { name: "Zod", icon: <FaPuzzlePiece size={14} /> },
+    { name: "Framer Motion", icon: <SiFramer size={14} /> },
+    { name: "Zod", icon: <SiZod size={14} /> },
     { name: "Git & GitHub", icon: <SiGithub size={14} /> },
     { name: "Docker", icon: <SiDocker size={14} /> },
     { name: "Python", icon: <SiPython size={14} /> },
