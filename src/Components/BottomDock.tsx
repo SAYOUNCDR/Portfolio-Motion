@@ -44,7 +44,7 @@ export default function BottomDock() {
                 {/* Profile Image */}
                 <div className="rounded-md overflow-hidden cursor-pointer">
                     <img
-                        src="/Profile.jpg"
+                        src="images/Profile.jpg"
                         alt="Profile"
                         className="w-9 h-9 rounded-md"
                     />

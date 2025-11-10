@@ -42,7 +42,7 @@ export default function AboutMe() {
                 <div className="md:w-1/4 p-6 pr-4 flex justify-center md:justify-start relative">
                     <div className="w-40 h-40 rounded-lg overflow-hidden relative">
                         <img
-                            src="/Profile.jpg"
+                            src="images/Profile.jpg"
                             alt="Sayoun"
                             className="w-full h-full object-cover"
                         />
@@ -52,8 +52,8 @@ export default function AboutMe() {
                 {/* Right - Info */}
                 <div className="relative md:w-2/3 pt-4 pl-2 flex flex-col justify-center">
                     {/* Header */}
-                    <div className="flex items-center gap-4 mb-3">
-                        <h1 className="text-3xl font-bold text-white">Sayoun ⚡</h1>
+                    <div className="flex items-center gap-4 mb-2">
+                        <h1 className="text-2xl font-bold text-white">Sayoun ⚡</h1>
                     </div>
 
                     <p className="text-gray-400 text-lg">Full Stack AI Developer</p>
