@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {/* Arrow pinned to top-left (points toward neko cat) */}
-      <img
+      {/* <img
         alt="arrow"
         loading="lazy"
         width={100}
@@ -21,7 +21,7 @@ function App() {
         decoding="async"
         className="relative top-6 left-7 size-12"
         src="/arrow.gif"
-      />
+      /> */}
 
       {/* Main content */}
       <main className="min-h-screen bg-black max-w-3xl mx-auto flex items-center flex-col py-5">
