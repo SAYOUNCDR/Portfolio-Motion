@@ -8,13 +8,15 @@ import Skills from "./Components/Skills";
 import Newsletter from "./Components/Newsletter";
 import Footer from "./Components/Footer";
 import BottomBlur from "./Components/BottomBlur";
-// import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 import Contributions from "./Components/Contributions";
+import { Routes, Route } from "react-router-dom";
+import ContributionsPage from "./ContributionsPage";
+import ProjectsPage from "./ProjectsPage";
+// import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 
-function App() {
+const HomePage = () => {
   return (
     <>
-      {/* Main content */}
       <main className="min-h-screen bg-black max-w-3xl mx-auto flex items-center flex-col py-5">
         <AboutMe />
         <AboutContent />
@@ -28,16 +30,22 @@ function App() {
         <Blogs />
         <Newsletter />
 
-
         <BottomDock />
         <Footer />
-
       </main>
       <BottomBlur />
     </>
   );
+};
 
-
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/contributions" element={<ContributionsPage />} />
+      <Route path="/projects" element={<ProjectsPage />} />
+    </Routes>
+  );
 }
 
 export default App;
