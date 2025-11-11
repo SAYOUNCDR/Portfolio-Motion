@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { Mail, Eye } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
@@ -57,7 +57,7 @@ export default function AboutMe() {
                     </div>
 
                     <p className="text-gray-400 text-lg">Full Stack AI Developer</p>
-                        <p className="text-white text-lg absolute top-5 right-0">📍India</p>
+                    <p className="text-white text-lg absolute top-5 right-0">📍India</p>
                     {/* Social Icons */}
                     <div className="flex flex-wrap gap-3 my-3">
                         <SocialIcon
@@ -86,7 +86,7 @@ export default function AboutMe() {
                     <div className="flex flex-wrap gap-5 pl-[2px]">
                         {/* Resume/CV Button */}
                         <a
-                            href="#"
+                            href="https://drive.google.com/file/d/1zrMACd70KzK-4lpzZAQw4eLbM4f2ovZG/view?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center bg-[#18181b] border border-[#c2c2c2] border-dashed
@@ -94,23 +94,7 @@ export default function AboutMe() {
                           gap-2 shadow transition hover:border-gray-500 
                           focus:outline-none whitespace-nowrap"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="lucide lucide-download text-gray-400"
-                                aria-hidden="true"
-                            >
-                                <path d="M12 15V3"></path>
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <path d="m7 10 5 5 5-5"></path>
-                            </svg>
+                            <Eye className="w-4 h-4 text-gray-400" aria-hidden="true" />
                             Resume
                         </a>
 

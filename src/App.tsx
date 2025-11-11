@@ -6,10 +6,10 @@ import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
 import Newsletter from "./Components/Newsletter";
-import OpenSource from "./Components/OpenSource";
 import Footer from "./Components/Footer";
 import BottomBlur from "./Components/BottomBlur";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
+import Contributions from "./Components/Contributions";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         </div> */}
 
         <Projects />
-        <OpenSource />
+        <Contributions />
         <Blogs />
         <Newsletter />
 
