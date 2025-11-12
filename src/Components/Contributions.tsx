@@ -19,7 +19,7 @@ const contributions: Contribution[] = [
         companyUrl: "https://lucide-animated.com/",
         prUrl: "https://github.com/pqoqubbw/icons/pull/167",
         description: "Open Source Animated Icon Library built on top of lucid icons.",
-        contribution: "Added git-merge animated icon #167",
+        contribution: "Animated \"git-merge\" icon #167",
         period: "July 2024",
         icon: {
             src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
@@ -39,6 +39,19 @@ const contributions: Contribution[] = [
             alt: "Branch icon",
         },
     },
+    {
+        repo: "pqoqubbw/icons",
+        company: "Lucide Animated",
+        companyUrl: "https://lucide-animated.com/",
+        prUrl: "https://github.com/pqoqubbw/icons/pull/172",
+        description: "Open Source Animated Icon Library built on top of lucid icons.",
+        contribution: "Animated 8 \"git related\" icons #172",
+        period: "July 2024",
+        icon: {
+            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
+            alt: "Branch icon",
+        },
+    },
 ];
 
 type ContributionsProps = {
@@ -50,7 +63,7 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
     const items = typeof limit === "number" ? contributions.slice(0, limit) : contributions;
 
     return (
-        <section className="text-white px-4 py-10 w-full mb-15 max-w-6xl mx-auto">
+        <section className="text-white px-6 py-10 w-full mb-15 max-w-6xl mx-auto">
 
             <h2 className="text-2xl font-bold mb-6">Contributions</h2>
 

@@ -10,8 +10,8 @@ import Footer from "./Components/Footer";
 import BottomBlur from "./Components/BottomBlur";
 import Contributions from "./Components/Contributions";
 import { Routes, Route } from "react-router-dom";
-import ContributionsPage from "./ContributionsPage";
-import ProjectsPage from "./ProjectsPage";
+import ContributionsPage from "./Components/ContributionsPage";
+import ProjectsPage from "./Components/ProjectsPage";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 const HomePage = () => {
@@ -25,8 +25,8 @@ const HomePage = () => {
           <ProfessionalCommandModal />
         </div> */}
 
-        <Projects />
-        <Contributions />
+        <Projects limit={2} showViewAll={true} />
+        <Contributions limit={2} showViewAll={true} />
         <Blogs />
         <Newsletter />
 
