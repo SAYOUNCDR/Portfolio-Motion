@@ -1,19 +1,18 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, X } from "lucide-react";
+import { CheckCircle2, X, Mail, Send } from "lucide-react";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState("");
-  const [isExpanded, setIsExpanded] = useState(false);
+
+  const [isSending, setIsSending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // validate email
   const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 
-  // Keyboard shortcut `/` to focus, Enter to submit
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "/" && document.activeElement !== inputRef.current) {
@@ -37,57 +36,66 @@ export default function Newsletter() {
       return;
     }
     setError("");
-    setEmail("");
 
-    // show toast
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 4000);
+    setIsSending(true);
+    setTimeout(() => {
+      setIsSending(false);
+      setShowToast(true);
+      setEmail("");
+      setTimeout(() => setShowToast(false), 4000);
+    }, 700);
   };
 
-  // generate star positions
   const stars = Array.from({ length: 20 });
 
   return (
-    <div className="text-white flex flex-col items-center gap-3 w-full max-w-3xl mx-auto p-6 mt-20  rounded-lg ">
-      {/* Header */}
+    <div className="text-white flex flex-col gap-3 w-full max-w-3xl mx-auto p-6 mt-20  rounded-lg ">
       <h1 className="text-lg font-semibold">Stay Updated</h1>
       <p className="text-sm text-gray-400">
         Subscribe to my email list. I do not spam, ever.
       </p>
 
-      {/* Form */}
       <form
         onSubmit={handleSubscribe}
-        className="flex items-center gap-2 mt-2"
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => !email && setIsExpanded(false)}
+        className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2"
       >
-        <motion.div
-          animate={{ width: isExpanded ? 260 : 180 }}
-          transition={{ type: "spring", stiffness: 250, damping: 22 }}
-          className="relative"
-        >
+        <div className="relative w-full sm:w-auto">
           <input
             ref={inputRef}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            onFocus={() => setIsExpanded(true)}
-            onBlur={() => !email && setIsExpanded(false)}
-            className="w-full h-[40px] px-3 pr-4 rounded-md text-sm 
-                       bg-black/30 border border-gray-600 
-                       placeholder-gray-400 text-white 
-                       focus:outline-none transition-all"
+            className="w-full sm:w-[280px] h-[40px] px-3 pr-4 rounded-md text-sm bg-black/30 border border-gray-600 placeholder-gray-400 text-white focus:outline-none"
           />
-        </motion.div>
-        <button
+        </div>
+
+        <motion.button
           type="submit"
-          className="px-4 py-[10px] bg-slate-900 hover:bg-gray-800 
-                     text-white rounded-md font-semibold text-sm cursor-pointer"
+          initial={{ width: 93 }}
+          whileHover={{ width: 120 }}
+          transition={{ type: "spring", stiffness: 300, damping: 24 }}
+          className="relative inline-flex items-center rounded-md bg-slate-900 px-3 py-2 text-sm font-semibold text-white overflow-hidden mt-2 sm:mt-0"
         >
-          Subscribe
-        </button>
+          <div className="flex items-center gap-2 p-0.5">
+            <span className="whitespace-nowrap pr-1">Subscribe</span>
+            <motion.span
+              className="flex items-center"
+              animate={
+                isSending
+                  ? { x: 28, y: -10, rotate: 20, opacity: 0 }
+                  : { x: 0, y: 0, rotate: 0, opacity: 1 }
+              }
+              transition={{ duration: 0.65, ease: "easeOut" }}
+            >
+              {isSending ? (
+                <Send className="w-4 h-4" />
+              ) : (
+                <Mail className="w-4 h-4 opacity-90" />
+              )}
+            </motion.span>
+          </div>
+        </motion.button>
       </form>
 
       {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
@@ -117,7 +125,6 @@ export default function Newsletter() {
               <X size={14} />
             </button>
 
-            {/* Star Confetti */}
             <div className="absolute inset-0 pointer-events-none">
               {stars.map((_, i) => {
                 const angle = Math.random() * 2 * Math.PI;

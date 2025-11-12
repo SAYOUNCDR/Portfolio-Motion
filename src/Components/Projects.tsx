@@ -73,7 +73,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                     {items.map((project) => (
                         <div
                             key={project.title}
-                            className="rounded-2xl text-white flex flex-col overflow-hidden border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 transition-all duration-300 ease-out hover:shadow-lg hover:border-zinc-700 hover:-translate-y-1 h-full"
+                            className="rounded-2xl text-white flex flex-col overflow-hidden border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 transition-all duration-300 ease-out hover:shadow-lg hover:border-zinc-700  h-full"
                         >
                             {project.website.url ? (
                                 <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
