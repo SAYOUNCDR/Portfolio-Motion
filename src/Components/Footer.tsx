@@ -1,6 +1,45 @@
 import { Heart } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
+    const TypewriterText = () => {
+        const full = "Shipping pixels → animating states → refining semantics.";
+        const [text, setText] = useState("");
+        const [isDeleting, setIsDeleting] = useState(false);
+
+        useEffect(() => {
+            let timer: number | undefined;
+
+            // typing speed is slower, deleting is faster
+            const typingSpeed = isDeleting ? 20 : 40;
+
+            if (!isDeleting && text === full) {
+                // pause at full text before deleting
+                timer = window.setTimeout(() => setIsDeleting(true), 1500);
+            } else if (isDeleting && text === "") {
+                // pause slightly at empty before typing again
+                timer = window.setTimeout(() => setIsDeleting(false), 500);
+            } else {
+                timer = window.setTimeout(() => {
+                    const next = isDeleting
+                        ? full.substring(0, text.length - 1)
+                        : full.substring(0, text.length + 1);
+                    setText(next);
+                }, typingSpeed);
+            }
+
+            return () => {
+                if (timer) clearTimeout(timer);
+            };
+        }, [text, isDeleting]);
+
+        return (
+            <span>
+                {text}
+                <span style={{ animation: "blinkCaret 1s step-end infinite", marginLeft: 2 }}>|</span>
+            </span>
+        );
+    };
     return (
         <footer
             id="footer"
@@ -44,7 +83,12 @@ export default function Footer() {
                         .
                     </p>
                     <p className="text-zinc-600">
-                        Shipping pixels → animating states → refining semantics.
+                        <span>
+                            <TypewriterText />
+                        </span>
+                        <style>{`
+                        @keyframes blinkCaret {50% { opacity: 0 }}
+                        `}</style>
                     </p>
                 </div>
             </div>
