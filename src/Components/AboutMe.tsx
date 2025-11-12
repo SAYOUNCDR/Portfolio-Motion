@@ -15,7 +15,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
     return (
         <a href={link} target="_blank" rel="noopener noreferrer">
             <motion.div
-                className="flex items-center bg-black text-white px-3 py-2 rounded-lg cursor-pointer overflow-hidden w-12 border border-zinc-700 hover:border-gray-500 transition"
+                className="flex items-center text-white px-3 py-2 rounded-lg cursor-pointer overflow-hidden w-12 border border-zinc-700 hover:border-gray-500 transition"
                 whileHover={{ width: 165 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
             >
@@ -36,7 +36,7 @@ export default function AboutMe() {
     const [showTooltip, setShowTooltip] = useState(false);
 
     return (
-        <section className="w-full max-w-4xl mx-auto bg-black overflow-hidden">
+        <section className="w-full max-w-4xl mx-auto  overflow-hidden">
             <div className="flex flex-col md:flex-row items-center md:items-start">
                 {/* Left - Profile Image */}
                 <div className="md:w-1/4 p-6 pr-4 flex justify-center md:justify-start relative">

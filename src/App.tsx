@@ -1,7 +1,7 @@
 import "./App.css";
 import AboutMe from "./Components/AboutMe";
 import Blogs from "./Components/Blogs";
-import BottomDock from "./Components/BottomDock";
+// import BottomDock from "./Components/BottomDock";
 import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
@@ -16,10 +16,11 @@ import BlogsPage from "./Components/BlogsPage";
 import BlogDetail from "./Components/BlogDetail";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import  BottomDockMode from "./Components/BottomDockMode";
 const HomePage = () => {
   return (
-    <>
-      <main className="min-h-screen bg-black max-w-3xl mx-auto flex items-center flex-col py-5">
+    <div>
+      <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col py-5">
         <AboutMe />
         <AboutContent />
         <Skills />
@@ -32,12 +33,13 @@ const HomePage = () => {
         <Blogs />
         <Newsletter />
 
-        <BottomDock />
+        {/* <BottomDock /> */}
+        <BottomDockMode />
         <Footer />
       </main>
       <BottomBlur />
       <SpeedInsights />
-    </>
+    </div>
   );
 };
 

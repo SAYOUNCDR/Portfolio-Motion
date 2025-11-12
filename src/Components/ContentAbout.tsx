@@ -1,6 +1,6 @@
 const AboutContent = () => {
     return (
-        <section className="w-full max-w-3xl mx-auto p-6 bg-black text-gray-300 leading-relaxed">
+        <section className="w-full max-w-3xl mx-auto p-6  text-gray-300 leading-relaxed">
             <h2 className="text-xl font-bold text-white">About</h2>
             <p className="mb-4">
                 <span className="text-gray-400 font-mono">tldr;</span> learnt by questioning my AI buddy and staying curious.
