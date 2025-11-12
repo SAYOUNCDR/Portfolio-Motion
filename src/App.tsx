@@ -13,7 +13,7 @@ import { Routes, Route } from "react-router-dom";
 import ContributionsPage from "./ContributionsPage";
 import ProjectsPage from "./ProjectsPage";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
-
+import { SpeedInsights } from "@vercel/speed-insights/react";
 const HomePage = () => {
   return (
     <>
@@ -34,6 +34,7 @@ const HomePage = () => {
         <Footer />
       </main>
       <BottomBlur />
+      <SpeedInsights />
     </>
   );
 };
