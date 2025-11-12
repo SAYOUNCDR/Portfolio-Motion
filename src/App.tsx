@@ -1,7 +1,6 @@
 import "./App.css";
 import AboutMe from "./Components/AboutMe";
 import Blogs from "./Components/Blogs";
-// import BottomDock from "./Components/BottomDock";
 import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
@@ -14,9 +13,8 @@ import ContributionsPage from "./Components/ContributionsPage";
 import ProjectsPage from "./Components/ProjectsPage";
 import BlogsPage from "./Components/BlogsPage";
 import BlogDetail from "./Components/BlogDetail";
-// import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import  BottomDockMode from "./Components/BottomDockMode";
+import BottomDockMode from "./Components/BottomDockMode";
 const HomePage = () => {
   return (
     <div>
@@ -24,16 +22,10 @@ const HomePage = () => {
         <AboutMe />
         <AboutContent />
         <Skills />
-        {/* <div className="relative w-full">
-          <ProfessionalCommandModal />
-        </div> */}
-
         <Projects limit={2} showViewAll={true} />
         <Contributions limit={2} showViewAll={true} />
         <Blogs />
         <Newsletter />
-
-        {/* <BottomDock /> */}
         <BottomDockMode />
         <Footer />
       </main>

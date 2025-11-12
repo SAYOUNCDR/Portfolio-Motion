@@ -1,3 +1,4 @@
+// Currently this component is not in use. It can be re-integrated later if needed.
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
