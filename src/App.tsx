@@ -12,6 +12,8 @@ import Contributions from "./Components/Contributions";
 import { Routes, Route } from "react-router-dom";
 import ContributionsPage from "./Components/ContributionsPage";
 import ProjectsPage from "./Components/ProjectsPage";
+import BlogsPage from "./Components/BlogsPage";
+import BlogDetail from "./Components/BlogDetail";
 // import ProfessionalCommandModal from "./Components/ProfessionalCommandModal";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 const HomePage = () => {
@@ -45,6 +47,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/contributions" element={<ContributionsPage />} />
       <Route path="/projects" element={<ProjectsPage />} />
+      <Route path="/blogs" element={<BlogsPage />} />
+      <Route path="/blogs/:slug" element={<BlogDetail />} />
     </Routes>
   );
 }
