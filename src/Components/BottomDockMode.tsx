@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { BsSun } from "react-icons/bs";
 import { RiMoonClearFill } from "react-icons/ri";
 import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function BottomDockMode() {
 
@@ -13,31 +14,8 @@ export default function BottomDockMode() {
 
 
 
-    // Theme: 'dark' | 'light'
-    const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-        try {
-            const saved = localStorage.getItem('theme');
-            if (saved === 'light' || saved === 'dark') return saved;
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        } catch {
-            return 'dark';
-        }
-    });
-
-    useEffect(() => {
-        try {
-            if (theme === 'light') {
-                document.documentElement.classList.add('light-theme');
-                document.documentElement.classList.remove('dark-theme');
-            } else {
-                document.documentElement.classList.add('dark-theme');
-                document.documentElement.classList.remove('light-theme');
-            }
-            localStorage.setItem('theme', theme);
-        } catch (e) {
-            // ignore
-        }
-    }, [theme]);
+    // Theme provided by context
+    const { theme, toggleTheme } = useTheme();
 
     useEffect(() => {
         // initialize lastY safely on mount
@@ -112,7 +90,7 @@ export default function BottomDockMode() {
                     <motion.button
                         aria-label="Toggle theme"
                         aria-pressed={theme === 'dark'}
-                        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                        onClick={() => toggleTheme()}
                         className={`relative p-1 rounded-md flex items-center justify-center w-9 h-9 cursor-pointer bg-transparent transition-colors duration-150 ${theme === 'light' ? 'hover:bg-white/90' : 'hover:bg-zinc-800'}`}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
