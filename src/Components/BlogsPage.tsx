@@ -28,7 +28,7 @@ export default function BlogsPage() {
                 </Link>
             </div>
 
-            <h1 className={`text-3xl font-bold mb-6 ${headingStyles}`}>All Blogs & Gists</h1>
+            <h1 className={`text-2xl font-bold mb-6 ${headingStyles}`}>All Blogs & Gists</h1>
 
             <div className="space-y-6">
                 {blogs.map((blog) => (

@@ -55,7 +55,7 @@ export default function Skills() {
 
     return (
         <section className={`w-full max-w-4xl mx-auto p-6 ${sectionText}`}>
-            <h2 className={`text-xl font-semibold mb-4 ${headingColor}`}>Skills</h2>
+            <h2 className={`text-2xl font-bold mb-4 ${headingColor}`}>Skills</h2>
             <div className="flex flex-wrap items-center">
                 {skills.map((skill) => (
                     <div

@@ -18,7 +18,7 @@ export default function Blogs() {
 
     return (
         <section className="py-5 w-full max-w-3xl mx-auto px-6">
-            <h2 className={`text-2xl font-semibold mb-6 ${headingColor}`}>Blogs & Gists</h2>
+            <h2 className={`text-2xl font-bold mb-6 ${headingColor}`}>Blogs & Gists</h2>
             <div className="space-y-6">
                 {visible.map((blog) => (
                     <Link

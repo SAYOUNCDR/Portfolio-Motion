@@ -68,7 +68,7 @@ export default function Newsletter() {
 
   return (
     <div className={`flex flex-col gap-3 w-full max-w-3xl mx-auto p-6 mt-20 rounded-lg ${sectionText}`}>
-      <h1 className="text-lg font-semibold">Stay Updated</h1>
+      <h2 className="text-2xl font-bold">Stay Updated</h2>
       <p className={`text-sm ${hintText}`}>
         Subscribe to my email list. I do not spam, ever.
       </p>

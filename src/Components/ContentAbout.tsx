@@ -9,7 +9,7 @@ const AboutContent = () => {
 
     return (
         <section className={`w-full max-w-3xl mx-auto p-6 leading-relaxed ${baseText}`}>
-            <h2 className={`text-xl font-bold ${headingText}`}>About</h2>
+            <h2 className={`text-2xl font-bold ${headingText}`}>About</h2>
             <p className="mb-4">
                 <span className={`font-mono ${accentText}`}>tldr;</span> learnt by questioning my AI buddy and staying curious.
             </p>
