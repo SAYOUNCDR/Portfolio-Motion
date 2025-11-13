@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Eye } from "lucide-react";
+import { Mail, Eye, MousePointerClick } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
@@ -44,6 +44,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
 
 export default function AboutMe() {
     const [showTooltip, setShowTooltip] = useState(false);
+    const [showComponentTip, setShowComponentTip] = useState(false);
     const { theme } = useTheme();
 
     const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
@@ -59,9 +60,12 @@ export default function AboutMe() {
         ? "bg-white text-black"
         : "bg-slate-900 text-white";
     const iconAccent = theme === "dark" ? "text-gray-400" : "text-slate-500";
+    const componentLinkStyles = theme === "dark"
+        ? "bg-zinc-900/70 border border-zinc-700 text-white hover:border-zinc-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+        : "bg-white border border-slate-300 text-slate-800 hover:border-slate-500 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
 
     return (
-        <section className={`w-full max-w-4xl mx-auto overflow-hidden ${theme === "dark" ? "" : "text-slate-800"}`}>
+        <section className={`relative w-full max-w-4xl mx-auto overflow-hidden ${theme === "dark" ? "" : "text-slate-800"} mb-7`}>
             <div className="flex flex-col md:flex-row items-center md:items-start">
                 {/* Left - Profile Image */}
                 <div className="md:w-1/4 p-6 pr-4 flex justify-center md:justify-start relative">
@@ -150,6 +154,36 @@ export default function AboutMe() {
                     </div>
                 </div>
             </div>
+
+            <a
+                href=""
+                onMouseEnter={() => setShowComponentTip(true)}
+                onMouseLeave={() => setShowComponentTip(false)}
+                onFocus={() => setShowComponentTip(true)}
+                onBlur={() => setShowComponentTip(false)}
+                className={`hidden md:flex absolute right-[0.5rem] top-1/2 -translate-y-1/2 flex-col gap-0.5 rounded-xl px-4 py-3 text-xs font-medium transition-opacity duration-300 rotate-[-8deg] opacity-50 hover:opacity-100 ${componentLinkStyles}`}
+            >
+                <div className="relative flex flex-col gap-0.5">
+                    <span className="flex items-center gap-2 text-sm font-semibold">
+                        <MousePointerClick className="h-3.5 w-3.5" />
+                        Components lab
+                    </span>
+                    <span className="text-[11px] font-normal opacity-80">
+                        click for micro-interactions
+                    </span>
+                    {showComponentTip && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 6 }}
+                            transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                            className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 rounded-md px-3 py-1 text-[10px] font-medium shadow-lg ${tooltipStyles}`}
+                        >
+                            under development
+                        </motion.div>
+                    )}
+                </div>
+            </a>
         </section>
     );
 }
