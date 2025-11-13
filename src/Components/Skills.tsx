@@ -17,7 +17,8 @@ import {
     SiFramer,
     SiZod,
 } from "react-icons/si";
-import { FaRocket, FaCode, FaCoffee} from "react-icons/fa";
+import { FaRocket, FaCode, FaCoffee } from "react-icons/fa";
+import { useTheme } from "../contexts/ThemeContext";
 
 type Skill = {
     name: string;
@@ -46,14 +47,20 @@ const skills: Skill[] = [
 ];
 
 export default function Skills() {
+    const { theme } = useTheme();
+
+    const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
+    const chipBg = theme === "dark" ? "bg-white text-black" : "bg-slate-900 text-slate-100";
+    const sectionText = theme === "dark" ? "" : "text-slate-700";
+
     return (
-        <section className="w-full max-w-4xl mx-auto p-6">
-            <h2 className="text-xl font-semibold mb-4 text-white">Skills</h2>
+        <section className={`w-full max-w-4xl mx-auto p-6 ${sectionText}`}>
+            <h2 className={`text-xl font-semibold mb-4 ${headingColor}`}>Skills</h2>
             <div className="flex flex-wrap items-center">
                 {skills.map((skill) => (
                     <div
                         key={skill.name}
-                        className="inline-flex items-center gap-2 bg-white text-black px-3 py-1 rounded-lg shadow-sm m-1"
+                        className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg shadow-sm m-1 ${chipBg}`}
                     >
                         <span className="flex items-center" aria-hidden>
                             {skill.icon}

@@ -16,6 +16,14 @@ export default function BottomDockMode() {
 
     // Theme provided by context
     const { theme, toggleTheme } = useTheme();
+    const dockStyles = theme === 'dark'
+        ? 'bg-black/40 border border-zinc-700'
+        : 'bg-white/80 border border-slate-300 shadow-lg';
+    const iconColor = theme === 'dark' ? 'text-white' : 'text-slate-800';
+    const tooltipStyles = theme === 'dark'
+        ? 'bg-white text-black'
+        : 'bg-slate-900 text-white';
+    const dividerColor = theme === 'dark' ? 'bg-zinc-500' : 'bg-slate-300';
 
     useEffect(() => {
         // initialize lastY safely on mount
@@ -45,33 +53,33 @@ export default function BottomDockMode() {
 
     return (
         <div className={`fixed bottom-6 left-0 right-0 flex justify-center items-center z-50 transition-all duration-500 ease-[cubic-bezier(.2,.8,.2,1)] ${visible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0 pointer-events-none'}`}>
-            <div className="relative bg-black/30 border border-zinc-700 px-3 py-2 rounded-xl flex items-center gap-4 backdrop-blur-md">
+            <div className={`relative px-3 py-2 rounded-xl flex items-center gap-4 backdrop-blur-md transition-colors duration-200 ${dockStyles}`}>
                 {/* GitHub */}
                 <a href="https://github.com/SAYOUNCDR" target="_blank" className="group relative flex">
-                    <FaGithub className="text-white text-xl" />
-                    <span className="absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max bg-white text-black font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition">
+                    <FaGithub className={`${iconColor} text-xl`} />
+                    <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
                         GitHub
                     </span>
                 </a>
 
                 {/* Twitter (X) */}
                 <a href="https://x.com/DriftNBlde" target="_blank" className="group relative flex">
-                    <FaXTwitter className="text-white text-xl" />
-                    <span className="absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max bg-white text-black font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition">
+                    <FaXTwitter className={`${iconColor} text-xl`} />
+                    <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
                         Twitter
                     </span>
                 </a>
 
                 {/* LinkedIn */}
                 <a href="https://www.linkedin.com/in/sayoun-parui-868b4228b/" target="_blank" className="group relative flex">
-                    <FaLinkedin className="text-white text-xl" />
-                    <span className="absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max bg-white text-black font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition">
+                    <FaLinkedin className={`${iconColor} text-xl`} />
+                    <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
                         LinkedIn
                     </span>
                 </a>
 
                 {/* Divider */}
-                <div className="h-8 w-[1px] bg-zinc-500 mx-1"></div>
+                <div className={`h-8 w-[1px] mx-1 ${dividerColor}`}></div>
 
                 {/* Profile Image */}
                 <div className="rounded-md overflow-hidden cursor-pointer">
@@ -83,7 +91,7 @@ export default function BottomDockMode() {
                 </div>
 
                 {/* Divider */}
-                <div className="h-8 w-[1px] bg-zinc-500 mx-1"></div>
+                <div className={`h-8 w-[1px] mx-1 ${dividerColor}`}></div>
 
                 {/* Theme Switcher (Sun / Moon) */}
                 <div className="relative">

@@ -10,7 +10,7 @@ import BottomBlur from "./Components/BottomBlur";
 import Contributions from "./Components/Contributions";
 import { Routes, Route } from "react-router-dom";
 import ContributionsPage from "./Components/ContributionsPage";
-import ProjectsPage from "./Components/ProjectsPage";
+import ProjectsPage from "./Components/ProjectsPage"
 import BlogsPage from "./Components/BlogsPage";
 import BlogDetail from "./Components/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";

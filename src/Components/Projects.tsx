@@ -1,5 +1,6 @@
 import { Globe, Github, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
 
 type Project = {
     title: string;
@@ -80,17 +81,36 @@ type ProjectsProps = {
 
 const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
     const items = typeof limit === "number" ? projects.slice(0, limit) : projects;
+    const { theme } = useTheme();
+
+    const sectionText = theme === "dark" ? "text-white" : "text-slate-800";
+    const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
+    const cardStyles =
+        theme === "dark"
+            ? "text-white border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 hover:border-zinc-700"
+            : "text-slate-800 border border-slate-200 bg-gradient-to-r from-white via-[#f4f9fb] to-[#ebf4f5] hover:border-slate-300";
+    const timeColor = theme === "dark" ? "text-neutral-400" : "text-slate-500";
+    const descriptionColor = theme === "dark" ? "text-neutral-400" : "text-slate-600";
+    const tagStyles = theme === "dark" ? "bg-neutral-800 text-white" : "bg-white/80 text-slate-800 border border-slate-200";
+    const actionButton =
+        theme === "dark"
+            ? "bg-white text-black border border-neutral-200 hover:bg-neutral-100"
+            : "bg-slate-900 text-white border border-slate-900 hover:bg-slate-800";
+    const viewAllLink = theme === "dark" ? "border-[#c2c2c2] hover:border-gray-500 text-white" : "border-slate-400 hover:border-slate-500 text-slate-800";
+    const depthEffect = theme === "dark"
+        ? "shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+        : "shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
 
     return (
-        <section className="text-white px-4 py-10">
+        <section className={`${sectionText} px-6 py-10`}>
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-2xl font-bold mb-6">Projects</h2>
+                <h2 className={`text-2xl font-bold mb-6 ${headingColor}`}>Projects</h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {items.map((project) => (
                         <div
                             key={project.title}
-                            className="rounded-2xl text-white flex flex-col overflow-hidden border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 transition-all duration-300 ease-out hover:shadow-lg hover:border-zinc-700  h-full"
+                            className={`rounded-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out hover:shadow-lg h-full ${cardStyles}`}
                         >
                             {project.website.url ? (
                                 <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
@@ -116,15 +136,15 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
 
                             <div className="flex flex-col px-3 py-2">
                                 <h3 className="font-semibold tracking-tight text-base mt-1 pb-2">{project.title}</h3>
-                                <time className="text-xs text-neutral-400 pb-2">{project.period}</time>
-                                <p className="text-xs text-neutral-400 mt-1">{project.description}</p>
+                                <time className={`text-xs pb-2 ${timeColor}`}>{project.period}</time>
+                                <p className={`text-xs mt-1 ${descriptionColor}`}>{project.description}</p>
                             </div>
 
                             <div className="flex flex-wrap gap-1 px-3 pb-5 pt-8 mt-auto">
                                 {project.tags.map((tag) => (
                                     <span
                                         key={tag}
-                                        className="inline-flex items-center rounded-md bg-neutral-800 text-white px-1.5 py-0.5 text-[10px] font-semibold"
+                                        className={`inline-flex items-center rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${tagStyles}`}
                                     >
                                         {tag}
                                     </span>
@@ -137,7 +157,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         href={project.website.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="flex items-center gap-1 px-2 py-1 text-[10px] font-semibold bg-white text-black rounded-md shadow border border-neutral-200 hover:bg-neutral-100 transition-colors"
+                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
                                     >
                                         <Globe className="size-3" />
                                         <span>{project.website.label}</span>
@@ -149,7 +169,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         href={project.github.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="flex items-center gap-1 px-2 py-1 text-[10px] font-semibold bg-white text-black rounded-md shadow border border-neutral-200 hover:bg-neutral-100 transition-colors"
+                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
                                     >
                                         <Github className="size-3" />
                                         <span>{project.github.label}</span>
@@ -164,7 +184,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                     <div className="mt-8 flex justify-end">
                         <Link
                             to="/projects"
-                            className="inline-flex items-center gap-2 rounded-lg border border-[#c2c2c2] border-dashed px-3 py-2 text-xs font-semibold text-white transition hover:border-gray-500"
+                            className={`inline-flex items-center gap-2 rounded-lg border border-dashed px-3 py-2 text-xs font-semibold transition ${viewAllLink} ${depthEffect}`}
                         >
                             View more projects
                             <ArrowUpRight className="h-4 w-4" />

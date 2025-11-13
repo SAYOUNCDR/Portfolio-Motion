@@ -1,13 +1,21 @@
+import { useTheme } from "../contexts/ThemeContext";
+
 const AboutContent = () => {
+    const { theme } = useTheme();
+
+    const baseText = theme === "dark" ? "text-gray-300" : "text-slate-700";
+    const accentText = theme === "dark" ? "text-gray-400" : "text-slate-500";
+    const headingText = theme === "dark" ? "text-white" : "text-slate-900";
+
     return (
-        <section className="w-full max-w-3xl mx-auto p-6  text-gray-300 leading-relaxed">
-            <h2 className="text-xl font-bold text-white">About</h2>
+        <section className={`w-full max-w-3xl mx-auto p-6 leading-relaxed ${baseText}`}>
+            <h2 className={`text-xl font-bold ${headingText}`}>About</h2>
             <p className="mb-4">
-                <span className="text-gray-400 font-mono">tldr;</span> learnt by questioning my AI buddy and staying curious.
+                <span className={`font-mono ${accentText}`}>tldr;</span> learnt by questioning my AI buddy and staying curious.
             </p>
             <p className="mb-4">
                 I pick things up from people on the internet, keep experimenting, and build stuff that looks
-                <span className="italic text-gray-400"> shitty at first </span>
+                <span className={`italic ${accentText}`}> shitty at first </span>
                 but gets cooler after enough iterations. Always breaking, fixing, and learning.
             </p>
             <p>

@@ -1,6 +1,12 @@
 body {
-  background-color: black;
+  background-color: #ffffff;
   font-family: "Inter", sans-serif;
+  color: #1f2933;
+}
+
+.dark body {
+  background-color: black;
+  color: #d1d5db;
 }
 
 @keyframes shine {

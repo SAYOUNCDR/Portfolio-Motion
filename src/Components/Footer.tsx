@@ -1,7 +1,20 @@
 import { Heart } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 export default function Footer() {
+    const { theme } = useTheme();
+    const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
+    const subtextColor = theme === "dark" ? "text-zinc-400" : "text-slate-600";
+    const pillBorder = theme === "dark"
+        ? "border-zinc-800 bg-zinc-900/60 text-zinc-300"
+        : "border-slate-300 bg-slate-100/90 text-slate-700";
+    const pillHover = theme === "dark" ? "group-hover:text-white" : "group-hover:text-slate-900";
+    const divider = theme === "dark" ? "from-transparent via-zinc-700/40 to-transparent" : "from-transparent via-slate-200 to-transparent";
+    const metaText = theme === "dark" ? "text-zinc-500" : "text-slate-500";
+    const metaLink = theme === "dark" ? "text-zinc-300 hover:text-zinc-500" : "text-slate-700 hover:text-slate-900";
+    const cursorColor = theme === "dark" ? "#d1d5db" : "#334155";
+
     const TypewriterText = () => {
         const full = "Shipping pixels → animating states → refining semantics.";
         const [text, setText] = useState("");
@@ -36,7 +49,7 @@ export default function Footer() {
         return (
             <span>
                 {text}
-                <span style={{ animation: "blinkCaret 1s step-end infinite", marginLeft: 2 }}>|</span>
+                <span style={{ animation: "blinkCaret 1s step-end infinite", marginLeft: 2, color: cursorColor }}>|</span>
             </span>
         );
     };
@@ -52,37 +65,37 @@ export default function Footer() {
             <div className="relative max-w-4xl mx-auto px-6 flex flex-col gap-10">
                 {/* Brand & mantra */}
                 <div className="space-y-5 text-center">
-                    <div className="group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/60 backdrop-blur-sm text-xs text-zinc-300 tracking-wide overflow-hidden">
+                    <div className={`group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-sm text-xs tracking-wide overflow-hidden ${pillBorder}`}>
                         {/* Shine overlay (slightly brighter) */}
                         <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shine-smooth bg-gradient-to-r from-transparent via-white/30 to-transparent [mask-image:linear-gradient(to_right,transparent,black_40%,black_60%,transparent)]" />
                         <Heart className="size-3 text-pink-400 relative" />
-                        <span className="relative transition-colors duration-300 group-hover:text-white">Built with focus, curiosity & far too much caffeine</span>
+                        <span className={`relative transition-colors duration-300 ${pillHover}`}>Built with focus, curiosity & far too much caffeine</span>
                     </div>
-                    <h3 className="text-xl font-semibold tracking-tight text-white">
+                    <h3 className={`text-xl font-semibold tracking-tight ${headingColor}`}>
                         Sayoun
                     </h3>
-                    <p className="text-sm leading-relaxed text-zinc-400 max-w-xl mx-auto">
+                    <p className={`text-sm leading-relaxed max-w-xl mx-auto ${subtextColor}`}>
                         Crafting smooth, accessible interfaces & micro–interactions. Shipping ideas fast, polishing the details slower. Always learning.
                     </p>
                 </div>
 
                 {/* Divider accent */}
-                <div className="h-px w-full bg-gradient-to-r from-transparent via-zinc-700/40 to-transparent" />
+                <div className={`h-px w-full bg-gradient-to-r ${divider}`} />
                 {/* Meta */}
-                <div className="flex flex-col items-center gap-2 text-[11px] text-zinc-500">
+                <div className={`flex flex-col items-center gap-2 text-[11px] ${metaText}`}>
                     <p>
-                        © {new Date().getFullYear()} <span className="text-zinc-300">Sayoun Parui</span>. Source on{' '}
+                        © {new Date().getFullYear()} <span className={theme === "dark" ? "text-zinc-300" : "text-slate-700"}>Sayoun Parui</span>. Source on{' '}
                         <a
                             href="https://github.com/SAYOUNCDR/Portfolio-Motion"
                             target="_blank"
                             rel="noreferrer"
-                            className="underline decoration-dotted hover:text-zinc-300"
+                            className={`underline decoration-dotted ${metaLink}`}
                         >
                             GitHub
                         </a>
                         .
                     </p>
-                    <p className="text-zinc-600">
+                    <p className={theme === "dark" ? "text-zinc-600" : "text-slate-500"}>
                         <span>
                             <TypewriterText />
                         </span>
