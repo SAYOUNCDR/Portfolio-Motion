@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import Projects from "./Projects";
+import Projects from "../Components/Projects";
 import { useTheme } from "../contexts/ThemeContext";
 
 const ProjectsPage = () => {

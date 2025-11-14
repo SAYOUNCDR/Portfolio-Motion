@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import Contributions from "./Contributions";
+import Contributions from "../Components/Contributions";
 import { useTheme } from "../contexts/ThemeContext";
 
 const ContributionsPage = () => {

@@ -9,9 +9,9 @@ import Footer from "./Components/Footer";
 import BottomBlur from "./Components/BottomBlur";
 import Contributions from "./Components/Contributions";
 import { Routes, Route } from "react-router-dom";
-import ContributionsPage from "./Components/ContributionsPage";
-import ProjectsPage from "./Components/ProjectsPage"
-import BlogsPage from "./Components/BlogsPage";
+import ContributionsPage from "./Pages/ContributionsPage";
+import ProjectsPage from "./Pages/ProjectsPage"
+import BlogsPage from "./Pages/BlogsPage";
 import BlogDetail from "./Components/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/BottomDockMode";
