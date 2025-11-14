@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
 import { useTheme } from "../contexts/ThemeContext";
+import LiveViewCounter from "./LiveViewCounter";
 
 interface SocialIconProps {
     icon: React.ReactNode;
@@ -49,7 +50,6 @@ export default function AboutMe() {
 
     const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
     const roleColor = theme === "dark" ? "text-gray-400" : "text-slate-600";
-    const locationColor = theme === "dark" ? "text-white" : "text-slate-700";
     const resumeButton = theme === "dark"
         ? "bg-[#18181b] border-[#c2c2c2] text-white hover:border-gray-500"
         : "bg-white border-slate-300 text-slate-800 hover:border-slate-500";
@@ -81,12 +81,12 @@ export default function AboutMe() {
                 {/* Right - Info */}
                 <div className="relative md:w-2/3 pt-4 pl-2 flex flex-col justify-center">
                     {/* Header */}
-                    <div className="flex items-center gap-4 mb-2">
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
                         <h1 className={`text-2xl font-bold ${headingColor}`}>Sayoun ⚡</h1>
+                        <LiveViewCounter className="md:ml-auto" />
                     </div>
 
                     <p className={`text-lg ${roleColor}`}>Full Stack AI Developer</p>
-                    <p className={`text-lg absolute top-5 right-0 ${locationColor}`}>📍India</p>
                     {/* Social Icons */}
                     <div className="flex flex-wrap gap-3 my-3">
                         <SocialIcon
