@@ -10,7 +10,9 @@ export default function Newsletter() {
   const [error, setError] = useState("");
 
   const [isSending, setIsSending] = useState(false);
+  const [holdExpanded, setHoldExpanded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const collapseTimeoutRef = useRef<number | null>(null);
   const { theme } = useTheme();
 
   const sectionText = theme === "dark" ? "text-white" : "text-slate-800";
@@ -21,8 +23,8 @@ export default function Newsletter() {
       : "bg-white border border-slate-300 placeholder-slate-400 text-slate-900";
   const buttonStyles =
     theme === "dark"
-      ? "bg-black text-white border border-gray-600 hover:border-gray-400"
-      : "bg-slate-900 text-white border border-slate-500 hover:border-slate-600";
+      ? "bg-black text-white border border-gray-600 hover:border-gray-400 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+      : "bg-white text-slate-800 border border-slate-300 hover:border-slate-500 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
   const toastStyles =
     theme === "dark"
       ? "bg-black/80 border border-gray-700 text-white"
@@ -46,6 +48,14 @@ export default function Newsletter() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [email]);
 
+  useEffect(() => {
+    return () => {
+      if (collapseTimeoutRef.current) {
+        window.clearTimeout(collapseTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -55,12 +65,22 @@ export default function Newsletter() {
     }
     setError("");
 
+    if (collapseTimeoutRef.current) {
+      window.clearTimeout(collapseTimeoutRef.current);
+      collapseTimeoutRef.current = null;
+    }
+
     setIsSending(true);
+    setHoldExpanded(true);
     setTimeout(() => {
       setIsSending(false);
       setShowToast(true);
       setEmail("");
       setTimeout(() => setShowToast(false), 4000);
+      collapseTimeoutRef.current = window.setTimeout(() => {
+        setHoldExpanded(false);
+        collapseTimeoutRef.current = null;
+      }, 1500);
     }, 700);
   };
 
@@ -70,7 +90,7 @@ export default function Newsletter() {
     <div className={`flex flex-col gap-3 w-full max-w-3xl mx-auto p-6 mt-20 rounded-lg ${sectionText}`}>
       <h2 className="text-2xl font-bold">Stay Updated</h2>
       <p className={`text-sm ${hintText}`}>
-        Subscribe to my email list. I do not spam, ever.
+        Join my mail list get free bugs and their solutions.
       </p>
 
       <form
@@ -91,6 +111,7 @@ export default function Newsletter() {
         <motion.button
           type="submit"
           initial={{ width: 93 }}
+          animate={{ width: isSending || holdExpanded ? 120 : 93 }}
           whileHover={{ width: 120 }}
           transition={{ type: "spring", stiffness: 300, damping: 24 }}
           className={`relative inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold overflow-hidden mt-2 sm:mt-0 ${buttonStyles}`}
