@@ -65,10 +65,10 @@ export default function Footer() {
             <div className="relative max-w-4xl mx-auto px-6 flex flex-col gap-10">
                 {/* Brand & mantra */}
                 <div className="space-y-5 text-center">
-                    <div className={`group relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full backdrop-blur-sm text-xs tracking-wide overflow-hidden ${pillBorder}`}>
+                    <div className={`group relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-full backdrop-blur-sm text-[10px] sm:text-xs tracking-wide overflow-hidden ${pillBorder}`}>
                         {/* Shine overlay (slightly brighter) */}
                         <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shine-smooth bg-gradient-to-r from-transparent via-white/30 to-transparent [mask-image:linear-gradient(to_right,transparent,black_40%,black_60%,transparent)]" />
-                        <Heart className="size-3 text-pink-400 relative" />
+                        <Heart className="size-[10px] sm:size-3 text-pink-400 relative" />
                         <span className={`relative transition-colors duration-300 ${pillHover}`}>Built with focus, curiosity & far too much caffeine</span>
                     </div>
                     <h3 className={`text-xl font-semibold tracking-tight ${headingColor}`}>
