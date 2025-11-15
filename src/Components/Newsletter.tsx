@@ -5,6 +5,16 @@ import { CheckCircle2, X, Mail, Send } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 
 export default function Newsletter() {
+  const builderStats = {
+    streakDays: 27,
+    nextDrop: "Nov 21 • 9:00 PM",
+    focus: "Shipping an interactive AI copilot demo"
+  };
+
+  const streakArray = Array.from(
+    { length: builderStats.streakDays },
+    (_, i) => i / builderStats.streakDays
+  );
   const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState("");
@@ -25,12 +35,6 @@ export default function Newsletter() {
     name: "Aarav P.",
     minutesAgo: 12
   };
-  const builderStats = {
-    streakDays: 27,
-    nextDrop: "Nov 21 • 9:00 PM",
-    focus: "Shipping an interactive AI copilot demo"
-  };
-
   const sectionText = theme === "dark" ? "text-white" : "text-slate-800";
   const hintText = theme === "dark" ? "text-gray-400" : "text-slate-600";
   const inputStyles =
@@ -174,14 +178,17 @@ export default function Newsletter() {
 
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
 
-          <div className={`hidden md:flex md:flex-1 md:flex-col md:h-full mt-6 rounded-2xl px-5 py-5 border ${leftCardStyles}`}>
+          <div
+            className={`hidden md:flex md:flex-1 md:flex-col md:h-full mt-6 rounded-2xl px-5 py-5 border ${leftCardStyles}`}
+          >
             <div className="flex items-center gap-4">
               <div
                 className="relative h-12 w-12 rounded-xl"
                 style={{
-                  background: theme === "dark"
-                    ? "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 70%)"
-                    : "radial-gradient(circle at 30% 30%, rgba(0,0,0,0.06), transparent 70%)"
+                  background:
+                    theme === "dark"
+                      ? "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 70%)"
+                      : "radial-gradient(circle at 30% 30%, rgba(0,0,0,0.06), transparent 70%)"
                 }}
               >
                 <div className="absolute inset-1 rounded-lg border border-white/10 backdrop-blur-sm flex items-center justify-center text-xl">
@@ -194,25 +201,48 @@ export default function Newsletter() {
                 <p className={`text-xs ${secondaryText}`}>
                   {builderStats.streakDays} days shipping something new
                 </p>
+
+                {/* GitHub streak bar */}
+                <div className="flex gap-[3px] mt-2">
+                  {streakArray.map((level, i) => (
+                    <div
+                      key={i}
+                      className="h-2 w-2 rounded-[2px]"
+                      style={{
+                        backgroundColor:
+                          theme === "dark"
+                            ? `rgba(34,197,94,${0.15 + level * 0.4})`
+                            : `rgba(16,185,129,${0.15 + level * 0.4})`
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-4 text-xs">
               <div className="rounded-lg border border-dashed border-current/15 px-3 py-3">
                 <p className={`font-semibold ${accentText}`}>Next drop</p>
-                <p className={`mt-1 leading-tight ${secondaryText}`}>{builderStats.nextDrop}</p>
+                <p className={`mt-1 leading-tight ${secondaryText}`}>
+                  {builderStats.nextDrop}
+                </p>
               </div>
               <div className="rounded-lg border border-dashed border-current/15 px-3 py-3">
                 <p className={`font-semibold ${accentText}`}>Current focus</p>
-                <p className={`mt-1 leading-tight ${secondaryText}`}>{builderStats.focus}</p>
+                <p className={`mt-1 leading-tight ${secondaryText}`}>
+                  {builderStats.focus}
+                </p>
               </div>
             </div>
 
-            <div className={`mt-4 md:mt-auto flex items-center justify-between rounded-xl px-4 py-3 border ${chipStyles}`}>
+            <div
+              className={`mt-4 md:mt-auto flex items-center justify-between rounded-xl px-4 py-3 border ${chipStyles}`}
+            >
               <span className="text-xs font-medium">Daily commit energy low?</span>
               <span className="text-xs font-semibold">Take a ship-break ☕</span>
             </div>
           </div>
+
         </div>
 
         <div className={`hidden md:flex md:self-stretch flex-col relative overflow-hidden rounded-2xl px-5 py-6 md:w-[300px] lg:w-[320px] ${cardStyles}`}>

@@ -15,6 +15,7 @@ import BlogsPage from "./Pages/BlogsPage";
 import BlogDetail from "./Components/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/BottomDockMode";
+import LivePingOverlay from "./Components/LivePingOverlay";
 const HomePage = () => {
   return (
     <div>
@@ -37,13 +38,16 @@ const HomePage = () => {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/contributions" element={<ContributionsPage />} />
-      <Route path="/projects" element={<ProjectsPage />} />
-      <Route path="/blogs" element={<BlogsPage />} />
-      <Route path="/blogs/:slug" element={<BlogDetail />} />
-    </Routes>
+    <>
+      <LivePingOverlay />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contributions" element={<ContributionsPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/blogs/:slug" element={<BlogDetail />} />
+      </Routes>
+    </>
   );
 }
 

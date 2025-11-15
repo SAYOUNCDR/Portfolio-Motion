@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
 import { useTheme } from "../contexts/ThemeContext";
 import LiveViewCounter from "./LiveViewCounter";
+import LivePingChat from "./LivePingChat";
 
 interface SocialIconProps {
     icon: React.ReactNode;
@@ -65,10 +66,10 @@ export default function AboutMe() {
         : "bg-white border border-slate-300 text-slate-800 hover:border-slate-500 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
 
     return (
-        <section className={`relative w-full max-w-4xl mx-auto overflow-hidden ${theme === "dark" ? "" : "text-slate-800"} mb-7`}>
+        <section className={`relative w-full max-w-4xl mx-auto overflow-hidden ${theme === "dark" ? "" : "text-slate-800"}`}>
             <div className="flex flex-col md:flex-row items-center md:items-start">
                 {/* Left - Profile Image */}
-                <div className="md:w-1/4 p-6 pr-4 flex justify-center md:justify-start relative">
+                <div className="md:w-1/4 p-6 pr-4 pb-3 flex flex-col items-center md:items-start gap-4 relative">
                     <div className="w-40 h-40 rounded-lg overflow-hidden relative">
                         <img
                             src="images/Profile.jpg"
@@ -76,12 +77,18 @@ export default function AboutMe() {
                             className="w-full h-full object-cover"
                         />
                     </div>
+                    <LivePingChat
+                        orientation="horizontal"
+                        maxWidthClass="w-[160px] sm:w-40"
+                        inputWidthClass="w-[160px]"
+                        className="hidden justify-center sm:flex sm:justify-center"
+                    />
                 </div>
 
                 {/* Right - Info */}
-                <div className="relative md:w-2/3 pt-4 pl-2 flex flex-col justify-center">
+                <div className="relative md:w-2/3 pt-4 md:pl-2 flex flex-col items-center md:items-start justify-center text-center md:text-left">
                     {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
+                    <div className="flex w-full flex-col gap-2 items-center md:flex-row md:items-center md:gap-3 mb-3">
                         <h1 className={`text-2xl font-bold ${headingColor}`}>Sayoun ⚡</h1>
                         <LiveViewCounter className="md:ml-auto" />
                     </div>
@@ -161,7 +168,7 @@ export default function AboutMe() {
                 onMouseLeave={() => setShowComponentTip(false)}
                 onFocus={() => setShowComponentTip(true)}
                 onBlur={() => setShowComponentTip(false)}
-                className={`hidden md:flex absolute right-[0.5rem] top-1/2 -translate-y-1/2 flex-col gap-0.5 rounded-xl px-4 py-3 text-xs font-medium transition-opacity duration-300 rotate-[-8deg] opacity-50 hover:opacity-100 ${componentLinkStyles}`}
+                className={`hidden md:flex absolute right-[2.5rem] top-[10rem] -translate-y-1/2 flex-col gap-0.5 rounded-xl px-4 py-3 text-xs font-medium transition-opacity duration-300 rotate-[-8deg] opacity-50 hover:opacity-100 ${componentLinkStyles}`}
             >
                 <div className="relative flex flex-col gap-0.5">
                     <span className="flex items-center gap-2 text-sm font-semibold">
