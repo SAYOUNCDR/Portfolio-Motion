@@ -3,7 +3,8 @@
 import { Mail, Eye, MousePointerClick } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { SiLeetcode, SiCodeforces, SiGithub, SiBuymeacoffee } from "react-icons/si";
+import { SiGithub, SiBuymeacoffee } from "react-icons/si";
+import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
 import LiveViewCounter from "./LiveViewCounter";
 import LivePingChat from "./LivePingChat";
@@ -97,14 +98,14 @@ export default function AboutMe() {
                     {/* Social Icons */}
                     <div className="flex flex-wrap gap-3 my-3">
                         <SocialIcon
-                            icon={<SiLeetcode />}
-                            username="sayoun_parui"
-                            link="https://leetcode.com/u/Sayoun_parui/"
+                            icon={<FaXTwitter />}
+                            username="DriftNBlde"
+                            link="https://x.com/DriftNBlde"
                         />
                         <SocialIcon
-                            icon={<SiCodeforces />}
-                            username="sayounfalut"
-                            link="https://codeforces.com/profile/sayounfalut"
+                            icon={<FaLinkedin />}
+                            username="Sayoun Parui"
+                            link="https://www.linkedin.com/in/sayoun-parui-868b4228b/"
                         />
                         <SocialIcon
                             icon={<SiGithub />}
@@ -114,7 +115,7 @@ export default function AboutMe() {
                         <SocialIcon
                             icon={<SiBuymeacoffee />}
                             username="BuyMeACoffee"
-                            link="#"
+                            link="https://buymeacoffee.com/sayoun_parui"
                         />
                     </div>
 
