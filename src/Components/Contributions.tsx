@@ -1,6 +1,7 @@
 import { Github, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
+import GithubHeatmap from "./GithubHeatmap";
 
 type Contribution = {
     repo: string;
@@ -142,6 +143,12 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                     </Link>
                 </div>
             )}
+
+
+
+
+
+            <GithubHeatmap username="SAYOUNCDR" />
         </section>
     );
 };
