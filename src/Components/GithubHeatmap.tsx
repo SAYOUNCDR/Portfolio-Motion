@@ -102,10 +102,13 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
     }, []);
 
     const isDark = theme === 'dark';
-    const bgColor = isDark ? "bg-[#0d1117]" : "bg-white";
     const borderColor = isDark ? "border-[#30363d]" : "border-slate-200";
     const textColor = isDark ? "text-white" : "text-slate-900";
-    const calendarColor = isDark ? "white" : "black";
+
+    const themeData = {
+        dark: ['#161b22', '#ffffff'],
+        light: ['#ebedf0', '#000000'],
+    };
 
     return (
         <motion.div
@@ -113,9 +116,18 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-4xl mt-20"
+            className="w-full max-w-4xl mt-20 relative"
         >
-            <div className={`p-6 rounded-2xl border ${bgColor} ${borderColor} backdrop-blur-sm shadow-sm`}>
+            {/* Slogan */}
+            <div className={`absolute -top-8 left-4 flex items-end gap-2 ${textColor} opacity-80`}>
+                <span className="text-sm font-handwriting transform -rotate-6">Consistency is key</span>
+                <svg width="20" height="20" viewBox="0 0 100 100" className="transform translate-y-2 opacity-70 fill-current">
+                    <path d="M10,10 Q50,50 30,80" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path d="M20,80 L35,85 L35,70" stroke="currentColor" strokeWidth="4" fill="none" />
+                </svg>
+            </div>
+
+            <div className={`p-6 rounded-2xl border ${borderColor} backdrop-blur-sm shadow-sm`}>
                 {/* Scrollable Heatmap Grid */}
                 <div
                     className={`overflow-x-scroll select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
@@ -145,7 +157,8 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
                             showColorLegend={true}
                             showTotalCount={false}
                             year="last"
-                            style={{ color: calendarColor }}
+                            theme={themeData}
+                            colorScheme={isDark ? 'dark' : 'light'}
                         />
                     </div>
                 </div>
