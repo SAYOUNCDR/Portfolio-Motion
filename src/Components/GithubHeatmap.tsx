@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface GithubHeatmapProps {
     username?: string;
@@ -20,6 +21,7 @@ interface ContributionData {
 }
 
 const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" }) => {
+    const { theme } = useTheme();
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [startX, setStartX] = useState<number>(0);
@@ -99,6 +101,12 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
         return () => observer.disconnect();
     }, []);
 
+    const isDark = theme === 'dark';
+    const bgColor = isDark ? "bg-[#0d1117]" : "bg-white";
+    const borderColor = isDark ? "border-[#30363d]" : "border-slate-200";
+    const textColor = isDark ? "text-white" : "text-slate-900";
+    const calendarColor = isDark ? "white" : "black";
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -107,7 +115,7 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
             transition={{ duration: 0.6 }}
             className="w-full max-w-4xl mt-20"
         >
-            <div className="p-6 rounded-2xl border border-[#30363d] backdrop-blur-sm">
+            <div className={`p-6 rounded-2xl border ${bgColor} ${borderColor} backdrop-blur-sm shadow-sm`}>
                 {/* Scrollable Heatmap Grid */}
                 <div
                     className={`overflow-x-scroll select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
@@ -137,18 +145,18 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
                             showColorLegend={true}
                             showTotalCount={false}
                             year="last"
-                            style={{ color: "white" }}
+                            style={{ color: calendarColor }}
                         />
                     </div>
                 </div>
 
                 {/* Static Footer: Total Count & Color Legend */}
-                <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#30363d]/30">
-                    <span className="text-sm font-mono text-white">
+                <div className={`flex items-center justify-between mt-4 pt-3 border-t ${isDark ? 'border-[#30363d]/30' : 'border-slate-200'}`}>
+                    <span className={`text-sm font-mono ${textColor}`}>
                         {contributionCount.toLocaleString()} contributions in the last year
                     </span>
 
-                    <a href="https://github.com/SAYOUNCDR" target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-white hover:underline">@SAYOUNCDR</a>
+                    <a href="https://github.com/SAYOUNCDR" target="_blank" rel="noopener noreferrer" className={`text-sm font-mono ${textColor} hover:underline`}>@SAYOUNCDR</a>
                 </div>
             </div>
         </motion.div>
