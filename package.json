@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.81.1",
     "@tailwindcss/vite": "^4.1.13",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.31.0",
     "lucide-react": "^0.544.0",
@@ -21,6 +22,7 @@
     "react-github-calendar": "^5.0.5",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.5",
+    "react-syntax-highlighter": "^16.1.0",
     "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.1.13"
   },
@@ -29,6 +31,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
+    "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9.35.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
