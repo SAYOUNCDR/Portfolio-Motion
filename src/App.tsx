@@ -22,8 +22,8 @@ const HomePage = () => {
       <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col py-5">
         <AboutMe />
         <AboutContent />
-        <Skills />
         <Projects limit={2} showViewAll={true} />
+        <Skills />
         <Contributions limit={2} showViewAll={true} />
         <Blogs />
         <Newsletter />

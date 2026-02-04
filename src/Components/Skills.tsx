@@ -1,24 +1,36 @@
 // Skills.tsx
 import type { JSX } from "react";
-import { useState } from "react";
 import {
     SiJavascript,
-    SiTypescript,
-    SiReact,
-    SiNextdotjs,
+    SiCplusplus,
+    SiPython,
     SiNodedotjs,
     SiExpress,
+    SiFastapi,
+    SiJsonwebtokens,
     SiMongodb,
-    SiMysql,
-    SiTailwindcss,
-    SiGithub,
+    SiPostgresql,
     SiDocker,
-    SiPython,
-    SiLangchain,
+    SiNginx,
+    SiGithubactions,
+    SiLinux,
+    SiReact,
+    SiTailwindcss,
     SiFramer,
-    SiZod,
+    SiBun,
+    SiPrisma,
+    SiLangchain,
 } from "react-icons/si";
-import { FaRocket, FaCode, FaCoffee } from "react-icons/fa";
+import {
+    FaNetworkWired,
+    FaUserShield,
+    FaDatabase,
+    FaBrain,
+    FaEye,
+    FaRobot,
+    FaLightbulb,
+    FaServer
+} from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 
 type Skill = {
@@ -27,48 +39,36 @@ type Skill = {
 };
 
 const skills: Skill[] = [
-    { name: "C++", icon: <FaCode size={14} /> },
-    { name: "Java", icon: <FaCoffee size={14} /> },
+    { name: "C++", icon: <SiCplusplus size={14} /> },
     { name: "JavaScript", icon: <SiJavascript size={14} /> },
-    { name: "TypeScript", icon: <SiTypescript size={14} /> },
-    { name: "React.js", icon: <SiReact size={14} /> },
-    { name: "Next.js", icon: <SiNextdotjs size={14} /> },
-    { name: "Node.js", icon: <SiNodedotjs size={14} /> },
-    { name: "Express.js", icon: <SiExpress size={14} /> },
-    { name: "MongoDB", icon: <SiMongodb size={14} /> },
-    { name: "MySQL", icon: <SiMysql size={14} /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss size={14} /> },
-    { name: "Framer Motion", icon: <SiFramer size={14} /> },
-    { name: "Zod", icon: <SiZod size={14} /> },
-    { name: "Git & GitHub", icon: <SiGithub size={14} /> },
-    { name: "Docker", icon: <SiDocker size={14} /> },
     { name: "Python", icon: <SiPython size={14} /> },
+    { name: "Node.js", icon: <SiNodedotjs size={14} /> },
+    { name: "Bun", icon: <SiBun size={14} /> },
+    { name: "Express.js", icon: <SiExpress size={14} /> },
+    { name: "FastAPI", icon: <SiFastapi size={14} /> },
+    { name: "Prisma", icon: <SiPrisma size={14} /> },
+    { name: "REST APIs", icon: <FaNetworkWired size={14} /> },
+    { name: "JWT", icon: <SiJsonwebtokens size={14} /> },
+    { name: "RBAC", icon: <FaUserShield size={14} /> },
+    { name: "Schema Design", icon: <FaDatabase size={14} /> },
+    { name: "RAG Systems", icon: <FaBrain size={14} /> },
     { name: "LangChain", icon: <SiLangchain size={14} /> },
-    { name: "FastMCP", icon: <FaRocket size={14} /> },
+    { name: "OCR Pipelines", icon: <FaEye size={14} /> },
+    { name: "Agent Workflows", icon: <FaRobot size={14} /> },
+    { name: "Context Optimization", icon: <FaLightbulb size={14} /> },
+    { name: "MongoDB", icon: <SiMongodb size={14} /> },
+    { name: "PostgreSQL", icon: <SiPostgresql size={14} /> },
+    { name: "Docker", icon: <SiDocker size={14} /> },
+    { name: "Nginx", icon: <SiNginx size={14} /> },
+    { name: "VPS", icon: <FaServer size={14} /> },
+    { name: "GitHub Actions", icon: <SiGithubactions size={14} /> },
+    { name: "Linux", icon: <SiLinux size={14} /> },
+    { name: "React.js", icon: <SiReact size={14} /> },
+    { name: "TailwindCSS", icon: <SiTailwindcss size={14} /> },
+    { name: "Framer Motion", icon: <SiFramer size={14} /> },
 ];
 
 export default function Skills() {
-    const [hovered, setHovered] = useState<string | null>(null);
-    const hoverColors: Record<string, string> = {
-        "C++": "#00599C",
-        "Java": "#007396",
-        "JavaScript": "#f7df1e",
-        "TypeScript": "#3178c6",
-        "React.js": "#61dafb",
-        "Next.js": "#000000",
-        "Node.js": "#339933",
-        "Express.js": "#000000",
-        "MongoDB": "#47A248",
-        "MySQL": "#00758F",
-        "Tailwind CSS": "#38bdf8",
-        "Framer Motion": "#0055FF",
-        "Zod": "#7c3aed",
-        "Git & GitHub": "#181717",
-        "Docker": "#2496ED",
-        "Python": "#3776AB",
-        "LangChain": "#7b61ff",
-        "FastMCP": "#ff7a18",
-    };
     const { theme } = useTheme();
 
     const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
@@ -77,23 +77,15 @@ export default function Skills() {
 
     return (
         <section className={`w-full max-w-4xl mx-auto p-6 ${sectionText}`}>
-            <h2 className={`text-2xl font-bold mb-4 ${headingColor}`}>Skills</h2>
+            <h2 className={`text-2xl font-bold mb-6 ${headingColor}`}>Skills</h2>
+
             <div className="flex flex-wrap items-center">
                 {skills.map((skill) => (
                     <div
                         key={skill.name}
-                        className={`inline-flex items-center gap-2 px-3 py-1 rounded-lg shadow-sm m-1 ${chipBg}`}
-                        onMouseEnter={() => setHovered(skill.name)}
-                        onMouseLeave={() => setHovered(null)}
+                        className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg shadow-sm m-1 transition-transform hover:scale-105 ${chipBg}`}
                     >
-                        <span
-                            className="flex items-center"
-                            aria-hidden
-                            style={{
-                                transition: "color 180ms ease",
-                                color: hovered === skill.name ? hoverColors[skill.name] ?? undefined : undefined,
-                            }}
-                        >
+                        <span className="flex items-center">
                             {skill.icon}
                         </span>
                         <span className="text-sm font-medium">{skill.name}</span>
