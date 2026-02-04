@@ -173,6 +173,34 @@ const groupAndSortContributions = (items: Contribution[]) => {
         });
 };
 
+const SimpleTooltip = ({ children, content }: { children: React.ReactNode; content: string }) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    return (
+        <div
+            className="relative flex items-center"
+            onMouseEnter={() => setIsVisible(true)}
+            onMouseLeave={() => setIsVisible(false)}
+        >
+            {children}
+            <AnimatePresence>
+                {isVisible && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 text-xs font-medium text-white bg-slate-900 dark:bg-zinc-800 rounded-md shadow-lg border border-slate-700/50 dark:border-zinc-700 whitespace-nowrap z-50 pointer-events-none"
+                    >
+                        {content}
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 dark:bg-zinc-800 border-r border-b border-slate-700/50 dark:border-zinc-700 transform rotate-45"></div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
 const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
     const { theme } = useTheme();
     const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
@@ -233,20 +261,22 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                                 {/* Group Header */}
                                 <div className="flex flex-col gap-2">
                                     <div className="flex flex-wrap items-center justify-between gap-2">
-                                        <div className="flex items-center gap-2">
-                                            <h3 className="text-base font-semibold leading-none">{group.company}</h3>
-                                            <button
+                                        <SimpleTooltip content="View contributions">
+                                            <div
+                                                className="flex items-center gap-2 cursor-pointer group/header select-none"
                                                 onClick={() => toggleGroup(group.company)}
-                                                className={`p-1 rounded-full transition-transform duration-200 hover:bg-black/5 dark:hover:bg-white/10 ${isExpanded ? 'rotate-90' : ''}`}
-                                                title="View contributions"
                                             >
-                                                <ChevronRight className="h-4 w-4 opacity-70" />
-                                            </button>
-                                        </div>
+                                                <h3 className="text-base font-semibold leading-none group-hover/header:opacity-80 transition-opacity">
+                                                    {group.company}
+                                                </h3>
+                                                <div
+                                                    className={`p-1 rounded-full transition-all duration-200 opacity-70 group-hover/header:opacity-100 group-hover/header:bg-black/5 dark:group-hover/header:bg-white/10 ${isExpanded ? 'rotate-90' : ''}`}
+                                                >
+                                                    <ChevronRight className="h-4 w-4" />
+                                                </div>
+                                            </div>
+                                        </SimpleTooltip>
                                         <div className="flex items-center gap-3">
-                                            {/* Show latest period on the header level? Or maybe latest date? 
-                                            Let's keep showing headerItem.period (latest) as a summary 
-                                        */}
                                             {headerItem.period && (
                                                 <time className={`text-xs font-medium ${metaText}`}>{headerItem.period}</time>
                                             )}
