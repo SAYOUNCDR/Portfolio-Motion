@@ -8,6 +8,7 @@ import Newsletter from "./Components/Newsletter";
 import Footer from "./Components/Footer";
 import BottomBlur from "./Components/BottomBlur";
 import Contributions from "./Components/Contributions";
+import GithubHeatmap from "./Components/GithubHeatmap";
 import { Routes, Route } from "react-router-dom";
 import ContributionsPage from "./Pages/ContributionsPage";
 import ProjectsPage from "./Pages/ProjectsPage"
@@ -25,6 +26,7 @@ const HomePage = () => {
         <Projects limit={2} showViewAll={true} />
         <Skills />
         <Contributions limit={2} showViewAll={true} />
+        <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
         <Newsletter />
         <BottomDockMode />

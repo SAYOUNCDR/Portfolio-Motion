@@ -88,7 +88,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
     const cardStyles =
         theme === "dark"
             ? "text-white border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 hover:border-zinc-700"
-            : "text-slate-800 border border-slate-200 bg-gradient-to-r from-white via-[#f4f9fb] to-[#ebf4f5] hover:border-slate-300";
+            : "text-slate-800 border border-slate-200 bg-gradient-to-b from-white to-gray-50/50 hover:border-slate-300";
     const timeColor = theme === "dark" ? "text-neutral-400" : "text-slate-500";
     const descriptionColor = theme === "dark" ? "text-neutral-400" : "text-slate-600";
     const tagStyles = theme === "dark" ? "bg-neutral-800 text-white" : "bg-white/80 text-slate-800 border border-slate-200";

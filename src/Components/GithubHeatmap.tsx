@@ -116,7 +116,7 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-4xl mt-20 relative"
+            className="w-[95%] max-w-3xl mt-10 mb-16 relative"
         >
             {/* Slogan */}
             <div className={`absolute -top-8 left-4 flex items-end gap-2 ${textColor} opacity-80`}>
