@@ -152,18 +152,6 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                             </div>
 
                             <div className="flex items-center gap-2 px-3 pb-3">
-                                {project.website.url && (
-                                    <a
-                                        href={project.website.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
-                                    >
-                                        <Globe className="size-3" />
-                                        <span>{project.website.label}</span>
-                                    </a>
-                                )}
-
                                 {project.github?.url && (
                                     <a
                                         href={project.github.url}
@@ -174,6 +162,26 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         <Github className="size-3" />
                                         <span>{project.github.label}</span>
                                     </a>
+                                )}
+
+                                {project.website.url ? (
+                                    <a
+                                        href={project.website.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
+                                    >
+                                        <Globe className="size-3" />
+                                        <span>{project.website.label}</span>
+                                    </a>
+                                ) : (
+                                    <button
+                                        disabled
+                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors opacity-50 cursor-not-allowed ${theme === "dark" ? "bg-neutral-800 text-neutral-500 border border-neutral-700" : "bg-slate-100 text-slate-400 border border-slate-200"}`}
+                                    >
+                                        <Globe className="size-3" />
+                                        <span>{project.website.label}</span>
+                                    </button>
                                 )}
                             </div>
                         </div>

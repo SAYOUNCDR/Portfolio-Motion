@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
+html {
+  overflow-y: scroll;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;   /* smaller than default (8px or 12px) */
+  width: 6px; /* smaller than default (8px or 12px) */
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
