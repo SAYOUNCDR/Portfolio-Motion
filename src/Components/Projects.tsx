@@ -14,12 +14,31 @@ type Project = {
         playsInline?: boolean;
         className?: string;
     };
+    imageLink: string;
     tags: string[];
     website: { label: string; url: string };
     github?: { label: string; url: string };
 };
 
 const projects: Project[] = [
+    {
+        title: "DevCalander",
+        period: "Aug 2025 - Aug 2025",
+        description:
+            "Your curated intelligence feed for top Open Source Programs, Hackathons, and Hiring Cycles.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "/images/ProjectImage/DevCalander.png",
+        tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS"],
+        website: { label: "Website", url: "https://devcalendar.sayoun.studio/" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/DevCalendar" },
+    },
     {
         title: "ElevateX",
         period: "June 2025 - July 2025",
@@ -33,6 +52,7 @@ const projects: Project[] = [
             playsInline: true,
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
+        imageLink: "",
         tags: ["JavaScript", "PHP", "MySQL", "XAMPP", "Tailwind CSS"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
@@ -50,6 +70,7 @@ const projects: Project[] = [
             playsInline: true,
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
+        imageLink: "",
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "VectorDB", "Pypdf2", "OpenAI API"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
@@ -67,11 +88,11 @@ const projects: Project[] = [
             playsInline: true,
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
+        imageLink: "",
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "Docker", "redis", "OpenAI API"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
     },
-
 ];
 
 type ProjectsProps = {
@@ -114,24 +135,42 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                         >
                             {project.website.url ? (
                                 <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
-                                    <video
-                                        src={project.video.src}
-                                        autoPlay={project.video.autoPlay}
-                                        loop={project.video.loop}
-                                        muted={project.video.muted}
-                                        playsInline={project.video.playsInline}
-                                        className={project.video.className}
-                                    />
+                                    {project.video.src ? (
+                                        <video
+                                            src={project.video.src}
+                                            autoPlay={project.video.autoPlay}
+                                            loop={project.video.loop}
+                                            muted={project.video.muted}
+                                            playsInline={project.video.playsInline}
+                                            className={project.video.className}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={project.imageLink}
+                                            alt={project.title}
+                                            className={project.video.className}
+                                        />
+                                    )}
                                 </a>
                             ) : (
-                                <video
-                                    src={project.video.src}
-                                    autoPlay={project.video.autoPlay}
-                                    loop={project.video.loop}
-                                    muted={project.video.muted}
-                                    playsInline={project.video.playsInline}
-                                    className={project.video.className}
-                                />
+                                <>
+                                    {project.video.src ? (
+                                        <video
+                                            src={project.video.src}
+                                            autoPlay={project.video.autoPlay}
+                                            loop={project.video.loop}
+                                            muted={project.video.muted}
+                                            playsInline={project.video.playsInline}
+                                            className={project.video.className}
+                                        />
+                                    ) : (
+                                        <img
+                                            src={project.imageLink}
+                                            alt={project.title}
+                                            className={project.video.className}
+                                        />
+                                    )}
+                                </>
                             )}
 
                             <div className="flex flex-col px-3 py-2">
