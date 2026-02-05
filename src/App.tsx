@@ -20,6 +20,7 @@ import Loader from "./Components/Loader";
 import { useState } from "react";
 import AboutMe from "./Components/AboutMe";
 import SideLabel from "./Components/SideLabel";
+import LeftSideLabel from "./Components/LeftSideLabel";
 
 const HomePage = () => {
   return (
@@ -50,6 +51,7 @@ function App() {
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
       <LivePingOverlay />
       <SideLabel />
+      <LeftSideLabel />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contributions" element={<ContributionsPage />} />
