@@ -10,40 +10,45 @@ const Loader = ({ onComplete }: LoaderProps) => {
     const [isExit, setIsExit] = useState(false);
 
     useEffect(() => {
-        // Duration for the text to sit there before splitting
+        // Timeline:
+        // 0.0s: Start
+        // 0.0s - 0.8s: Sayoun slides in
+        // 0.4s - 1.2s: Parui slides in (staggered)
+        // 2.0s: Trigger exit
+
         const timer = setTimeout(() => {
             setIsExit(true);
-        }, 2200); // 1.5s animation + 0.7s read time
+        }, 2200);
 
         return () => clearTimeout(timer);
     }, []);
 
-    const topTextVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i: number) => ({
-            opacity: 1,
+    const textVariants: Variants = {
+        hidden: { y: "100%" },
+        visible: {
             y: 0,
             transition: {
-                delay: 0.2 + i * 0.1,
                 duration: 0.8,
-                ease: [0.2, 0.65, 0.3, 0.9],
-            },
-        }),
-        exit: { opacity: 0, transition: { duration: 0.3 } }
+                ease: [0.76, 0, 0.24, 1],
+            }
+        },
+        exit: {
+            opacity: 1,
+        }
     };
 
-    const bottomTextVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i: number) => ({
-            opacity: 1,
+    const textVariantsBottom: Variants = {
+        hidden: { y: "-100%" },
+        visible: {
             y: 0,
             transition: {
-                delay: 0.4 + i * 0.1, // Start slightly after top text
                 duration: 0.8,
-                ease: [0.2, 0.65, 0.3, 0.9],
-            },
-        }),
-        exit: { opacity: 0, transition: { duration: 0.3 } }
+                ease: [0.76, 0, 0.24, 1],
+            }
+        },
+        exit: {
+            opacity: 1,
+        }
     };
 
     return (
@@ -57,9 +62,9 @@ const Loader = ({ onComplete }: LoaderProps) => {
                 }
             }}
         >
-            {/* Top Half - White - Name Top Left */}
+            {/* Top Half - White */}
             <motion.div
-                className="relative flex-1 w-full bg-zinc-100 flex items-start justify-start p-8 md:p-12 overflow-hidden"
+                className="relative flex-1 w-full bg-zinc-100 flex items-end justify-center overflow-hidden" // items-end for text at bottom of top half
                 initial={{ y: 0 }}
                 variants={{
                     visible: { y: 0 },
@@ -72,23 +77,26 @@ const Loader = ({ onComplete }: LoaderProps) => {
                     },
                 }}
             >
-                <div className="flex flex-col gap-1 z-10">
-                    {["Sayoun", "Parui"].map((word, i) => (
-                        <motion.span
-                            key={word}
-                            custom={i}
-                            variants={topTextVariants}
-                            className="text-4xl md:text-6xl font-bold tracking-tighter text-black uppercase"
-                        >
-                            {word}
-                        </motion.span>
-                    ))}
+                <img
+                    src="/images/loader.jpg"
+                    alt=""
+                    className="absolute top-0 left-0 w-full h-[200%] object-cover opacity-[0.05] pointer-events-none" // Translucent opacity-5/100 = 0.05
+                />
+
+                {/* Mask container for text */}
+                <div className="overflow-hidden pb-0 md:pb-2">
+                    <motion.h1
+                        variants={textVariants}
+                        className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-black uppercase leading-none"
+                    >
+                        SAYOUN
+                    </motion.h1>
                 </div>
             </motion.div>
 
-            {/* Bottom Half - Black - Skills Top Right */}
+            {/* Bottom Half - Black */}
             <motion.div
-                className="relative flex-1 w-full bg-black flex items-start justify-end p-8 md:p-12 overflow-hidden"
+                className="relative flex-1 w-full bg-black flex items-start justify-center overflow-hidden" // items-start for text at top of bottom half
                 initial={{ y: 0 }}
                 variants={{
                     visible: { y: 0 },
@@ -101,24 +109,20 @@ const Loader = ({ onComplete }: LoaderProps) => {
                     },
                 }}
             >
-                <div className="flex flex-col items-end gap-2 z-10 text-right">
-                    {/* Simulating "Badges" with text, or actual pill shapes */}
-                    {[
-                        "Full Stack Developer",
-                        "React & Node.js",
-                        "Creative Designer"
-                    ].map((skill, i) => (
-                        <motion.div
-                            key={skill}
-                            custom={i}
-                            variants={bottomTextVariants}
-                            className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10"
-                        >
-                            <span className="text-sm md:text-lg font-medium text-white tracking-wide">
-                                {skill}
-                            </span>
-                        </motion.div>
-                    ))}
+                <img
+                    src="/images/loader.jpg"
+                    alt=""
+                    className="absolute top-[-100%] left-0 w-full h-[200%] object-cover opacity-[0.05] pointer-events-none"
+                />
+
+                {/* Mask container for text */}
+                <div className="overflow-hidden pt-0 md:pt-2">
+                    <motion.h1
+                        variants={textVariantsBottom}
+                        className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white uppercase leading-none"
+                    >
+                        PARUI
+                    </motion.h1>
                 </div>
             </motion.div>
         </motion.div>
