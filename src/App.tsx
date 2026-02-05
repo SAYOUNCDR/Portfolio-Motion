@@ -21,6 +21,7 @@ import { useState } from "react";
 import AboutMe from "./Components/AboutMe";
 import SideLabel from "./Components/SideLabel";
 import LeftSideLabel from "./Components/LeftSideLabel";
+import BackgroundPattern from "./Components/BackgroundPattern";
 
 const HomePage = () => {
   return (
@@ -52,6 +53,7 @@ function App() {
       <LivePingOverlay />
       <SideLabel />
       <LeftSideLabel />
+      <BackgroundPattern />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contributions" element={<ContributionsPage />} />
