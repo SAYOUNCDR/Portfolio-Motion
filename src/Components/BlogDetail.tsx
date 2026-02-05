@@ -1,7 +1,8 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { findBlogBySlug, type BlogContentBlock } from "../data/blogs";
-import { ChevronLeft, Terminal, Info, AlertTriangle, Lightbulb } from "lucide-react";
+import { ArrowLeft, Terminal, Info, AlertTriangle, Lightbulb } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
+import { Button } from "./ui/Button";
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -128,7 +129,6 @@ export default function BlogDetail() {
     const { theme } = useTheme();
 
     const mainStyles = theme === "dark" ? "bg-black text-white" : "bg-white text-slate-800";
-    const backLinkStyles = theme === "dark" ? "text-neutral-400" : "text-slate-600";
     const metaStyles = theme === "dark" ? "text-neutral-400" : "text-slate-500";
     const tagStyles = theme === "dark"
         ? "bg-zinc-800 text-neutral-300"
@@ -138,22 +138,28 @@ export default function BlogDetail() {
         return (
             <main className={`min-h-screen max-w-3xl mx-auto py-10 px-6 ${mainStyles}`}>
                 <p className="text-lg">Blog not found.</p>
-                <Link to="/blogs" className={`mt-4 inline-block text-sm hover:underline ${backLinkStyles}`}>
-                    Back to all blogs
-                </Link>
+                <Button
+                    text="Back to all blogs"
+                    icon={<ArrowLeft className="w-4 h-4" />}
+                    to="/blogs"
+                    variant="outline"
+                    className="mt-4 rounded-lg px-3 py-2 text-xs font-semibold"
+                />
             </main>
         );
     }
 
     return (
         <main className={`min-h-screen max-w-3xl mx-auto py-10 px-6 ${mainStyles}`}>
-            <Link
-                to="/blogs"
-                className={`inline-flex items-center gap-2 text-sm hover:underline mb-8 ${backLinkStyles}`}
-            >
-                <ChevronLeft className="w-4 h-4" />
-                Back to all blogs
-            </Link>
+            <div className="mb-8 flex justify-start">
+                <Button
+                    text="Back to all blogs"
+                    icon={<ArrowLeft className="w-4 h-4" />}
+                    to="/blogs"
+                    variant="outline"
+                    className="rounded-lg px-3 py-2 text-xs font-semibold"
+                />
+            </div>
 
             <article className="pb-20">
                 <header className="mb-10">

@@ -2,14 +2,12 @@ import { Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
+import { Button } from "../Components/ui/Button";
 
 export default function BlogsPage() {
     const { theme } = useTheme();
 
     const mainStyles = theme === "dark" ? "bg-black text-white" : "bg-white text-slate-800";
-    const backLinkStyles = theme === "dark"
-        ? "border-[#c2c2c2] text-white hover:border-gray-500"
-        : "border-slate-400 text-slate-800 hover:border-slate-600";
     const headingStyles = theme === "dark" ? "text-white" : "text-slate-900";
     const titleStyles = theme === "dark" ? "text-white" : "text-slate-900";
     const descriptionStyles = theme === "dark" ? "text-gray-400" : "text-slate-600";
@@ -19,13 +17,13 @@ export default function BlogsPage() {
     return (
         <main className={`min-h-screen max-w-3xl mx-auto py-10 px-6 ${mainStyles}`}>
             <div className="mb-15 flex justify-start">
-                <Link
+                <Button
+                    text="Back to home"
+                    icon={<ArrowLeft className="w-3 h-3" />}
                     to="/"
-                    className={`inline-flex items-center gap-2 rounded-lg border border-dashed px-3 py-2 text-xs font-semibold transition ${backLinkStyles}`}
-                >
-                    <ArrowLeft className="w-3 h-3" />
-                    Back to home
-                </Link>
+                    variant="outline"
+                    className="rounded-lg px-3 py-2 text-xs font-semibold"
+                />
             </div>
 
             <h1 className={`text-2xl font-bold mb-6 ${headingStyles}`}>All Blogs & Gists</h1>

@@ -8,6 +8,7 @@ import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
 import LiveViewCounter from "./LiveViewCounter";
 import LivePingChat from "./LivePingChat";
+import RotateText from "./RotateText";
 
 interface SocialIconProps {
     icon: React.ReactNode;
@@ -94,7 +95,12 @@ export default function AboutMe() {
                     <div className="flex w-full flex-col gap-2 items-center md:flex-row md:items-center md:gap-3 mb-3">
                     </div>
 
-                    <p className={`text-lg ${roleColor}`}>Full Stack AI Developer</p>
+                    <div className={`text-lg ${roleColor} flex justify-center md:justify-start w-full`}>
+                        <RotateText
+                            texts={["Full Stack Developer", "DevOps Engineer", "Applied AI Engineer"]}
+                            className="font-medium justify-center md:justify-start"
+                        />
+                    </div>
                     {/* Social Icons */}
                     <div className="flex flex-wrap gap-3 my-3">
                         <SocialIcon

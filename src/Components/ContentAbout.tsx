@@ -2,6 +2,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { motion } from "framer-motion";
 import { Mail, Eye } from "lucide-react";
 import { useState } from "react";
+import { Button } from "./ui/Button";
 
 const AboutContent = () => {
   const { theme } = useTheme();
@@ -11,16 +12,9 @@ const AboutContent = () => {
   const headingText = theme === "dark" ? "text-white" : "text-slate-900";
 
   // Styling constants
-  const resumeButton = theme === "dark"
-    ? "bg-[#18181b] border-[#c2c2c2] text-white hover:border-gray-500"
-    : "bg-white border-slate-300 text-slate-800 hover:border-slate-500";
-  const mailButton = theme === "dark"
-    ? "text-white border-[#c2c2c2] hover:border-gray-500 bg-[#18181b]"
-    : "text-slate-800 border-slate-300 hover:border-slate-500 bg-white";
   const tooltipStyles = theme === "dark"
     ? "bg-white text-black"
     : "bg-slate-900 text-white";
-  const iconAccent = theme === "dark" ? "text-gray-400" : "text-slate-500";
 
   return (
     <section
@@ -33,28 +27,20 @@ const AboutContent = () => {
 
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mt-6">
-        <a
-          href="https://drive.google.com/file/d/1zrMACd70KzK-4lpzZAQw4eLbM4f2ovZG/view?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`flex items-center border border-dashed rounded-lg px-4 py-2 font-medium text-xs gap-2 shadow transition focus:outline-none whitespace-nowrap ${resumeButton}`}
-        >
-          <Eye className={`w-4 h-4 ${iconAccent}`} aria-hidden="true" />
-          Resume
-        </a>
+        <Button
+          text="Resume"
+          icon={<Eye className="w-4 h-4" />}
+          href="https://drive.google.com/file/d/1qyoIjzLTPgbd67_Q-UOu6JuN3gBMGThp/view?usp=sharing"
+        />
 
         <div className="relative">
-          <a
+          <Button
+            text="Email Me"
+            icon={<Mail className="w-4 h-4" />}
             href="mailto:0xsyn.dev@gmail.com"
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border border-dashed shadow transition focus:outline-none ${mailButton}`}
-          >
-            <Mail className={`w-4 h-4 ${iconAccent}`} />
-            Email Me
-          </a>
+          />
           {showTooltip && (
             <motion.div
               initial={{ opacity: 0, y: 5 }}
