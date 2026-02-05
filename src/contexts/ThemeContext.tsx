@@ -4,7 +4,7 @@ type Theme = 'dark' | 'light';
 
 interface ThemeContextValue {
     theme: Theme;
-    toggleTheme: () => void;
+    toggleTheme: (e?: React.MouseEvent) => void;
     setTheme: (t: Theme) => void;
 }
 
@@ -30,7 +30,48 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     };
 
-    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+    const toggleTheme = (e?: React.MouseEvent) => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+
+        // Check for View Transitions API support
+        if (
+            !e ||
+            !document.startViewTransition ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
+            setTheme(newTheme);
+            return;
+        }
+
+        const x = e.clientX;
+        const y = e.clientY;
+        const endRadius = Math.hypot(
+            Math.max(x, innerWidth - x),
+            Math.max(y, innerHeight - y)
+        );
+
+        const transition = document.startViewTransition(() => {
+            setTheme(newTheme);
+        });
+
+        transition.ready.then(() => {
+            const clipPath = [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${endRadius}px at ${x}px ${y}px)`,
+            ];
+
+            document.documentElement.animate(
+                {
+                    clipPath: clipPath,
+                },
+                {
+                    duration: 500,
+                    easing: "ease-in",
+                    pseudoElement: "::view-transition-new(root)",
+                }
+            );
+        });
+    };
 
     useEffect(() => {
         try {

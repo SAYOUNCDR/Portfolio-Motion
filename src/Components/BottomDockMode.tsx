@@ -98,7 +98,7 @@ export default function BottomDockMode() {
                     <motion.button
                         aria-label="Toggle theme"
                         aria-pressed={theme === 'dark'}
-                        onClick={() => toggleTheme()}
+                        onClick={(e) => toggleTheme(e)}
                         className={`relative p-1 rounded-md flex items-center justify-center w-9 h-9 cursor-pointer bg-transparent transition-colors duration-150 ${theme === 'light' ? 'hover:bg-white/90' : 'hover:bg-zinc-800'}`}
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
