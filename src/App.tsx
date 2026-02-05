@@ -17,6 +17,9 @@ import BlogDetail from "./Components/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/BottomDockMode";
 import LivePingOverlay from "./Components/LivePingOverlay";
+import Loader from "./Components/Loader";
+import { useState } from "react";
+
 const HomePage = () => {
   return (
     <div>
@@ -39,8 +42,11 @@ const HomePage = () => {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
+      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
       <LivePingOverlay />
       <Routes>
         <Route path="/" element={<HomePage />} />
