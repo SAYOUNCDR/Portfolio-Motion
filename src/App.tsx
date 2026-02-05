@@ -1,5 +1,4 @@
 import "./App.css";
-import AboutMe from "./Components/AboutMe";
 import Blogs from "./Components/Blogs";
 import AboutContent from "./Components/ContentAbout";
 import Projects from "./Components/Projects";
@@ -19,6 +18,7 @@ import BottomDockMode from "./Components/BottomDockMode";
 import LivePingOverlay from "./Components/LivePingOverlay";
 import Loader from "./Components/Loader";
 import { useState } from "react";
+import AboutMe from "./Components/AboutMe";
 
 const HomePage = () => {
   return (
