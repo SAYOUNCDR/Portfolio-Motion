@@ -22,6 +22,7 @@ import AboutMe from "./Components/AboutMe";
 import SideLabel from "./Components/SideLabel";
 import LeftSideLabel from "./Components/LeftSideLabel";
 import BackgroundPattern from "./Components/BackgroundPattern";
+import HorizonGlow from "./Components/HorizonGlow";
 
 const HomePage = () => {
   return (
@@ -54,6 +55,7 @@ function App() {
       <SideLabel />
       <LeftSideLabel />
       <BackgroundPattern />
+      <HorizonGlow />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contributions" element={<ContributionsPage />} />
