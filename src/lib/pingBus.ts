@@ -1,4 +1,4 @@
-import type { PingPayload } from "../Components/LivePingChat";
+import type { PingPayload } from "./pingConstants";
 
 type Listener = (payload: PingPayload) => void;
 
@@ -8,7 +8,7 @@ export function emitPing(payload: PingPayload) {
     listeners.forEach((listener) => {
         try {
             listener(payload);
-        } catch (err) {
+        } catch {
             // ignore listener errors to keep bus alive
         }
     });

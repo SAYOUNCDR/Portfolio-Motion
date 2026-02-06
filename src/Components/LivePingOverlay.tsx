@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { supabase } from "../lib/supabaseClient";
 import { useTheme } from "../contexts/ThemeContext";
@@ -8,7 +8,7 @@ import {
     MAX_VISIBLE,
     derivePingAlias,
     type PingPayload,
-} from "./LivePingChat";
+} from "../lib/pingConstants";
 import { subscribeToPingBus } from "../lib/pingBus";
 
 interface LivePingOverlayProps {
@@ -34,7 +34,7 @@ export default function LivePingOverlay({ channelTopic = "portfolio-presence", c
         ? "bg-zinc-900/90 text-zinc-100 border border-zinc-700"
         : "bg-white/95 text-slate-700 border border-slate-200";
 
-    const scheduleRemoval = (entry: OverlayMessage) => {
+    const scheduleRemoval = useCallback((entry: OverlayMessage) => {
         const timeoutId = window.setTimeout(() => {
             setMessages((current) => {
                 const remaining = current.filter((item) => item.id !== entry.id);
@@ -50,9 +50,9 @@ export default function LivePingOverlay({ channelTopic = "portfolio-presence", c
         }, MESSAGE_TTL_MS);
 
         timeoutsRef.current.set(entry.id, timeoutId);
-    };
+    }, []);
 
-    const pushMessage = (payload: PingPayload) => {
+    const pushMessage = useCallback((payload: PingPayload) => {
         const entry: OverlayMessage = {
             ...payload,
             alias: derivePingAlias(payload.alias || payload.clientId),
@@ -72,9 +72,10 @@ export default function LivePingOverlay({ channelTopic = "portfolio-presence", c
             }
             return current;
         });
-    };
+    }, [clientId, scheduleRemoval]);
 
     useEffect(() => {
+        const timeouts = timeoutsRef.current;
         const channelName = `${channelTopic}${CHANNEL_SUFFIX}`;
         const channel = supabase.channel(channelName, {
             config: {
@@ -99,23 +100,24 @@ export default function LivePingOverlay({ channelTopic = "portfolio-presence", c
         channelRef.current = channel;
 
         return () => {
-            timeoutsRef.current.forEach((id) => window.clearTimeout(id));
-            timeoutsRef.current.clear();
+            timeouts.forEach((id) => window.clearTimeout(id));
+            timeouts.clear();
             pendingRef.current = [];
             channel.unsubscribe();
             channelRef.current = null;
         };
-    }, [channelTopic, clientId]);
+    }, [channelTopic, clientId, pushMessage]);
 
     useEffect(() => {
         const unsubscribe = subscribeToPingBus(pushMessage);
         return unsubscribe;
-    }, []);
+    }, [pushMessage]);
 
     useEffect(() => {
+        const timeouts = timeoutsRef.current;
         return () => {
-            timeoutsRef.current.forEach((id) => window.clearTimeout(id));
-            timeoutsRef.current.clear();
+            timeouts.forEach((id) => window.clearTimeout(id));
+            timeouts.clear();
         };
     }, []);
 

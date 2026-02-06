@@ -1,8 +1,10 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, X, Mail, Send } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
+
+const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 
 export default function Newsletter() {
   const builderStats = {
@@ -66,33 +68,10 @@ export default function Newsletter() {
       : "bg-white/90 border border-slate-200 text-slate-800";
   const toastHint = theme === "dark" ? "text-gray-300" : "text-slate-600";
 
-  const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "/" && document.activeElement !== inputRef.current) {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-      if (e.key === "Enter" && document.activeElement === inputRef.current) {
-        e.preventDefault();
-        handleSubscribe(e as any);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [email]);
-
-  useEffect(() => {
-    return () => {
-      if (collapseTimeoutRef.current) {
-        window.clearTimeout(collapseTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubscribe = useCallback((e?: { preventDefault: () => void }) => {
+    if (e && typeof e.preventDefault === 'function') {
+      e.preventDefault();
+    }
 
     if (!validateEmail(email)) {
       setError("Please enter a valid email");
@@ -117,7 +96,32 @@ export default function Newsletter() {
         collapseTimeoutRef.current = null;
       }, 1500);
     }, 700);
-  };
+  }, [email]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/" && document.activeElement !== inputRef.current) {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+      if (e.key === "Enter" && document.activeElement === inputRef.current) {
+        e.preventDefault();
+        handleSubscribe(e);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [email, handleSubscribe]);
+
+  useEffect(() => {
+    return () => {
+      if (collapseTimeoutRef.current) {
+        window.clearTimeout(collapseTimeoutRef.current);
+      }
+    };
+  }, []);
+
+
 
   const stars = Array.from({ length: 20 });
 

@@ -91,11 +91,12 @@ const BlogContentRenderer = ({ content }: { content: BlogContentBlock[] }) => {
                 switch (block.type) {
                     case 'paragraph':
                         return <p key={index} className={`leading-relaxed ${paragraphColor}`}>{block.text}</p>;
-                    case 'heading':
+                    case 'heading': {
                         // Explicitly cast to valid JSX element type for TS
                         const Tag = `h${block.level}` as 'h1' | 'h2' | 'h3';
                         const sizes = { 1: "text-3xl", 2: "text-2xl mt-8 mb-4", 3: "text-xl mt-6 mb-3" };
                         return <Tag key={index} className={`font-bold ${sizes[block.level]} ${headingColor}`}>{block.text}</Tag>;
+                    }
                     case 'code':
                         return <CodeBlock key={index} language={block.language} code={block.code} filename={block.filename} />;
                     case 'image':

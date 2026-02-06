@@ -17,7 +17,7 @@ export function usePresenceCount(channelTopic = "portfolio-presence") {
                 try {
                     const state = channel.presenceState();
                     setCount(Object.keys(state).length);
-                } catch (err) {
+                } catch {
                     // ignore
                 }
             })
