@@ -240,7 +240,12 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                     const headerItem = group.items[0];
 
                     return (
-                        <div key={group.company} className="relative ml-10">
+                        <div
+                            key={group.company}
+                            className="relative ml-10"
+                            onMouseEnter={() => setExpandedGroups(prev => ({ ...prev, [group.company]: true }))}
+                            onMouseLeave={() => setExpandedGroups(prev => ({ ...prev, [group.company]: false }))}
+                        >
                             {/* Circle Icon */}
                             <div className="absolute -left-16 top-6 flex items-center justify-center">
                                 <span className={`relative flex shrink-0 overflow-hidden rounded-full border bg-white h-12 w-12 ${cardBorder} z-10`}>
