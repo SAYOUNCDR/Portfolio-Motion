@@ -23,6 +23,7 @@ import SideLabel from "./Components/SideLabel";
 import LeftSideLabel from "./Components/LeftSideLabel";
 import BackgroundPattern from "./Components/BackgroundPattern";
 import HorizonGlow from "./Components/HorizonGlow";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const HomePage = () => {
   return (
@@ -51,6 +52,7 @@ function App() {
   return (
     <>
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      <ScrollToTop />
       <LivePingOverlay />
       <SideLabel />
       <LeftSideLabel />
