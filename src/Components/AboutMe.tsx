@@ -48,6 +48,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
 
 export default function AboutMe() {
     const [showComponentTip, setShowComponentTip] = useState(false);
+    const [showKaizenTip, setShowKaizenTip] = useState(false);
     const { theme } = useTheme();
 
     const roleColor = theme === "dark" ? "text-gray-400" : "text-slate-600";
@@ -62,13 +63,56 @@ export default function AboutMe() {
                 <div className="absolute top-0 left-5 pt-4">
                     <LiveViewCounter />
                 </div>
-                <div className="relative inline-block cursor-help group">
+                <div
+                    className="relative inline-block cursor-help group"
+                    onMouseEnter={() => setShowKaizenTip(true)}
+                    onMouseLeave={() => setShowKaizenTip(false)}
+                >
                     <span className={`transition-all duration-700 text-zinc-800/50 text-center font-serif italic text-7xl sm:text-8xl md:text-9xl font-bold whitespace-nowrap ${theme === "dark" ? "group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
                         }`}>
                         改善
                     </span>
+                    <AnimatePresence>
+                        {showKaizenTip && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
+                                className={`absolute left-1/2 -translate-x-1/2 top-full mt-4 w-64 p-4 rounded-xl overflow-hidden backdrop-blur-md shadow-2xl z-50 ${theme === "dark"
+                                    ? "bg-zinc-900/60 text-zinc-100 border border-zinc-700/50"
+                                    : "bg-white/60 text-slate-700 border border-slate-200/50"
+                                    }`}
+                            >
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2, duration: 0.5 }}
+                                    className="space-y-3 text-center"
+                                >
+                                    <p className="text-sm leading-relaxed font-medium">
+                                        The word <span className="font-bold text-lg mx-1">改善</span> literally translates to "improvement" or "change for the better".
+                                    </p>
+                                    <div className="w-full h-px bg-current opacity-10" />
+                                    <p className="text-xs opacity-80 uppercase tracking-wider font-semibold">
+                                        Composed of two characters
+                                    </p>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
+                                            <span className="text-2xl font-bold mb-1">改</span>
+                                            <span className="text-[10px] opacity-70">CHANGE</span>
+                                        </div>
+                                        <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
+                                            <span className="text-2xl font-bold mb-1">善</span>
+                                            <span className="text-[10px] opacity-70">GOOD</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
-                <span className="text-lg mt-4">Sayoun Parui</span>
+                <span className="text-lg mt-4"></span>
             </div>
 
             <div className="flex flex-col md:flex-row items-center md:items-start">
@@ -141,7 +185,7 @@ export default function AboutMe() {
                         Components lab
                     </span>
                     <span className="text-[11px] font-normal opacity-80">
-                        click for micro-interactions
+                        under development
                     </span>
                     <AnimatePresence>
                         {showComponentTip && (
@@ -152,7 +196,7 @@ export default function AboutMe() {
                                 transition={{ type: "spring", stiffness: 240, damping: 20 }}
                                 className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md px-3 py-1.5 text-[10px] font-medium shadow-lg backdrop-blur-md  ${theme === "dark" ? "bg-zinc-900/85 text-zinc-100 border border-zinc-700" : "bg-white/95 text-slate-700 border border-slate-200"}`}
                             >
-                                wanna see cool components ?
+                                under development
                             </motion.div>
                         )}
                     </AnimatePresence>
