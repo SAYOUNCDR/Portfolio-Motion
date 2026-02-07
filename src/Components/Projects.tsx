@@ -127,46 +127,29 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                     {items.map((project) => (
                         <div
                             key={project.title}
-                            className={`rounded-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out hover:shadow-lg h-full ${cardStyles}`}
+                            onClick={() => {
+                                if (project.website.url) {
+                                    window.open(project.website.url, "_blank");
+                                }
+                            }}
+                            className={`rounded-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out hover:shadow-lg h-full ${project.website.url ? "cursor-pointer" : "cursor-default"
+                                } ${cardStyles}`}
                         >
-                            {project.website.url ? (
-                                <a href={project.website.url} target="_blank" rel="noreferrer" className="block cursor-pointer">
-                                    {project.video.src ? (
-                                        <video
-                                            src={project.video.src}
-                                            autoPlay={project.video.autoPlay}
-                                            loop={project.video.loop}
-                                            muted={project.video.muted}
-                                            playsInline={project.video.playsInline}
-                                            className={project.video.className}
-                                        />
-                                    ) : (
-                                        <img
-                                            src={project.imageLink}
-                                            alt={project.title}
-                                            className={project.video.className}
-                                        />
-                                    )}
-                                </a>
+                            {project.video.src ? (
+                                <video
+                                    src={project.video.src}
+                                    autoPlay={project.video.autoPlay}
+                                    loop={project.video.loop}
+                                    muted={project.video.muted}
+                                    playsInline={project.video.playsInline}
+                                    className={project.video.className}
+                                />
                             ) : (
-                                <>
-                                    {project.video.src ? (
-                                        <video
-                                            src={project.video.src}
-                                            autoPlay={project.video.autoPlay}
-                                            loop={project.video.loop}
-                                            muted={project.video.muted}
-                                            playsInline={project.video.playsInline}
-                                            className={project.video.className}
-                                        />
-                                    ) : (
-                                        <img
-                                            src={project.imageLink}
-                                            alt={project.title}
-                                            className={project.video.className}
-                                        />
-                                    )}
-                                </>
+                                <img
+                                    src={project.imageLink}
+                                    alt={project.title}
+                                    className={project.video.className}
+                                />
                             )}
 
                             <div className="flex flex-col px-3 py-2">
@@ -192,6 +175,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         href={project.github.url}
                                         target="_blank"
                                         rel="noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
                                         className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
                                     >
                                         <Github className="size-3" />
@@ -204,9 +188,10 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         href={project.website.url}
                                         target="_blank"
                                         rel="noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
                                         className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
                                     >
-                                        <Globe className="size-3" />
+                                        <Github className="size-3" />
                                         <span>{project.website.label}</span>
                                     </a>
                                 ) : (
