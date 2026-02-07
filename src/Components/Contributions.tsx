@@ -1,4 +1,4 @@
-import { Github, ArrowUpRight, ChevronRight } from "lucide-react";
+import { Github, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,7 +19,7 @@ const contributions: Contribution[] = [
     {
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
-        companyUrl: "https://github.com/EbookFoundation/free-programming-books",
+        companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12356",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Added TypeScript Cheat Sheet covering TS basics, React, and Node/Express.",
@@ -32,7 +32,7 @@ const contributions: Contribution[] = [
     {
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
-        companyUrl: "https://github.com/EbookFoundation/free-programming-books",
+        companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12703",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Comprehensive Go Backend Cheeetsheet",
@@ -45,7 +45,7 @@ const contributions: Contribution[] = [
     {
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
-        companyUrl: "https://github.com/EbookFoundation/free-programming-books",
+        companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12729",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Add Helm Cheatsheet (Kubernetes Package Manager)",
@@ -58,7 +58,7 @@ const contributions: Contribution[] = [
     {
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
-        companyUrl: "https://github.com/EbookFoundation/free-programming-books",
+        companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12557",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Adds Docker cheat sheet for full-stack developers",
@@ -227,6 +227,10 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
     const cardBorder = theme === "dark" ? "border-zinc-800" : "border-slate-400";
 
     const buttonBg = theme === "dark" ? "bg-white text-black hover:bg-neutral-100" : "bg-slate-900 text-white hover:bg-slate-800";
+    const actionButton =
+        theme === "dark"
+            ? "bg-white text-black border border-neutral-200 hover:bg-neutral-100"
+            : "bg-slate-900 text-white border border-slate-900 hover:bg-slate-800";
 
     return (
         <section className={`${sectionText} px-6 py-10 w-full mb-15 max-w-6xl mx-auto`}>
@@ -262,22 +266,32 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                                 {/* Group Header */}
                                 <div className="flex flex-col gap-2">
                                     <div className="flex flex-wrap items-center justify-between gap-2">
-                                        <SimpleTooltip content="View Website">
+                                        <div
+                                            className="flex items-center gap-2 cursor-pointer group/header select-none"
+                                            onClick={() => toggleGroup(group.company)}
+                                        >
+                                            <h3 className="text-base font-semibold leading-none group-hover/header:opacity-80 transition-opacity">
+                                                {group.company}
+                                            </h3>
                                             <div
-                                                className="flex items-center gap-2 cursor-pointer group/header select-none"
-                                                onClick={() => toggleGroup(group.company)}
+                                                className={`p-1 rounded-full transition-all duration-200 opacity-70 group-hover/header:opacity-100 group-hover/header:bg-black/5 dark:group-hover/header:bg-white/10 ${isExpanded ? 'rotate-90' : ''}`}
                                             >
-                                                <h3 className="text-base font-semibold leading-none group-hover/header:opacity-80 transition-opacity">
-                                                    {group.company}
-                                                </h3>
-                                                <div
-                                                    className={`p-1 rounded-full transition-all duration-200 opacity-70 group-hover/header:opacity-100 group-hover/header:bg-black/5 dark:group-hover/header:bg-white/10 ${isExpanded ? 'rotate-90' : ''}`}
-                                                >
-                                                    <ChevronRight className="h-4 w-4" />
-                                                </div>
+                                                <ChevronRight className="h-4 w-4" />
                                             </div>
-                                        </SimpleTooltip>
+                                        </div>
                                         <div className="flex items-center gap-3">
+                                            <SimpleTooltip content="View Website">
+                                                <a
+                                                    href={headerItem.companyUrl}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
+                                                >
+                                                    <Globe className="size-3" />
+                                                    <span>Website</span>
+                                                </a>
+                                            </SimpleTooltip>
                                             {headerItem.period && (
                                                 <time className={`text-xs font-medium ${metaText}`}>{headerItem.period}</time>
                                             )}
