@@ -242,7 +242,7 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                     return (
                         <div
                             key={group.company}
-                            className="relative ml-10"
+                            className="relative ml-10 group/card"
                             onMouseEnter={() => setExpandedGroups(prev => ({ ...prev, [group.company]: true }))}
                             onMouseLeave={() => setExpandedGroups(prev => ({ ...prev, [group.company]: false }))}
                         >
@@ -262,7 +262,7 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                                 {/* Group Header */}
                                 <div className="flex flex-col gap-2">
                                     <div className="flex flex-wrap items-center justify-between gap-2">
-                                        <SimpleTooltip content="View contributions">
+                                        <SimpleTooltip content="View Website">
                                             <div
                                                 className="flex items-center gap-2 cursor-pointer group/header select-none"
                                                 onClick={() => toggleGroup(group.company)}
@@ -287,9 +287,10 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                                         href={headerItem.companyUrl}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className={`text-xs font-medium underline-offset-4 hover:underline ${metaText} ${theme === "dark" ? "hover:text-neutral-200" : "hover:text-slate-700"}`}
+                                        className={`relative inline-flex items-center gap-1 w-fit text-xs font-medium underline-offset-4 ${metaText} ${theme === "dark" ? "text-neutral-200" : "text-slate-700"}`}
                                     >
                                         {headerItem.company}
+                                        <span className={`absolute -bottom-0.5 left-0 h-[1px] w-0 bg-current transition-all duration-500 ease-out group-hover/card:w-full`}></span>
                                     </a>
                                     <p className={`text-sm ${descriptionText}`}>{headerItem.description}</p>
                                 </div>
