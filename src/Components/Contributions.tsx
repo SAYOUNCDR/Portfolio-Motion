@@ -25,8 +25,8 @@ const contributions: Contribution[] = [
         contribution: "Added TypeScript Cheat Sheet covering TS basics, React, and Node/Express.",
         period: "October 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/ebookfoundations.png",
+            alt: "EbookFoundation",
         },
     },
     {
@@ -38,8 +38,8 @@ const contributions: Contribution[] = [
         contribution: "Comprehensive Go Backend Cheeetsheet",
         period: "October 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/ebookfoundations.png",
+            alt: "EbookFoundation",
         },
     },
     {
@@ -51,8 +51,8 @@ const contributions: Contribution[] = [
         contribution: "Add Helm Cheatsheet (Kubernetes Package Manager)",
         period: "October 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/ebookfoundations.png",
+            alt: "EbookFoundation",
         },
     },
     {
@@ -64,8 +64,8 @@ const contributions: Contribution[] = [
         contribution: "Adds Docker cheat sheet for full-stack developers",
         period: "October 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/ebookfoundations.png",
+            alt: "EbookFoundation",
         },
     },
     {
@@ -77,8 +77,8 @@ const contributions: Contribution[] = [
         contribution: "Added Cosmic Dream theme #142",
         period: "November 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/kanadojo.png",
+            alt: "kana-dojo",
         },
     },
     {
@@ -90,8 +90,8 @@ const contributions: Contribution[] = [
         contribution: "Animated \"git-merge\" icon #167",
         period: "November 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/lucideicons.png",
+            alt: "Lucide Animated",
         },
     },
     {
@@ -103,8 +103,8 @@ const contributions: Contribution[] = [
         contribution: "Animated 8 \"git related\" icons #172",
         period: "November 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/lucideicons.png",
+            alt: "Lucide Animated",
         },
     },
     {
@@ -116,8 +116,8 @@ const contributions: Contribution[] = [
         contribution: "Animated all folder icons",
         period: "November 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/lucideicons.png",
+            alt: "Lucide Animated",
         },
     },
     {
@@ -129,8 +129,8 @@ const contributions: Contribution[] = [
         contribution: "Animated bell-element icon",
         period: "November 2025",
         icon: {
-            src: "https://cdn.iconscout.com/icon/premium/png-256-thumb/git-merge-icon-svg-download-png-8863137.png",
-            alt: "Branch icon",
+            src: "/images/conribution/lucideicons.png",
+            alt: "Lucide Animated",
         },
     },
 ];
