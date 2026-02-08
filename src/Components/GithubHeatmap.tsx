@@ -166,7 +166,7 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
                 {/* Static Footer: Total Count & Color Legend */}
                 <div className={`flex items-center justify-between mt-4 pt-3 border-t ${isDark ? 'border-[#30363d]/30' : 'border-slate-200'}`}>
                     <span className={`text-sm font-mono ${textColor}`}>
-                        {contributionCount.toLocaleString()} contributions in the last year
+                        {contributionCount.toLocaleString()} contributions last year
                     </span>
 
                     <a href="https://github.com/SAYOUNCDR" target="_blank" rel="noopener noreferrer" className={`text-sm font-mono ${textColor} hover:underline`}>@SAYOUNCDR</a>
