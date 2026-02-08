@@ -115,6 +115,8 @@ export default function AboutMe() {
                 <span className="text-lg mt-4"></span>
             </div>
 
+            <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} />
+
             <div className="flex flex-col md:flex-row items-center md:items-start">
                 {/* Left - Profile Image */}
                 <div className="md:w-1/4 p-6 pr-4 pb-3 flex flex-col items-center md:items-start gap-4 relative">
@@ -202,6 +204,7 @@ export default function AboutMe() {
                     </AnimatePresence>
                 </div>
             </a>
-        </section>
+            <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} />
+        </section >
     );
 }

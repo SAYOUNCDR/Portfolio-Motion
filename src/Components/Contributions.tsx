@@ -8,6 +8,7 @@ type Contribution = {
     repo: string;
     company: string;
     companyUrl: string;
+    companyGithub: string;
     prUrl: string;
     description: string;
     contribution: string;
@@ -20,6 +21,7 @@ const contributions: Contribution[] = [
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
         companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
+        companyGithub: "https://github.com/EbookFoundation",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12356",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Added TypeScript Cheat Sheet covering TS basics, React, and Node/Express.",
@@ -33,6 +35,7 @@ const contributions: Contribution[] = [
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
         companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
+        companyGithub: "https://github.com/EbookFoundation",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12703",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Comprehensive Go Backend Cheeetsheet",
@@ -46,6 +49,7 @@ const contributions: Contribution[] = [
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
         companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
+        companyGithub: "https://github.com/EbookFoundation",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12729",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Add Helm Cheatsheet (Kubernetes Package Manager)",
@@ -59,6 +63,7 @@ const contributions: Contribution[] = [
         repo: "EbookFoundation/free-programming-books",
         company: "EbookFoundation",
         companyUrl: "https://ebookfoundation.github.io/free-programming-books/",
+        companyGithub: "https://github.com/EbookFoundation",
         prUrl: "https://github.com/EbookFoundation/free-programming-books/pull/12557",
         description: "Massive open-source repo curating free dev resources.",
         contribution: "Adds Docker cheat sheet for full-stack developers",
@@ -72,6 +77,7 @@ const contributions: Contribution[] = [
         repo: "lingdojo/kana-dojo",
         company: "kana-dojo",
         companyUrl: "https://kanadojo.com/",
+        companyGithub: "https://github.com/lingdojo",
         prUrl: "https://github.com/lingdojo/kana-dojo/pull/193",
         description: "Open-source kanji learning platform.",
         contribution: "Added Cosmic Dream theme #142",
@@ -85,6 +91,7 @@ const contributions: Contribution[] = [
         repo: "pqoqubbw/icons",
         company: "Lucide Animated",
         companyUrl: "https://lucide-animated.com/",
+        companyGithub: "https://github.com/pqoqubbw/icons",
         prUrl: "https://github.com/pqoqubbw/icons/pull/167",
         description: "Open Source Animated Icon Library built on top of lucid icons.",
         contribution: "Animated \"git-merge\" icon #167",
@@ -98,6 +105,7 @@ const contributions: Contribution[] = [
         repo: "pqoqubbw/icons",
         company: "Lucide Animated",
         companyUrl: "https://lucide-animated.com/",
+        companyGithub: "https://github.com/pqoqubbw/icons",
         prUrl: "https://github.com/pqoqubbw/icons/pull/172",
         description: "Open Source Animated Icon Library built on top of lucid icons.",
         contribution: "Animated 8 \"git related\" icons #172",
@@ -111,6 +119,7 @@ const contributions: Contribution[] = [
         repo: "pqoqubbw/icons",
         company: "Lucide Animated",
         companyUrl: "https://lucide-animated.com/",
+        companyGithub: "https://github.com/pqoqubbw/icons",
         prUrl: "https://github.com/pqoqubbw/icons/pull/180",
         description: "Open Source Animated Icon Library built on top of lucid icons.",
         contribution: "Animated all folder icons",
@@ -124,6 +133,7 @@ const contributions: Contribution[] = [
         repo: "pqoqubbw/icons",
         company: "Lucide Animated",
         companyUrl: "https://lucide-animated.com/",
+        companyGithub: "https://github.com/pqoqubbw/icons",
         prUrl: "https://github.com/pqoqubbw/icons/pull/177",
         description: "Open Source Animated Icon Library built on top of lucid icons.",
         contribution: "Animated bell-element icon",
@@ -298,7 +308,7 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                                         </div>
                                     </div>
                                     <a
-                                        href={headerItem.companyUrl}
+                                        href={headerItem.companyGithub}
                                         target="_blank"
                                         rel="noreferrer"
                                         className={`relative inline-flex items-center gap-1 w-fit text-xs font-medium underline-offset-4 ${metaText} ${theme === "dark" ? "text-neutral-200" : "text-slate-700"}`}
