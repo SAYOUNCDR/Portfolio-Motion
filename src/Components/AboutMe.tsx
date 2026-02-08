@@ -71,7 +71,7 @@ export default function AboutMe() {
                 >
                     <span className={`transition-all duration-700 text-zinc-800/50 text-center font-serif italic text-7xl sm:text-8xl md:text-9xl font-bold whitespace-nowrap ${theme === "dark" ? "group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
                         }`}>
-                        改善
+                        継続
                     </span>
                     <AnimatePresence>
                         {showKaizenTip && (
@@ -92,7 +92,15 @@ export default function AboutMe() {
                                     className="space-y-3 text-center"
                                 >
                                     <p className="text-sm leading-relaxed font-medium">
-                                        The word <span className="font-bold text-lg mx-1">改善</span> literally translates to "improvement" or "change for the better".
+                                        The word <span className="font-bold text-lg mx-1">継続</span> translates to "consistency" or "continuance".
+                                    </p>
+                                    <div className="w-full h-px bg-current opacity-10" />
+                                    <p className="text-sm italic font-serif text-center">
+                                        "継続は力なり"
+                                        <br />
+                                        <span className="text-xs opacity-70 not-italic font-sans">
+                                            (Consistency is power)
+                                        </span>
                                     </p>
                                     <div className="w-full h-px bg-current opacity-10" />
                                     <p className="text-xs opacity-80 uppercase tracking-wider font-semibold">
@@ -100,12 +108,12 @@ export default function AboutMe() {
                                     </p>
                                     <div className="grid grid-cols-2 gap-3">
                                         <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
-                                            <span className="text-2xl font-bold mb-1">改</span>
-                                            <span className="text-[10px] opacity-70">CHANGE</span>
+                                            <span className="text-2xl font-bold mb-1">継</span>
+                                            <span className="text-[10px] opacity-70">Inherit</span>
                                         </div>
                                         <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
-                                            <span className="text-2xl font-bold mb-1">善</span>
-                                            <span className="text-[10px] opacity-70">GOOD</span>
+                                            <span className="text-2xl font-bold mb-1">続</span>
+                                            <span className="text-[10px] opacity-70">Continue</span>
                                         </div>
                                     </div>
                                 </motion.div>
