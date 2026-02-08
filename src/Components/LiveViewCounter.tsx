@@ -64,9 +64,10 @@ export default function LiveViewCounter({ className = "" }: LiveViewCounterProps
                     className="relative font-semibold"
                     aria-live="polite"
                 >
-                    {headline}
+                    <span className="inline sm:hidden">{count}</span>
+                    <span className="hidden sm:inline">{headline}</span>
                 </motion.span>
-                <span className="relative text-[11px] opacity-70">{caption}</span>
+                <span className="hidden sm:inline relative text-[11px] opacity-70">{caption}</span>
             </motion.div>
 
             <AnimatePresence>
