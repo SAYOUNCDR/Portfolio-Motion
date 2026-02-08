@@ -3,7 +3,8 @@
 import { MousePointerClick } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SiGithub, SiBuymeacoffee } from "react-icons/si";
+import { SiGithub, SiPeerlist } from "react-icons/si";
+// import { SiBuymeacoffee } from "react-icons/si";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
 import LiveViewCounter from "./LiveViewCounter";
@@ -148,33 +149,71 @@ export default function AboutMe() {
                         />
                     </div>
                     {/* Social Icons */}
-                    <div className="flex flex-wrap gap-3 my-3">
-                        <SocialIcon
-                            icon={<FaXTwitter />}
-                            username="DriftNBlde"
-                            link="https://x.com/DriftNBlde"
-                        />
-                        <SocialIcon
-                            icon={<FaLinkedin />}
-                            username="Sayoun Parui"
-                            link="https://www.linkedin.com/in/sayoun-parui-868b4228b/"
-                        />
-                        <SocialIcon
-                            icon={<SiGithub />}
-                            username="SAYOUNCDR"
-                            link="https://github.com/SAYOUNCDR"
-                        />
-                        <SocialIcon
-                            icon={<SiBuymeacoffee />}
-                            username="BuyMeACoffee"
-                            link="https://buymeacoffee.com/sayoun_parui"
-                        />
+                    <div className="relative group">
+                        <div className="flex flex-col gap-3 my-3 w-fit">
+                            <div className="flex flex-wrap gap-3">
+                                <SocialIcon
+                                    icon={<FaXTwitter />}
+                                    username="DriftNBlde"
+                                    link="https://x.com/DriftNBlde"
+                                />
+                                <SocialIcon
+                                    icon={<FaLinkedin />}
+                                    username="Sayoun Parui"
+                                    link="https://www.linkedin.com/in/sayoun-parui-868b4228b/"
+                                />
+                                <SocialIcon
+                                    icon={<SiGithub />}
+                                    username="SAYOUNCDR"
+                                    link="https://github.com/SAYOUNCDR"
+                                />
+                                <SocialIcon
+                                    icon={<SiPeerlist />}
+                                    username="Peerlist"
+                                    link="https://peerlist.io/0xsyndev"
+                                />
+                                {/* <SocialIcon
+                                icon={<SiBuymeacoffee />}
+                                username="BuyMeACoffee"
+                                link="https://buymeacoffee.com/sayoun_parui"
+                            /> */}
+                            </div>
+                            <a
+                                href="https://cal.com/sayoun-parui-sdv05p/30min"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg transition font-medium text-sm ${theme === "dark"
+                                    ? "text-white border border-zinc-700 bg-zinc-900/40 hover:border-gray-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+                                    : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
+                                    }`}
+                            >
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    className="w-5 h-5"
+                                >
+                                    <path d="M16.5 12c0-2.48-2.02-4.5-4.5-4.5S7.5 9.52 7.5 12s2.02 4.5 4.5 4.5c1.47 0 2.78-.71 3.6-1.81l1.6 1.2c-1.15 1.55-2.98 2.61-5.2 2.61-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5c2.22 0 4.05 1.06 5.2 2.61l-1.6 1.2c-.82-1.1-2.13-1.81-3.6-1.81z" />
+                                </svg>
+                                <span>Schedule a meeting</span>
+                            </a>
+                        </div>
+                        <div className="hidden md:block absolute -right-[140px] top-4 text-center">
+                            <svg className="w-24 h-12 text-slate-500/60 rotate-0" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M 80 10 Q 50 40 10 30" />
+                                <path d="M 10 30 L 20 25 M 10 30 L 20 38" />
+                            </svg>
+                            <p className="text-[10px] font-handwriting text-slate-500/80 -rotate-6 mt-1 whitespace-nowrap">
+                                hover to see cool effect
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <a
-                href=""
+                href="https://github.com/SAYOUNCDR/Kairo-Ui"
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setShowComponentTip(true)}
                 onMouseLeave={() => setShowComponentTip(false)}
                 onFocus={() => setShowComponentTip(true)}
