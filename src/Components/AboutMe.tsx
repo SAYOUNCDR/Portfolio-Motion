@@ -144,10 +144,10 @@ export default function AboutMe() {
 
             {/* <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} /> */}
 
-            <div className="flex flex-col md:flex-row items-center md:items-start">
+            <div className="flex flex-row items-center md:items-start">
                 {/* Left - Profile Image */}
-                <div className="md:w-1/4 p-6 pr-4 pb-3 flex flex-col items-center md:items-start gap-4 relative">
-                    <div className="w-40 h-40 rounded-lg overflow-hidden relative">
+                <div className="w-auto md:w-1/4 p-3 md:p-6 md:pr-4 md:pb-3 flex flex-col items-center md:items-start gap-4 relative">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative">
                         <img
                             src="images/Profile.jpg"
                             alt="Sayoun"
@@ -163,15 +163,15 @@ export default function AboutMe() {
                 </div>
 
                 {/* Right - Info */}
-                <div className="relative md:w-2/3 pt-4 md:pl-2 flex flex-col items-center md:items-start justify-center text-center md:text-left">
+                <div className="relative flex-1 md:w-2/3 pt-2 md:pt-4 pl-2 md:pl-2 flex flex-col items-start justify-center text-left">
                     {/* Header */}
                     <div className="flex w-full flex-col gap-2 items-center md:flex-row md:items-center md:gap-3 mb-3">
                     </div>
 
-                    <div className={`text-lg ${roleColor} flex justify-center md:justify-start w-full`}>
+                    <div className={`text-lg ${roleColor} flex justify-start w-full`}>
                         <RotateText
                             texts={["Full Stack Developer", "DevOps Engineer", "Applied AI Engineer"]}
-                            className="font-medium justify-center md:justify-start"
+                            className="font-medium justify-start"
                         />
                     </div>
                     {/* Social Icons */}
