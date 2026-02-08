@@ -18,6 +18,14 @@ export default function Newsletter() {
     avgCommits: 0
   });
 
+  const [wakaStats, setWakaStats] = useState({
+    secondsToday: 0,
+    textToday: "Loading...",
+    topLanguage: { name: "-", percent: 0 },
+    topProject: "-",
+    isOnline: false
+  });
+
   const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
 
 
@@ -203,6 +211,20 @@ export default function Newsletter() {
       }
     }
     fetchGitHubData();
+
+    async function fetchWakaTime() {
+      try {
+        const res = await fetch('/api/wakatime');
+        if (!res.ok) throw new Error('WakaTime API failed');
+        const data = await res.json();
+        setWakaStats(data);
+      } catch (err) {
+        console.error("Failed to fetch WakaTime stats", err);
+        // Fallback or keep loading state
+        setWakaStats(prev => ({ ...prev, textToday: "Offline" }));
+      }
+    }
+    fetchWakaTime();
   }, []);
 
 
@@ -324,8 +346,13 @@ export default function Newsletter() {
             <div
               className={`mt-4 md:mt-auto flex items-center justify-between rounded-xl px-4 py-3 border ${chipStyles}`}
             >
-              <span className="text-xs font-medium">Daily commit energy low?</span>
-              <span className="text-xs font-semibold">Take a ship-break ☕</span>
+              <div>
+                <span className="block text-xs font-medium opacity-70 mb-1">Peak Performance</span>
+                <span className="block text-sm font-semibold">
+                  {builderStats.bestDay.count} commits on {builderStats.bestDay.date}
+                </span>
+              </div>
+              <div className="text-xl">⚡</div>
             </div>
           </div>
 
@@ -353,29 +380,49 @@ export default function Newsletter() {
             </p>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4">
             <div>
-              <p className="text-sm font-semibold">Peak Performance</p>
-              <p className={`text-xs ${secondaryText}`}>
-                {builderStats.bestDay.count} commits on {builderStats.bestDay.date}
-              </p>
-            </div>
-            <div
-              className="relative h-16 w-16 rounded-xl"
-              style={{
-                background: theme === "dark"
-                  ? "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 70%)"
-                  : "radial-gradient(circle at 30% 30%, rgba(0,0,0,0.06), transparent 70%)"
-              }}
-            >
-              <div className="absolute inset-1 rounded-lg backdrop-blur-sm border border-white/10 flex items-center justify-center text-2xl">
-                ⚡
+              <p className="text-sm font-semibold">Today's Focus</p>
+              <div className="flex items-end gap-2">
+                <p className={`text-xs ${secondaryText}`}>
+                  {wakaStats.textToday || "No coding activity yet"}
+                </p>
+                {wakaStats.isOnline && (
+                  <span className="relative flex h-2 w-2 mb-1">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                )}
               </div>
             </div>
-          </div>
 
-          <div className={`mt-auto w-full rounded-lg border border-dashed px-3 py-2 text-xs font-medium text-center ${chipStyles}`}>
-            Consistency is the code to success.
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className={secondaryText}>Top Language</span>
+                <span className="font-mono">{wakaStats.topLanguage?.name || "-"}</span>
+              </div>
+              {/* Progress Bar for Top Language */}
+              <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-green-500 rounded-full"
+                  style={{ width: `${wakaStats.topLanguage?.percent || 0}%` }}
+                />
+              </div>
+
+              <div className="flex items-center justify-between text-xs">
+                <span className={secondaryText}>Current Project</span>
+                <span className="font-mono truncate max-w-[120px]">{wakaStats.topProject}</span>
+              </div>
+
+              <div className="h-px bg-current opacity-10 my-1" />
+
+              <div className="flex items-center justify-between text-xs text-green-500/80">
+                <span>Status</span>
+                <span className="flex items-center gap-1.5">
+                  {wakaStats.isOnline ? "Online 🟢" : "Offline 💤"}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
