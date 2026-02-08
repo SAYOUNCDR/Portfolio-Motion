@@ -222,12 +222,12 @@ export default function AboutMe() {
                                 href="https://cal.com/sayoun-parui-sdv05p/30min"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg transition font-medium text-sm ${theme === "dark"
+                                className={`hidden md:flex items-center justify-center gap-2 w-full px-2 py-1 md:px-3 md:py-2 rounded-lg transition font-medium text-xs sm:text-sm ${theme === "dark"
                                     ? "text-white border border-zinc-700 bg-zinc-900/40 hover:border-gray-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
                                     : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
                                     }`}
                             >
-                                <Calendar className="w-5 h-5" />
+                                <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                                 <span>Schedule a meeting</span>
                             </a>
                         </div>
@@ -242,6 +242,22 @@ export default function AboutMe() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* Mobile Schedule Button */}
+            <div className="md:hidden w-full px-3 mt-1 mb-4 relative z-20">
+                <a
+                    href="https://cal.com/sayoun-parui-sdv05p/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg transition font-medium text-sm ${theme === "dark"
+                        ? "text-white border border-zinc-700 bg-zinc-900/40 hover:border-gray-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
+                        : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
+                        }`}
+                >
+                    <Calendar className="w-4 h-4" />
+                    <span>Schedule a meeting</span>
+                </a>
             </div>
 
             <a
