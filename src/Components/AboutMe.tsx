@@ -1,9 +1,9 @@
 "use client";
 
-import { MousePointerClick } from "lucide-react";
+import { MousePointerClick, Calendar } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SiGithub, SiPeerlist } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 // import { SiBuymeacoffee } from "react-icons/si";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
@@ -168,7 +168,21 @@ export default function AboutMe() {
                                     link="https://github.com/SAYOUNCDR"
                                 />
                                 <SocialIcon
-                                    icon={<SiPeerlist />}
+                                    icon={
+                                        <svg
+                                            width="22"
+                                            height="22"
+                                            viewBox="0 0 56 56"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path d="M28 0C6.22222 0 0 6.22222 0 28C0 49.7778 6.23778 56 28 56C49.7622 56 56 49.7778 56 28C56 6.22222 49.7622 0 28 0Z" fill="currentColor"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M7.24755 7.24755C3.5875 10.9076 2 17.153 2 28C2 38.8461 3.59108 45.0918 7.25306 48.7521C10.9153 52.4127 17.1612 54 28 54C38.8388 54 45.0847 52.4127 48.7469 48.7521C52.4089 45.0918 54 38.8461 54 28C54 17.1539 52.4089 10.9082 48.7469 7.24787C45.0847 3.58733 38.8388 2 28 2C17.153 2 10.9076 3.5875 7.24755 7.24755ZM0 28C0 6.22222 6.22222 0 28 0C49.7622 0 56 6.22222 56 28C56 49.7778 49.7622 56 28 56C6.23778 56 0 49.7778 0 28Z"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M27.0769 13H15V47H24.3846V39.8889H27.0769C34.7305 39.8889 41 33.9048 41 26.4444C41 18.984 34.7305 13 27.0769 13ZM24.3846 30.7778V22.1111H27.0769C29.6194 22.1111 31.6154 24.0864 31.6154 26.4444C31.6154 28.8024 29.6194 30.7778 27.0769 30.7778H24.3846Z" fill="currentColor"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M18 12H29.0769C36.2141 12 42 17.5716 42 24.4444C42 31.3173 36.2141 36.8889 29.0769 36.8889H25.3846V44H18V12ZM25.3846 29.7778H29.0769C32.1357 29.7778 34.6154 27.39 34.6154 24.4444C34.6154 21.4989 32.1357 19.1111 29.0769 19.1111H25.3846V29.7778Z" fill="white"></path>
+                                            <path fillRule="evenodd" clipRule="evenodd" d="M17 11H29.0769C36.7305 11 43 16.984 43 24.4444C43 31.9048 36.7305 37.8889 29.0769 37.8889H26.3846V45H17V11ZM19 13V43H24.3846V35.8889H29.0769C35.6978 35.8889 41 30.7298 41 24.4444C41 18.1591 35.6978 13 29.0769 13H19ZM24.3846 18.1111H29.0769C32.6521 18.1111 35.6154 20.9114 35.6154 24.4444C35.6154 27.9775 32.6521 30.7778 29.0769 30.7778H24.3846V18.1111ZM26.3846 20.1111V28.7778H29.0769C31.6194 28.7778 33.6154 26.8024 33.6154 24.4444C33.6154 22.0864 31.6194 20.1111 29.0769 20.1111H26.3846Z" fill="#24292E"></path>
+                                        </svg>
+                                    }
                                     username="Peerlist"
                                     link="https://peerlist.io/0xsyndev"
                                 />
@@ -187,13 +201,7 @@ export default function AboutMe() {
                                     : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
                                     }`}
                             >
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="w-5 h-5"
-                                >
-                                    <path d="M16.5 12c0-2.48-2.02-4.5-4.5-4.5S7.5 9.52 7.5 12s2.02 4.5 4.5 4.5c1.47 0 2.78-.71 3.6-1.81l1.6 1.2c-1.15 1.55-2.98 2.61-5.2 2.61-3.59 0-6.5-2.91-6.5-6.5s2.91-6.5 6.5-6.5c2.22 0 4.05 1.06 5.2 2.61l-1.6 1.2c-.82-1.1-2.13-1.81-3.6-1.81z" />
-                                </svg>
+                                <Calendar className="w-5 h-5" />
                                 <span>Schedule a meeting</span>
                             </a>
                         </div>
