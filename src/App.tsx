@@ -33,7 +33,7 @@ const HomePage = () => {
         <AboutContent />
         <Projects limit={2} showViewAll={true} />
         <Skills />
-        <Contributions limit={2} showViewAll={true} />
+        <Contributions limit={3} showViewAll={true} />
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
         <Newsletter />

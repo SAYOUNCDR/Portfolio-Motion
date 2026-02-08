@@ -191,7 +191,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                         onClick={(e) => e.stopPropagation()}
                                         className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
                                     >
-                                        <Github className="size-3" />
+                                        <Globe className="size-3" />
                                         <span>{project.website.label}</span>
                                     </a>
                                 ) : (
