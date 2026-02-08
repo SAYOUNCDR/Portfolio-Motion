@@ -11,7 +11,11 @@ export default function Newsletter() {
     streakDays: 0,
     totalContributions: 0,
     longStreak: 0,
-    subtext: "Loading stats..."
+    subtext: "Loading stats...",
+    activeDays: 0,
+    lastActive: "Loading...",
+    bestDay: { date: "-", count: 0 },
+    avgCommits: 0
   });
 
   const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
@@ -22,21 +26,11 @@ export default function Newsletter() {
   const [error, setError] = useState("");
 
   const [isSending, setIsSending] = useState(false);
-  const [holdExpanded, setHoldExpanded] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
-  const collapseTimeoutRef = useRef<number | null>(null);
   const { theme } = useTheme();
 
-  const latestNewsletter = {
-    title: "Agents That Actually Ship",
-    date: "Nov 13, 2025",
-    summary: "A peek at the automations powering my side projects."
-  };
-  const subscriberCount = "2,418";
-  const recentSubscriber = {
-    name: "Aarav P.",
-    minutesAgo: 12
-  };
+
   const sectionText = theme === "dark" ? "text-white" : "text-slate-800";
   const hintText = theme === "dark" ? "text-gray-400" : "text-slate-600";
   const inputStyles =
@@ -79,22 +73,12 @@ export default function Newsletter() {
     }
     setError("");
 
-    if (collapseTimeoutRef.current) {
-      window.clearTimeout(collapseTimeoutRef.current);
-      collapseTimeoutRef.current = null;
-    }
-
     setIsSending(true);
-    setHoldExpanded(true);
     setTimeout(() => {
       setIsSending(false);
       setShowToast(true);
       setEmail("");
       setTimeout(() => setShowToast(false), 4000);
-      collapseTimeoutRef.current = window.setTimeout(() => {
-        setHoldExpanded(false);
-        collapseTimeoutRef.current = null;
-      }, 1500);
     }, 700);
   }, [email]);
 
@@ -169,11 +153,45 @@ export default function Newsletter() {
           if (currentStreak >= 30) dynamicText = "Unstoppable force 🌩️";
           if (currentStreak >= 100) dynamicText = "God mode activated ⚡";
 
+          // Calculate Active Days & Best Day & Last Active
+          let activeDays = 0;
+          let bestDay = { date: "", count: 0 };
+          let lastActiveDate = null;
+
+          const sortedContribs = [...data.contributions].sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+          for (const day of sortedContribs) {
+            if (day.count > 0) {
+              activeDays++;
+              if (day.count > bestDay.count) {
+                bestDay = { date: day.date, count: day.count };
+              }
+              lastActiveDate = new Date(day.date);
+            }
+          }
+
+          const avgCommits = activeDays > 0 ? (total / activeDays).toFixed(1) : "0";
+
+          // Calculate "Last Active" string
+          let lastActiveString = "No recent activity";
+          if (lastActiveDate) {
+            const diffTime = Math.abs(today.getTime() - lastActiveDate.getTime());
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1;
+
+            if (diffDays <= 0) lastActiveString = "Today";
+            else if (diffDays === 1) lastActiveString = "Yesterday";
+            else lastActiveString = `${diffDays} days ago`;
+          }
+
           setBuilderStats({
             streakDays: currentStreak,
             totalContributions: total,
             longStreak: maxStreak,
-            subtext: dynamicText
+            subtext: dynamicText,
+            activeDays: activeDays,
+            lastActive: lastActiveString,
+            bestDay: bestDay,
+            avgCommits: Number(avgCommits)
           });
 
           // For the bar visualization: grab last 15 days
@@ -187,13 +205,7 @@ export default function Newsletter() {
     fetchGitHubData();
   }, []);
 
-  useEffect(() => {
-    return () => {
-      if (collapseTimeoutRef.current) {
-        window.clearTimeout(collapseTimeoutRef.current);
-      }
-    };
-  }, []);
+
 
 
 
@@ -223,13 +235,9 @@ export default function Newsletter() {
               />
             </div>
 
-            <div className="relative mt-2 sm:mt-0 flex-shrink-0 w-[120px]">
+            <div className="relative mt-2 sm:mt-0 flex-shrink-0">
               <motion.button
                 type="submit"
-                initial={{ width: 93 }}
-                animate={{ width: isSending || holdExpanded ? 120 : 93 }}
-                whileHover={{ width: 120 }}
-                transition={{ type: "spring", stiffness: 300, damping: 24 }}
                 className={`relative inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold overflow-hidden ${buttonStyles}`}
               >
                 <div className="flex items-center gap-2 p-0.5">
@@ -298,7 +306,7 @@ export default function Newsletter() {
               </div>
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-4 text-xs">
+            <div className="mt-5 grid grid-cols-2 gap-4 text-xs mb-6">
               <div className="rounded-lg border border-dashed border-current/15 px-3 py-3">
                 <p className={`font-semibold ${accentText}`}>Total Contributions</p>
                 <p className={`mt-1 leading-tight ${secondaryText}`}>
@@ -325,34 +333,31 @@ export default function Newsletter() {
 
         <div className={`hidden md:flex md:self-stretch flex-col relative overflow-hidden rounded-2xl px-5 py-6 md:w-[300px] lg:w-[320px] ${cardStyles}`}>
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs uppercase tracking-[0.3rem] opacity-70">Insider Pulse</span>
-            <span className={`text-xs font-semibold px-2 py-1 rounded-full border ${chipStyles}`}>
-              {subscriberCount} subs
+            <span className="text-xs uppercase tracking-[0.3rem] opacity-70">CODING PULSE</span>
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border whitespace-nowrap ${chipStyles}`}>
+              {builderStats.activeDays} Active Days
             </span>
           </div>
 
           <div className="relative mb-5 rounded-xl border border-dashed border-current/15 px-4 py-4">
             <span className={`text-[11px] uppercase tracking-[0.25rem] opacity-60 ${secondaryText}`}>
-              Latest Drop
+              Latest Activity
             </span>
             <p className="text-lg font-semibold mt-1 leading-tight">
-              {latestNewsletter.title}
+              Pushed code
             </p>
             <p className={`text-xs mt-2 ${secondaryText}`}>
-              {latestNewsletter.summary}
+              <span className={builderStats.lastActive === "Today" ? "text-green-500 font-bold" : ""}>{builderStats.lastActive}</span>
+              <span className="mx-2">•</span>
+              {builderStats.avgCommits} avg commits/day
             </p>
-            <div className="mt-3 flex items-center gap-2 text-xs opacity-70">
-              <span>{latestNewsletter.date}</span>
-              <span>•</span>
-              <span>4 min read</span>
-            </div>
           </div>
 
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold">Newest member</p>
+              <p className="text-sm font-semibold">Peak Performance</p>
               <p className={`text-xs ${secondaryText}`}>
-                {recentSubscriber.name} • {recentSubscriber.minutesAgo}m ago
+                {builderStats.bestDay.count} commits on {builderStats.bestDay.date}
               </p>
             </div>
             <div
@@ -364,13 +369,13 @@ export default function Newsletter() {
               }}
             >
               <div className="absolute inset-1 rounded-lg backdrop-blur-sm border border-white/10 flex items-center justify-center text-2xl">
-                📬
+                ⚡
               </div>
             </div>
           </div>
 
           <div className={`mt-auto w-full rounded-lg border border-dashed px-3 py-2 text-xs font-medium text-center ${chipStyles}`}>
-            Micro-wins, code drops, and the occasional meme.
+            Consistency is the code to success.
           </div>
         </div>
       </div>
