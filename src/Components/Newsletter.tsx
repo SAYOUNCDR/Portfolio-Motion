@@ -7,16 +7,15 @@ import { useTheme } from "../contexts/ThemeContext";
 const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 
 export default function Newsletter() {
-  const builderStats = {
-    streakDays: 27,
+  const [builderStats, setBuilderStats] = useState({
+    streakDays: 0,
     nextDrop: "Nov 21 • 9:00 PM",
     focus: "Shipping an interactive AI copilot demo"
-  };
+  });
 
-  const streakArray = Array.from(
-    { length: builderStats.streakDays },
-    (_, i) => i / builderStats.streakDays
-  );
+  const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
+
+
   const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [error, setError] = useState("");
@@ -112,6 +111,54 @@ export default function Newsletter() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [email, handleSubscribe]);
+
+  useEffect(() => {
+    async function fetchGitHubData() {
+      try {
+        const username = "SAYOUNCDR";
+        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
+        const data = await res.json();
+
+        if (data && data.contributions) {
+          const today = new Date();
+          // Calculate streak
+          let currentStreak = 0;
+          // Sort contributions by date descending to count backward from today
+          // The API returns activity sorted by date, so we reverse it
+          const reversedContribs = [...data.contributions].reverse();
+
+          for (const day of reversedContribs) {
+            const dayDate = new Date(day.date);
+            // Ignore future dates if any
+            if (dayDate > today) continue;
+
+            if (day.count > 0) {
+              currentStreak++;
+            } else {
+              // break on first 0 count day that is today or before
+              // (allow for 0 count *today* if the day isn't over? typical streak logic is strict)
+              // Let's be strict: a 0 count breaks the streak
+              if (dayDate.toDateString() !== today.toDateString()) {
+                break;
+              }
+              // If today is 0, we don't count it yet but don't break if streak was active yesterday?
+              // Simple strict logic: 
+              if (day.count === 0 && dayDate < today) break;
+            }
+          }
+
+          setBuilderStats(prev => ({ ...prev, streakDays: currentStreak }));
+
+          // For the bar visualization: grab last 15 days
+          const last15 = data.contributions.slice(-15).map((d: any) => d.level);
+          setStreakArray(last15);
+        }
+      } catch (err) {
+        console.error("Failed to fetch GitHub streak", err);
+      }
+    }
+    fetchGitHubData();
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -215,8 +262,8 @@ export default function Newsletter() {
                       style={{
                         backgroundColor:
                           theme === "dark"
-                            ? `rgba(34,197,94,${0.15 + level * 0.4})`
-                            : `rgba(16,185,129,${0.15 + level * 0.4})`
+                            ? `rgba(34,197,94,${0.2 + (level / 4) * 0.8})`
+                            : `rgba(16,185,129,${0.2 + (level / 4) * 0.8})`
                       }}
                     />
                   ))}
