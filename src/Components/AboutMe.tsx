@@ -62,7 +62,7 @@ export default function AboutMe() {
             {/* First Section */}
             <div className="flex flex-col items-center justify-center w-full mb-4 select-none relative z-10 pt-4 pb-10">
                 <div
-                    className={`absolute inset-0 z-0 bg-cover bg-center pointer-events-none rounded-lg overflow-hidden ${theme === "dark" ? "opacity-12" : "opacity-30"}`}
+                    className={`absolute inset-0 z-0 bg-cover bg-center pointer-events-none rounded-lg overflow-hidden ${theme === "dark" ? "opacity-10" : "opacity-60"}`}
                     style={{
                         backgroundImage: 'url("https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop")',
                         maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
