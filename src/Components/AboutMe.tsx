@@ -58,9 +58,20 @@ export default function AboutMe() {
         : "bg-white border border-slate-300 text-slate-800 hover:border-slate-500 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
 
     return (
-        <section className={`relative w-full max-w-4xl mx-auto overflow-hidden ${theme === "dark" ? "" : "text-slate-800"}`}>
+        <section className={`relative w-full max-w-4xl mx-auto ${theme === "dark" ? "" : "text-slate-800"}`}>
             {/* First Section */}
             <div className="flex flex-col items-center justify-center w-full mb-4 select-none relative z-10 pt-4 pb-10">
+                <div
+                    className="absolute inset-0 z-0 opacity-10 bg-cover bg-center pointer-events-none rounded-lg overflow-hidden"
+                    style={{
+                        backgroundImage: 'url("https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=2076&auto=format&fit=crop")',
+                        maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+                        maskComposite: 'intersect',
+                        WebkitMaskComposite: 'source-in',
+                        filter: 'blur(2px)'
+                    }}
+                />
                 <div className="absolute top-0 left-5 pt-4">
                     <LiveViewCounter />
                 </div>
@@ -69,7 +80,7 @@ export default function AboutMe() {
                     onMouseEnter={() => setShowKaizenTip(true)}
                     onMouseLeave={() => setShowKaizenTip(false)}
                 >
-                    <span className={`transition-all duration-700 text-zinc-800/50 text-center font-serif italic text-7xl sm:text-8xl md:text-9xl font-bold whitespace-nowrap ${theme === "dark" ? "group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+                    <span className={`transition-all duration-700 text-center font-serif italic text-7xl sm:text-8xl md:text-9xl font-bold whitespace-nowrap ${theme === "dark" ? "text-zinc-400/50 group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "text-zinc-800/50 group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
                         }`}>
                         継続
                     </span>
@@ -128,10 +139,10 @@ export default function AboutMe() {
                         )}
                     </AnimatePresence>
                 </div>
-                <span className="text-lg mt-4"></span>
+                <span className="text-lg m-6"></span>
             </div>
 
-            <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} />
+            {/* <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} /> */}
 
             <div className="flex flex-col md:flex-row items-center md:items-start">
                 {/* Left - Profile Image */}

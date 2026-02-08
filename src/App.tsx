@@ -28,7 +28,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 const HomePage = () => {
   return (
     <div>
-      <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col py-5">
+      <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col">
         <AboutMe />
         <AboutContent />
         <Projects limit={2} showViewAll={true} />
