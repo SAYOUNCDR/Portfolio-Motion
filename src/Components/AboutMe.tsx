@@ -81,15 +81,22 @@ export default function AboutMe() {
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.8, ease: "easeInOut" }}
                                 className={`absolute left-1/2 -translate-x-1/2 top-full mt-4 w-64 p-4 rounded-xl overflow-hidden backdrop-blur-md shadow-2xl z-50 ${theme === "dark"
-                                    ? "bg-zinc-900/60 text-zinc-100 border border-zinc-700/50"
-                                    : "bg-white/60 text-slate-700 border border-slate-200/50"
+                                    ? "bg-zinc-900/80 text-zinc-100 border border-zinc-700/50"
+                                    : "bg-white/80 text-slate-700 border border-slate-200/50"
                                     }`}
                             >
+                                <div
+                                    className="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay"
+                                    style={{
+                                        backgroundImage: 'url("https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2092&auto=format&fit=crop")',
+                                        filter: 'blur(1px)'
+                                    }}
+                                />
                                 <motion.div
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.2, duration: 0.5 }}
-                                    className="space-y-3 text-center"
+                                    className="space-y-3 text-center relative z-10"
                                 >
                                     <p className="text-sm leading-relaxed font-medium">
                                         The word <span className="font-bold text-lg mx-1">継続</span> translates to "consistency" or "continuance".
