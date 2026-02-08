@@ -9,8 +9,9 @@ const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 export default function Newsletter() {
   const [builderStats, setBuilderStats] = useState({
     streakDays: 0,
-    nextDrop: "Nov 21 • 9:00 PM",
-    focus: "Shipping an interactive AI copilot demo"
+    totalContributions: 0,
+    longStreak: 0,
+    subtext: "Loading stats..."
   });
 
   const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
@@ -136,8 +137,6 @@ export default function Newsletter() {
               currentStreak++;
             } else {
               // break on first 0 count day that is today or before
-              // (allow for 0 count *today* if the day isn't over? typical streak logic is strict)
-              // Let's be strict: a 0 count breaks the streak
               if (dayDate.toDateString() !== today.toDateString()) {
                 break;
               }
@@ -147,7 +146,35 @@ export default function Newsletter() {
             }
           }
 
-          setBuilderStats(prev => ({ ...prev, streakDays: currentStreak }));
+          // Calculate Total Contributions
+          const total = data.contributions.reduce((acc: number, curr: any) => acc + curr.count, 0);
+
+          // Calculate Longest Streak
+          let maxStreak = 0;
+          let tempStreak = 0;
+          for (const day of data.contributions) {
+            if (day.count > 0) {
+              tempStreak++;
+            } else {
+              if (tempStreak > maxStreak) maxStreak = tempStreak;
+              tempStreak = 0;
+            }
+          }
+          if (tempStreak > maxStreak) maxStreak = tempStreak;
+
+          // Dynamic Subtext
+          let dynamicText = "Time to build! 🛠️";
+          if (currentStreak > 0) dynamicText = "Consistency is key 🚀";
+          if (currentStreak >= 7) dynamicText = "Building momentum 🔥";
+          if (currentStreak >= 30) dynamicText = "Unstoppable force 🌩️";
+          if (currentStreak >= 100) dynamicText = "God mode activated ⚡";
+
+          setBuilderStats({
+            streakDays: currentStreak,
+            totalContributions: total,
+            longStreak: maxStreak,
+            subtext: dynamicText
+          });
 
           // For the bar visualization: grab last 15 days
           const last15 = data.contributions.slice(-15).map((d: any) => d.level);
@@ -248,9 +275,9 @@ export default function Newsletter() {
               </div>
 
               <div>
-                <p className="text-sm font-semibold">Build streak</p>
+                <p className="text-sm font-semibold">Build streak <span className={`text-xs ml-1 ${secondaryText}`}>({builderStats.streakDays} days)</span></p>
                 <p className={`text-xs ${secondaryText}`}>
-                  {builderStats.streakDays} days shipping something new
+                  {builderStats.subtext}
                 </p>
 
                 {/* GitHub streak bar */}
@@ -273,15 +300,15 @@ export default function Newsletter() {
 
             <div className="mt-5 grid grid-cols-2 gap-4 text-xs">
               <div className="rounded-lg border border-dashed border-current/15 px-3 py-3">
-                <p className={`font-semibold ${accentText}`}>Next drop</p>
+                <p className={`font-semibold ${accentText}`}>Total Contributions</p>
                 <p className={`mt-1 leading-tight ${secondaryText}`}>
-                  {builderStats.nextDrop}
+                  {builderStats.totalContributions} commits
                 </p>
               </div>
               <div className="rounded-lg border border-dashed border-current/15 px-3 py-3">
-                <p className={`font-semibold ${accentText}`}>Current focus</p>
+                <p className={`font-semibold ${accentText}`}>Longest Streak</p>
                 <p className={`mt-1 leading-tight ${secondaryText}`}>
-                  {builderStats.focus}
+                  {builderStats.longStreak} days
                 </p>
               </div>
             </div>
