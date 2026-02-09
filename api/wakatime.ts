@@ -32,6 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const todayData = statusBar.data; // has grand_total (text, digital, etc) & languages
         const bestLang = todayData.languages?.[0];
         const bestProject = todayData.projects?.[0]; // might be empty if not tracked or user setting
+        const bestEditor = todayData.editors?.[0];
 
         let isOnline = false;
         if (userData.data && userData.data.last_heartbeat_at) {
@@ -50,6 +51,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             textToday: todayData.grand_total.text,
             topLanguage: bestLang ? { name: bestLang.name, percent: bestLang.percent } : null,
             topProject: bestProject ? bestProject.name : 'Secret Project',
+            topEditor: bestEditor ? bestEditor.name : null,
             isOnline
         });
 

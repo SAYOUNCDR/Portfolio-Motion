@@ -1,7 +1,8 @@
 "use client";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, X, Mail, Send } from "lucide-react";
+import { CheckCircle2, X, Mail, Send, Rocket } from "lucide-react";
+import { VscVscode } from "react-icons/vsc";
 import { useTheme } from "../contexts/ThemeContext";
 
 const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
@@ -23,7 +24,8 @@ export default function Newsletter() {
     textToday: "Loading...",
     topLanguage: { name: "-", percent: 0 },
     topProject: "-",
-    isOnline: false
+    isOnline: false,
+    topEditor: null as string | null
   });
 
   const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
@@ -422,6 +424,31 @@ export default function Newsletter() {
                   {wakaStats.isOnline ? "Online 🟢" : "Offline 💤"}
                 </span>
               </div>
+
+              {/* Editor / IDE Status */}
+              {wakaStats.topEditor && (
+                <>
+                  <div className="h-px bg-current opacity-10 my-1" />
+                  <div className="flex items-center justify-between text-xs">
+                    <span className={secondaryText}>Using</span>
+                    <span className="flex items-center gap-1.5">
+                      {wakaStats.topEditor.includes("VS Code") ? (
+                        <>
+                          <VscVscode className="text-blue-500 w-3 h-3" />
+                          <span>VS Code</span>
+                        </>
+                      ) : wakaStats.topEditor.toLowerCase().includes("antigravity") ? (
+                        <>
+                          <Rocket className="text-purple-500 w-3 h-3" />
+                          <span>Antigravity</span>
+                        </>
+                      ) : (
+                        <span>{wakaStats.topEditor}</span>
+                      )}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
