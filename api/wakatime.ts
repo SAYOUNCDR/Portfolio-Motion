@@ -9,19 +9,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     try {
         // parallel fetch
-        const [statsRes, statusBarRes] = await Promise.all([
+        const [statsRes, statusBarRes, userRes] = await Promise.all([
             fetch('https://wakatime.com/api/v1/users/current/stats/last_7_days', {
                 headers: { Authorization: `Basic ${Buffer.from(WAKATIME_API_KEY).toString('base64')}` }
             }),
             fetch('https://wakatime.com/api/v1/users/current/status_bar/today', {
                 headers: { Authorization: `Basic ${Buffer.from(WAKATIME_API_KEY).toString('base64')}` }
+            }),
+            fetch('https://wakatime.com/api/v1/users/current', {
+                headers: { Authorization: `Basic ${Buffer.from(WAKATIME_API_KEY).toString('base64')}` }
             })
-            // Note: status_bar/today is good for "Hours today". 
-            // Alternatively /summaries?start=today&end=today is very detailed.
         ]);
 
         const stats = await statsRes.json();
         const statusBar = await statusBarRes.json();
+        const userData = await userRes.json();
 
         if (stats.error || statusBar.error) {
             return res.status(502).json({ error: 'Failed to fetch from WakaTime' });
@@ -31,12 +33,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const bestLang = todayData.languages?.[0];
         const bestProject = todayData.projects?.[0]; // might be empty if not tracked or user setting
 
-        const isOnline = false; // WakaTime doesn't have a direct "is online" in public API easily without extra permissions or heartbeat check. 
-        // We can infer if "last_heartbeat_at" in user details is recent, but that needs another call. 
-        // For now, let's omit or fake it based on recent activity existence if desired, or skip.
-        // Actually, user asked for "if im online".
-        // user/current/heartbeats with limit 1? 
-        // Let's stick to the requested "stats" first.
+        let isOnline = false;
+        if (userData.data && userData.data.last_heartbeat_at) {
+            const lastHeartbeat = new Date(userData.data.last_heartbeat_at);
+            const now = new Date();
+            const diffInMinutes = (now.getTime() - lastHeartbeat.getTime()) / 1000 / 60;
+            // If active in the last 15 minutes, consider online
+            if (diffInMinutes < 15) {
+                isOnline = true;
+            }
+        }
 
         // Return normalized data
         res.status(200).json({
@@ -44,8 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             textToday: todayData.grand_total.text,
             topLanguage: bestLang ? { name: bestLang.name, percent: bestLang.percent } : null,
             topProject: bestProject ? bestProject.name : 'Secret Project',
-            // Mocking online status for now as "Offline" unless we add heartbeat check
-            isOnline: false
+            isOnline
         });
 
     } catch (error) {
