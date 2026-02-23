@@ -2,6 +2,7 @@ import { Globe, Github, ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/Button";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 type ProjectCategory = "Web2" | "AI" | "Extensions" | "Developer Tools";
 
@@ -210,29 +211,43 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
             ? "bg-white text-black border border-neutral-200 hover:bg-neutral-100"
             : "bg-slate-900 text-white border border-slate-900 hover:bg-slate-800";
 
+    const tabContainerStyles = theme === "dark"
+        ? "bg-zinc-800/50 border border-white/5"
+        : "bg-slate-100 border border-slate-200";
+
     return (
         <section className={`${sectionText} px-6 py-10`}>
             <div className="max-w-6xl mx-auto">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
                     <h2 className={`text-2xl font-bold ${headingColor}`}>Projects</h2>
 
-                    <div className="flex flex-wrap gap-2">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                onClick={() => setActiveTab(category)}
-                                className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${activeTab === category
-                                    ? theme === "dark"
-                                        ? "bg-white text-black"
-                                        : "bg-slate-900 text-white"
-                                    : theme === "dark"
-                                        ? "bg-neutral-800 text-neutral-400 hover:text-white"
-                                        : "bg-slate-100 text-slate-500 hover:text-slate-800"
-                                    }`}
-                            >
-                                {category === "All" ? "All Projects" : category === "Web2" ? "Web2 Projects" : category === "AI" ? "AI Projects" : category}
-                            </button>
-                        ))}
+                    <div className="overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none">
+                        <div className={`inline-flex items-center p-1 rounded-md ${tabContainerStyles}`}>
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveTab(category)}
+                                    className={`relative px-3 py-1.5 text-xs font-medium rounded-md transition-colors z-10 whitespace-nowrap ${activeTab === category
+                                        ? theme === "dark"
+                                            ? "text-black"
+                                            : "text-white"
+                                        : theme === "dark"
+                                            ? "text-neutral-400 hover:text-white"
+                                            : "text-slate-500 hover:text-slate-800"
+                                        }`}
+                                >
+                                    {activeTab === category && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className={`absolute inset-0 rounded-md -z-10 ${theme === "dark" ? "bg-white" : "bg-slate-900"
+                                                }`}
+                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        />
+                                    )}
+                                    {category === "All" ? "All" : category === "Web2" ? "Web2" : category === "AI" ? "AI" : category === "Developer Tools" ? "Tools" : category}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
