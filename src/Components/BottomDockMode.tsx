@@ -12,7 +12,28 @@ export default function BottomDockMode() {
     const lastY = useRef<number>(0);
     const ticking = useRef(false);
 
+    const [wakaStats, setWakaStats] = useState({
+        isOnline: false,
+        textToday: "Loading...",
+        topEditor: null as string | null
+    });
 
+    useEffect(() => {
+        async function fetchWakaTime() {
+            try {
+                const res = await fetch('/api/wakatime');
+                if (!res.ok) throw new Error('WakaTime API failed');
+                const data = await res.json();
+                setWakaStats(data);
+            } catch (err) {
+                console.error("Failed to fetch WakaTime stats", err);
+                setWakaStats(prev => ({ ...prev, textToday: "Offline" }));
+            }
+        }
+        fetchWakaTime();
+        const interval = setInterval(fetchWakaTime, 60000); // Update every minute
+        return () => clearInterval(interval);
+    }, []);
 
     // Theme provided by context
     const { theme, toggleTheme } = useTheme();
@@ -81,13 +102,57 @@ export default function BottomDockMode() {
                 {/* Divider */}
                 <div className={`h-8 w-[1px] mx-1 ${dividerColor}`}></div>
 
-                {/* Profile Image */}
-                <div className="rounded-md overflow-hidden cursor-pointer">
+                {/* Profile Image with Status */}
+                <div className="relative group/profile rounded-md cursor-pointer">
                     <img
                         src="images/Profile.jpg"
                         alt="Profile"
-                        className="w-9 h-9 rounded-md"
+                        className="w-9 h-9 rounded-md object-cover"
                     />
+                    {/* Status Dot */}
+                    <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                        {wakaStats.isOnline && (
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        )}
+                        <span className={`relative inline-flex rounded-full h-2.5 w-2.5 border border-white ${wakaStats.isOnline ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+                    </span>
+
+                    {/* Tooltip */}
+                    <div className={`absolute bottom-[50px] left-1/2 -translate-x-1/2 w-max max-w-[200px] p-2 rounded-lg shadow-xl opacity-0 invisible group-hover/profile:opacity-100 group-hover/profile:visible transition-all duration-300 z-50 text-xs ${tooltipStyles} border ${theme === 'dark' ? 'border-zinc-700' : 'border-slate-200'}`}>
+                        <div className="flex flex-col gap-1 items-center text-center">
+                            <div className="font-bold flex items-center gap-1.5 whitespace-nowrap">
+                                {wakaStats.isOnline ? (
+                                    <>
+                                        <span className="relative flex h-2 w-2">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                        </span>
+                                        <span>Coding Now</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="h-2 w-2 rounded-full bg-gray-400"></span>
+                                        <span>Currently Away</span>
+                                    </>
+                                )}
+                            </div>
+
+                            <div className="opacity-80 text-[10px] leading-tight">
+                                {wakaStats.isOnline ? (
+                                    <>
+                                        in {wakaStats.topEditor || 'IDE'} <br />
+                                        for {wakaStats.textToday?.replace('hrs', 'h').replace('mins', 'm')}
+                                    </>
+                                ) : (
+                                    <>
+                                        Coded today: {wakaStats.textToday || '0m'}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                        {/* Arrow */}
+                        <div className={`absolute left-1/2 -ml-1 -bottom-1 w-2 h-2 rotate-45 ${tooltipStyles} border-b border-r ${theme === 'dark' ? 'border-zinc-700' : 'border-slate-200'}`}></div>
+                    </div>
                 </div>
 
                 {/* Divider */}
