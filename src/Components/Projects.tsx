@@ -26,6 +26,44 @@ type Project = {
 
 const projects: Project[] = [
     {
+        title: "Okunix",
+        period: "2025",
+        description:
+            "A lightweight web analytics platform. Tracks visits, visitors, bounce rate, live viewers, page entry exits and so on.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "/images/ProjectImage/Okunix.png",
+        tags: ["Nodejs/express", "Reactjs", "Mongodb", "Azure", "Github Actions", "Nginx"],
+        website: { label: "Website", url: "https://okunix.sayoun.studio" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/okunix" },
+        category: "Web2",
+    },
+    {
+        title: "Auto-Timetable",
+        period: "2025",
+        description:
+            "The TimeTable Management & Generation System is a sophisticated full-stack application designed to automate the complex process of academic scheduling. By leveraging AI-powered constraint programming (Google OR-Tools), it generates conflict-free timetables.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "/images/ProjectImage/auto-timetable.png",
+        tags: ["React.js", "Python", "Google OR-Tools", "Flask"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/auto-timetable" },
+        category: "Web2",
+    },
+    {
         title: "DevCalander",
         period: "Aug 2025 - Aug 2025",
         description:
@@ -60,45 +98,7 @@ const projects: Project[] = [
         imageLink: "",
         tags: ["JavaScript", "PHP", "MySQL", "XAMPP", "Tailwind CSS"],
         website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
-        category: "Web2",
-    },
-    {
-        title: "Okunix",
-        period: "2025",
-        description:
-            "A lightweight web analytics platform. Tracks visits, visitors, bounce rate, live viewers, page entry exits and so on.",
-        video: {
-            src: "",
-            autoPlay: true,
-            loop: true,
-            muted: true,
-            playsInline: true,
-            className: "h-40 w-full object-cover object-top rounded-t-lg",
-        },
-        imageLink: "",
-        tags: ["Nodejs/express", "Reactjs", "Mongodb", "Azure", "Github Actions", "Nginx"],
-        website: { label: "Website", url: "https://okunix.sayoun.studio" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/okunix" },
-        category: "Web2",
-    },
-    {
-        title: "Auto-Timetable",
-        period: "2025",
-        description:
-            "The TimeTable Management & Generation System is a sophisticated full-stack application designed to automate the complex process of academic scheduling. By leveraging AI-powered constraint programming (Google OR-Tools), it generates conflict-free timetables.",
-        video: {
-            src: "",
-            autoPlay: true,
-            loop: true,
-            muted: true,
-            playsInline: true,
-            className: "h-40 w-full object-cover object-top rounded-t-lg",
-        },
-        imageLink: "",
-        tags: ["React.js", "Python", "Google OR-Tools", "Flask"],
-        website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/auto-timetable" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/Startup" },
         category: "Web2",
     },
     {
@@ -126,7 +126,7 @@ const projects: Project[] = [
         description:
             "An AI-powered legal assistant designed to help users navigate legal processes, understand their rights, and access legal resources with ease.",
         video: {
-            src: "/videos/Polysee.mp4",
+            src: "",
             autoPlay: true,
             loop: true,
             muted: true,
@@ -152,7 +152,7 @@ const projects: Project[] = [
             playsInline: true,
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
-        imageLink: "",
+        imageLink: "/images/ProjectImage/better-sidebar.png",
         tags: ["Chrome Extension", "JavaScript", "React"],
         website: { label: "Website", url: "https://chromewebstore.google.com/detail/bfahjhadjkneahhalojpofmbegkllhnj?utm_source=item-share-cb" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/better-chatgpt-sidebar" },
