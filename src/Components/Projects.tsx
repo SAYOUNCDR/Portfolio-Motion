@@ -1,6 +1,9 @@
 import { Globe, Github, ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/Button";
+import { useState } from "react";
+
+type ProjectCategory = "Web2" | "AI" | "Extensions" | "Developer Tools";
 
 type Project = {
     title: string;
@@ -18,6 +21,7 @@ type Project = {
     tags: string[];
     website: { label: string; url: string };
     github?: { label: string; url: string };
+    category: ProjectCategory;
 };
 
 const projects: Project[] = [
@@ -38,6 +42,7 @@ const projects: Project[] = [
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS"],
         website: { label: "Website", url: "https://devcalendar.sayoun.studio/" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/DevCalendar" },
+        category: "Web2",
     },
     {
         title: "ElevateX",
@@ -56,6 +61,45 @@ const projects: Project[] = [
         tags: ["JavaScript", "PHP", "MySQL", "XAMPP", "Tailwind CSS"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+        category: "Web2",
+    },
+    {
+        title: "Okunix",
+        period: "2025",
+        description:
+            "A lightweight web analytics platform. Tracks visits, visitors, bounce rate, live viewers, page entry exits and so on.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "",
+        tags: ["Nodejs/express", "Reactjs", "Mongodb", "Azure", "Github Actions", "Nginx"],
+        website: { label: "Website", url: "https://okunix.sayoun.studio" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/okunix" },
+        category: "Web2",
+    },
+    {
+        title: "Auto-Timetable",
+        period: "2025",
+        description:
+            "The TimeTable Management & Generation System is a sophisticated full-stack application designed to automate the complex process of academic scheduling. By leveraging AI-powered constraint programming (Google OR-Tools), it generates conflict-free timetables.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "",
+        tags: ["React.js", "Python", "Google OR-Tools", "Flask"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/auto-timetable" },
+        category: "Web2",
     },
     {
         title: "PolySee",
@@ -74,6 +118,7 @@ const projects: Project[] = [
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "VectorDB", "Pypdf2", "OpenAI API"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+        category: "AI",
     },
     {
         title: "NyaySaathi",
@@ -92,6 +137,45 @@ const projects: Project[] = [
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "Docker", "redis", "OpenAI API"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+        category: "AI",
+    },
+    {
+        title: "better-chatgpt-sidebar",
+        period: "2025",
+        description:
+            "The ultimate workflow upgrade for ChatGPT. A dedicated sidebar to save, organize, and color-code your most important conversations with folders and drag-drop.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "",
+        tags: ["Chrome Extension", "JavaScript", "React"],
+        website: { label: "Website", url: "https://chromewebstore.google.com/detail/bfahjhadjkneahhalojpofmbegkllhnj?utm_source=item-share-cb" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/better-chatgpt-sidebar" },
+        category: "Extensions",
+    },
+    {
+        title: "Advance-Auth-Templete",
+        period: "2025",
+        description:
+            "A production-ready authentication template built with Node.js, MongoDB, and TypeScript, featuring JWT-based auth, email verification, and OAuth integration.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "",
+        tags: ["oauth", "express", "typescript", "mongodb", "authentication", "jwt-authentication", "2fa-security"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "" },
+        category: "Developer Tools",
     },
 ];
 
@@ -101,8 +185,16 @@ type ProjectsProps = {
 };
 
 const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
-    const items = typeof limit === "number" ? projects.slice(0, limit) : projects;
     const { theme } = useTheme();
+    const [activeTab, setActiveTab] = useState<ProjectCategory | "All">("All");
+
+    const categories: (ProjectCategory | "All")[] = ["All", "Web2", "AI", "Extensions", "Developer Tools"];
+
+    const filteredProjects = activeTab === "All"
+        ? projects
+        : projects.filter(project => project.category === activeTab);
+
+    const items = typeof limit === "number" ? filteredProjects.slice(0, limit) : filteredProjects;
 
     const sectionText = theme === "dark" ? "text-white" : "text-slate-800";
     const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
@@ -121,7 +213,28 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
     return (
         <section className={`${sectionText} px-6 py-10`}>
             <div className="max-w-6xl mx-auto">
-                <h2 className={`text-2xl font-bold mb-6 ${headingColor}`}>Projects</h2>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                    <h2 className={`text-2xl font-bold ${headingColor}`}>Projects</h2>
+
+                    <div className="flex flex-wrap gap-2">
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setActiveTab(category)}
+                                className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${activeTab === category
+                                    ? theme === "dark"
+                                        ? "bg-white text-black"
+                                        : "bg-slate-900 text-white"
+                                    : theme === "dark"
+                                        ? "bg-neutral-800 text-neutral-400 hover:text-white"
+                                        : "bg-slate-100 text-slate-500 hover:text-slate-800"
+                                    }`}
+                            >
+                                {category === "All" ? "All Projects" : category === "Web2" ? "Web2 Projects" : category === "AI" ? "AI Projects" : category}
+                            </button>
+                        ))}
+                    </div>
+                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {items.map((project) => (
@@ -145,11 +258,17 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                     className={project.video.className}
                                 />
                             ) : (
-                                <img
-                                    src={project.imageLink}
-                                    alt={project.title}
-                                    className={project.video.className}
-                                />
+                                <div className={`h-40 w-full flex items-center justify-center ${theme === 'dark' ? 'bg-neutral-900' : 'bg-slate-100'}`}>
+                                    {project.imageLink ? (
+                                        <img
+                                            src={project.imageLink}
+                                            alt={project.title}
+                                            className="h-full w-full object-cover object-top"
+                                        />
+                                    ) : (
+                                        <div className="text-sm opacity-50 font-semibold">{project.category}</div>
+                                    )}
+                                </div>
                             )}
 
                             <div className="flex flex-col px-3 py-2">
