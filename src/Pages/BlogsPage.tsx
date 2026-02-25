@@ -38,7 +38,7 @@ export default function BlogsPage() {
                             className="flex items-start group cursor-pointer hover:opacity-95"
                         >
                             {/* Thumbnail */}
-                            <div className="w-12 h-12 flex-shrink-0 rounded-xl border border-slate-100 dark:border-zinc-800/50 flex items-center justify-center p-1 mr-5 mt-1 shadow-sm">
+                            <div className="w-12 h-12 flex-shrink-0 rounded-xl border border-slate-100 dark:border-gray-700 flex items-center justify-center p-1 mr-5 mt-1 shadow-sm">
                                 <img src={blog.thumbnail || ""} alt="" className="w-full h-full object-cover rounded-[0.4rem]" />
                             </div>
 
