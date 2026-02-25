@@ -291,11 +291,11 @@ export default function Newsletter() {
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
 
           <div
-            className={`hidden md:flex md:flex-1 md:flex-col md:h-full mt-6 rounded-2xl px-5 py-5 border ${leftCardStyles}`}
+            className={`flex flex-col h-full mt-6 rounded-2xl px-5 py-5 border ${leftCardStyles}`}
           >
             <div className="flex items-center gap-4">
               <div
-                className="relative h-12 w-12 rounded-xl"
+                className="relative h-12 w-12 rounded-xl flex-shrink-0"
                 style={{
                   background:
                     theme === "dark"
@@ -315,7 +315,7 @@ export default function Newsletter() {
                 </p>
 
                 {/* GitHub streak bar */}
-                <div className="flex gap-[3px] mt-2">
+                <div className="flex gap-[3px] mt-2 flex-wrap">
                   {streakArray.map((level, i) => (
                     <div
                       key={i}
@@ -362,7 +362,7 @@ export default function Newsletter() {
 
         </div>
 
-        <div className={`hidden md:flex md:self-stretch flex-col relative overflow-hidden rounded-2xl px-5 py-6 md:w-[300px] lg:w-[320px] ${cardStyles}`}>
+        <div className={`flex flex-col relative overflow-hidden rounded-2xl px-5 py-6 w-full md:w-[300px] lg:w-[320px] shrink-0 ${cardStyles}`}>
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs uppercase tracking-[0.3rem] opacity-70">CODING PULSE</span>
             <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border whitespace-nowrap ${chipStyles}`}>
