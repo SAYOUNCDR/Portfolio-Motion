@@ -18,6 +18,7 @@ export type Blog = {
   date: string;
   relativeTime?: string;
   thumbnail?: string;
+  mediumLink?: string;
 };
 
 export const blogs: Blog[] = [
@@ -35,7 +36,7 @@ export const blogs: Blog[] = [
     content: [
       {
         type: 'image',
-        src: '/images/docker.png',
+        src: '/images/Blogs/DockerBlog.png',
         alt: 'Docker Containers',
         caption: 'Containerize everything!'
       },
@@ -199,6 +200,7 @@ volumes:
     readTime: "5 min read",
     date: "Coming Soon",
     relativeTime: "Soon",
+    mediumLink: "https://medium.com/@0xsyn.dev/from-localhost-to-live-production-ready-deployment-on-azure-vm-nodejs-react-app-879c3e3f772c"
   },
 
 ];
