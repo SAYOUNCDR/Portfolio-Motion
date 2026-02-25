@@ -71,7 +71,7 @@ app.use(express.json());
 
 // 1. Database Connection
 // Notice 'db' instead of 'localhost' - this is Docker magic!
-const mongoUri = process.env.MONGO_URI || 'mongodb://admin:password@db:27017/testapp?authSource=admin';
+const mongoUri = 'mongodb://admin:password@db:27017/testapp?authSource=admin';
 
 mongoose.connect(mongoUri)
   .then(() => console.log('🔥 MongoDB Connected!'))

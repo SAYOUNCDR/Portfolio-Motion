@@ -43,9 +43,6 @@ export default function Blogs({ limit = 2, showViewAll = true }: BlogsProps) {
                                         <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 flex-shrink-0" />
                                     </h3>
                                     <div className="flex items-center gap-3 flex-shrink-0">
-                                        <span className={`text-[13px] whitespace-nowrap ${dateColor}`}>
-                                            {blog.readTime}
-                                        </span>
                                         {blog.mediumLink && (
                                             <a
                                                 href={blog.mediumLink}
