@@ -245,7 +245,7 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
     return (
         <section className={`${sectionText} px-6 py-10 w-full mb-15 max-w-6xl mx-auto`}>
 
-            <h2 className="text-2xl font-bold mb-6">Contributions</h2>
+            <h2 className="text-xl font-bold mb-6">Contributions</h2>
 
             <div className={`relative ml-4 border-l ${borderColor} space-y-2`}>
                 {displayedGroups.map((group) => {

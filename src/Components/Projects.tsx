@@ -219,7 +219,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
         <section className={`${sectionText} px-6 py-10`}>
             <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-                    <h2 className={`text-2xl font-bold ${headingColor}`}>Projects</h2>
+                    <h2 className={`text-xl font-bold ${headingColor}`}>Projects</h2>
 
                     <div className="overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:pb-0 scrollbar-none">
                         <div className={`inline-flex items-center p-1 rounded-md ${tabContainerStyles}`}>
