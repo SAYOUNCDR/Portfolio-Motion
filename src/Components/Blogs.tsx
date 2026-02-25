@@ -4,9 +4,14 @@ import { blogs } from "../data/blogs";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/Button";
 
-export default function Blogs() {
+interface BlogsProps {
+    limit?: number;
+    showViewAll?: boolean;
+}
+
+export default function Blogs({ limit = 2, showViewAll = true }: BlogsProps) {
     const { theme } = useTheme();
-    const visible = blogs.slice(0, 2);
+    const visible = blogs.slice(0, limit);
 
     const headingColor = theme === "dark" ? "text-white" : "text-slate-900";
     const titleColor = theme === "dark" ? "text-white" : "text-slate-900";
@@ -70,14 +75,17 @@ export default function Blogs() {
                 ))}
             </div>
 
-            {blogs.length > visible.length && (
-                <div className="mt-6 flex justify-end">
+            {showViewAll && (
+                <div className="mt-8 flex justify-end">
                     <Button
-                        text="Read all blogs"
-                        icon={<ArrowUpRight className="h-4 w-4" />}
                         to="/blogs"
+                        text="View all blogs"
+                        icon={<ArrowUpRight className="h-4 w-4" />}
                         variant="outline"
-                        className="rounded-lg px-3 py-2 text-xs font-semibold"
+                        className={`rounded-md px-5 py-2.5 text-sm font-medium transition-all ${theme === "dark"
+                            ? "bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
+                            : "bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                            }`}
                     />
                 </div>
             )}
