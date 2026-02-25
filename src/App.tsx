@@ -32,10 +32,10 @@ const HomePage = () => {
         <AboutMe />
         <AboutContent />
         <Projects limit={2} showViewAll={true} />
-        <Skills />
         <Contributions limit={3} showViewAll={true} />
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
+        <Skills />
         <Newsletter />
         <Footer />
       </main>

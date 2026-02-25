@@ -9,7 +9,7 @@ export default function LeftSideLabel() {
     return (
         <div className="fixed left-6 top-20 hidden md:flex flex-col items-center gap-6 z-40 select-none pointer-events-none">
             {/* Vertical Line */}
-            <div className={`w-[1px] h-24 ${lineColor}`}></div>
+            <div className={`w-[1px] h-14 ${lineColor}`}></div>
 
             {/* Rotated Text: reading top-to-bottom on left side */}
             <div
@@ -20,7 +20,7 @@ export default function LeftSideLabel() {
                     // Default vertical-rl is good for left side (top to bottom reading)
                 }}
             >
-                Start a Project
+                Have something in mind? Let's build it!
             </div>
         </div>
     );

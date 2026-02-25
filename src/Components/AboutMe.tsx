@@ -1,7 +1,7 @@
 "use client";
 
-import { MousePointerClick, Calendar } from "lucide-react";
-import { useState } from "react";
+import { MousePointerClick } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGithub } from "react-icons/si";
 // import { SiBuymeacoffee } from "react-icons/si";
@@ -43,6 +43,70 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
                     {username}
                 </motion.span>
             </motion.div>
+        </a>
+    );
+};
+
+const InteractiveEyeButton = ({ theme, className }: { theme: string, className?: string }) => {
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const eyeLeftRef = useRef<HTMLDivElement>(null);
+    const eyeRightRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            setMousePos({ x: e.clientX, y: e.clientY });
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
+    const calculatePupilTransform = (eyeRef: React.RefObject<HTMLDivElement | null>) => {
+        if (!eyeRef.current) return "translate(0px, 0px)";
+        const rect = eyeRef.current.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
+
+        const dx = mousePos.x - eyeCenterX;
+        const dy = mousePos.y - eyeCenterY;
+        const angle = Math.atan2(dy, dx);
+
+        const maxRadius = 4; // Max distance pupil can move from center
+        // Only move pupil if mouse is outside the inner distance, otherwise scale it smoothly
+        const dist = Math.hypot(dx, dy);
+        const distance = Math.min(maxRadius, dist / 8);
+
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        return `translate(${tx}px, ${ty}px)`;
+    };
+
+    // Giving it a polished, deep dark look for both modes, as requested by the provided style
+    const baseClass = theme === "dark"
+        ? "text-white bg-[#0a0a0a] hover:bg-[#1a1a1a] border border-zinc-800"
+        : "text-white bg-black hover:bg-gray-900 border border-slate-800";
+
+    return (
+        <a
+            href="https://cal.com/sayoun-parui-sdv05p/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center justify-center gap-3 px-6 py-2.5 rounded-md transition-all duration-300 font-medium text-[15px] shadow-md hover:shadow-lg ${baseClass} ${className || ''}`}
+        >
+            <span className="tracking-wide">Book a call</span>
+            <div className="flex gap-1.5 ml-1">
+                <div ref={eyeLeftRef} className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] bg-white rounded-full flex items-center justify-center relative shadow-inner overflow-hidden">
+                    <div
+                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute"
+                        style={{ transform: calculatePupilTransform(eyeLeftRef) }}
+                    />
+                </div>
+                <div ref={eyeRightRef} className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] bg-white rounded-full flex items-center justify-center relative shadow-inner overflow-hidden">
+                    <div
+                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute"
+                        style={{ transform: calculatePupilTransform(eyeRightRef) }}
+                    />
+                </div>
+            </div>
         </a>
     );
 };
@@ -218,18 +282,7 @@ export default function AboutMe() {
                                 link="https://buymeacoffee.com/sayoun_parui"
                             /> */}
                             </div>
-                            <a
-                                href="https://cal.com/sayoun-parui-sdv05p/30min"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`hidden md:flex items-center justify-center gap-2 w-full px-2 py-1 md:px-3 md:py-2 rounded-lg transition font-medium text-xs sm:text-sm ${theme === "dark"
-                                    ? "text-white border border-zinc-700 bg-zinc-900/40 hover:border-gray-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
-                                    : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
-                                    }`}
-                            >
-                                <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-                                <span>Schedule a meeting</span>
-                            </a>
+                            <InteractiveEyeButton theme={theme} className="hidden md:flex w-full" />
                         </div>
                         <div className="hidden md:block absolute -right-[140px] top-4 text-center">
                             <svg className="w-24 h-12 text-slate-500/60 rotate-0" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -246,18 +299,7 @@ export default function AboutMe() {
 
             {/* Mobile Schedule Button */}
             <div className="md:hidden w-full px-3 mt-1 mb-4 relative z-20">
-                <a
-                    href="https://cal.com/sayoun-parui-sdv05p/30min"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg transition font-medium text-sm ${theme === "dark"
-                        ? "text-white border border-zinc-700 bg-zinc-900/40 hover:border-gray-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
-                        : "text-slate-800 border border-slate-300 bg-slate-50 hover:border-slate-400 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]"
-                        }`}
-                >
-                    <Calendar className="w-4 h-4" />
-                    <span>Schedule a meeting</span>
-                </a>
+                <InteractiveEyeButton theme={theme} className="w-full" />
             </div>
 
             <a
