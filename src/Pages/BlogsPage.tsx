@@ -38,8 +38,8 @@ export default function BlogsPage() {
                             className="flex items-start group cursor-pointer hover:opacity-95"
                         >
                             {/* Thumbnail */}
-                            <div className="w-12 h-12 flex-shrink-0 bg-slate-50 dark:bg-zinc-900/50 rounded-xl border border-slate-200/60 dark:border-zinc-800/60 flex items-center justify-center p-1 mr-5 mt-1">
-                                <img src={blog.thumbnail || ""} alt="" className="w-full h-full object-cover rounded-lg" />
+                            <div className="w-12 h-12 flex-shrink-0 rounded-xl border border-slate-100 dark:border-zinc-800/50 flex items-center justify-center p-1 mr-5 mt-1 shadow-sm">
+                                <img src={blog.thumbnail || ""} alt="" className="w-full h-full object-cover rounded-[0.4rem]" />
                             </div>
 
                             {/* Content */}
@@ -50,14 +50,6 @@ export default function BlogsPage() {
                                         <ChevronRight className="w-3.5 h-3.5 opacity-50 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 flex-shrink-0" />
                                     </h3>
                                     <div className="flex items-center gap-3 flex-shrink-0">
-                                        <div className="flex flex-col items-end gap-1">
-                                            <span className={`text-[13px] whitespace-nowrap flex-shrink-0 ${dateStyles}`}>
-                                                {blog.readTime}
-                                            </span>
-                                            <span className={`text-[11px] px-1.5 py-0.5 rounded-md border ${theme === 'dark' ? 'border-zinc-800' : 'border-slate-200'} ${metaStyles}`}>
-                                                {blog.type}
-                                            </span>
-                                        </div>
                                         {blog.mediumLink && (
                                             <a
                                                 href={blog.mediumLink}
@@ -77,6 +69,10 @@ export default function BlogsPage() {
 
                                 <div className={`text-[13px] mt-0.5 ${dateStyles}`}>
                                     {blog.date} {blog.relativeTime && <span>({blog.relativeTime})</span>}
+                                    <span className={`text-[11px] px-1.5 py-0.5 rounded-md border ml-4 ${theme === 'dark' ? 'border-zinc-800' : 'border-slate-200'} ${metaStyles}`}>
+                                        {blog.type}
+                                    </span>
+
                                 </div>
 
                                 <p className={`text-[14px] leading-snug tracking-tight mt-1.5 ${descriptionStyles}`}>

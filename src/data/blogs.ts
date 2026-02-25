@@ -33,6 +33,7 @@ export const blogs: Blog[] = [
     readTime: "7 min read",
     date: "February 2026",
     relativeTime: "Just now",
+    thumbnail: "/images/Blogs/DockerBlog.png",
     content: [
       {
         type: 'image',
@@ -74,8 +75,8 @@ app.use(express.json());
 const mongoUri = 'mongodb://admin:password@db:27017/testapp?authSource=admin';
 
 mongoose.connect(mongoUri)
-  .then(() => console.log('🔥 MongoDB Connected!'))
-  .catch(err => console.error('❌ Connection error:', err));
+  .then(() => console.log(' MongoDB Connected!'))
+  .catch(err => console.error('Connection error:', err));
 
 // 2. Simple Schema
 const UserSchema = new mongoose.Schema({
@@ -98,7 +99,7 @@ app.post('/users', async (req, res) => {
   res.status(201).json(newUser);
 });
 
-app.listen(3000, () => console.log('🚀 Server running on port 3000'));`
+app.listen(3000, () => console.log('Server running on port 3000'));`
       },
       { type: 'heading', level: 2, text: '3. The Docker Blueprint' },
       { type: 'paragraph', text: "We need to tell Docker how to package our Node app." },
@@ -154,14 +155,14 @@ services:
 volumes:
   mongo-data:`
       },
-      { type: 'heading', level: 2, text: '5. Deployment: Launch Sequence 🚀' },
+      { type: 'heading', level: 2, text: '5. Deployment: Launch Sequence ' },
       { type: 'paragraph', text: "Time for the moment of truth. Run this in your root folder:" },
       {
         type: 'code',
         language: 'bash',
         code: "docker-compose up --build"
       },
-      { type: 'paragraph', text: "You should see logs showing MongoDB starting up, followed by your Node app saying 🔥 MongoDB Connected!." },
+      { type: 'paragraph', text: "You should see logs showing MongoDB starting up, followed by your Node app saying MongoDB Connected!." },
       { type: 'heading', level: 2, text: '6. Testing Guide (Step-by-Step with Postman)' },
       { type: 'paragraph', text: "Now let's prove it works. Open Postman and follow these steps:" },
       { type: 'heading', level: 3, text: 'Step A: Insert Data (POST)' },
@@ -184,7 +185,6 @@ volumes:
       { type: 'paragraph', text: "You just built a production-ready development environment. Your code is isolated, your database is secure, and your data is persistent." },
       { type: 'callout', variant: 'tip', title: "Pro Tip", text: "If you ever want to clear the database entirely, run docker-compose down -v. The -v flag wipes the volumes too." },
       { type: 'paragraph', text: "Would you like me to show you how to add Environment Variables (.env) to this setup to keep your passwords secret?" },
-      { type: 'paragraph', text: "Written by - Sayoun" }
     ]
   },
   {
@@ -200,6 +200,7 @@ volumes:
     readTime: "5 min read",
     date: "Coming Soon",
     relativeTime: "Soon",
+    thumbnail: "/images/Blogs/Deployment.png",
     mediumLink: "https://medium.com/@0xsyn.dev/from-localhost-to-live-production-ready-deployment-on-azure-vm-nodejs-react-app-879c3e3f772c"
   },
 
