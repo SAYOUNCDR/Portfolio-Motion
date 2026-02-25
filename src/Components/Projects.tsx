@@ -118,7 +118,7 @@ const projects: Project[] = [
         imageLink: "",
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "VectorDB", "Pypdf2", "OpenAI API"],
         website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/PolySEE" },
         category: "AI",
     },
     {
@@ -137,7 +137,7 @@ const projects: Project[] = [
         imageLink: "",
         tags: ["React.js", "JavaScript", "Framer Motion", "Tailwind CSS", "Python", "Langchain", "Docker", "redis", "OpenAI API"],
         website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/InternalSIH25" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/NyaySaathi" },
         category: "AI",
     },
     {
@@ -175,7 +175,7 @@ const projects: Project[] = [
         imageLink: "",
         tags: ["oauth", "express", "typescript", "mongodb", "authentication", "jwt-authentication", "2fa-security"],
         website: { label: "Website", url: "" },
-        github: { label: "GitHub", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/Advance-Auth" },
         category: "Developer Tools",
     },
 ];
@@ -227,7 +227,7 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                 <button
                                     key={category}
                                     onClick={() => setActiveTab(category)}
-                                    className={`relative px-3 py-1.5 text-xs font-medium rounded-md transition-colors z-10 whitespace-nowrap ${activeTab === category
+                                    className={`relative px-3 py-1.5 text-xs font-medium rounded-md transition-colors z-10 whitespace-nowrap cursor-pointer ${activeTab === category
                                         ? theme === "dark"
                                             ? "text-black"
                                             : "text-white"

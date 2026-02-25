@@ -30,18 +30,45 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
 
         const todayData = statusBar.data; // has grand_total (text, digital, etc) & languages
-        const bestLang = todayData.languages?.[0];
+        const topLanguages = todayData.languages?.slice(0, 3).map((l: any) => ({
+            name: l.name,
+            percent: l.percent,
+            text: l.text || ''
+        })) || [];
+        const bestLang = topLanguages[0];
         const bestProject = todayData.projects?.[0]; // might be empty if not tracked or user setting
         const bestEditor = todayData.editors?.[0];
 
         let isOnline = false;
+        let lastActiveString = "Offline";
+
         if (userData.data && userData.data.last_heartbeat_at) {
             const lastHeartbeat = new Date(userData.data.last_heartbeat_at);
             const now = new Date();
             const diffInMinutes = (now.getTime() - lastHeartbeat.getTime()) / 1000 / 60;
-            // If active in the last 15 minutes, consider online
+            const diffInHours = diffInMinutes / 60;
+
             if (diffInMinutes < 15) {
                 isOnline = true;
+                if (bestProject) {
+                    lastActiveString = `Working on ${bestProject.name} for ${bestProject.text || todayData.grand_total.text}`;
+                } else {
+                    lastActiveString = `Working for ${todayData.grand_total.text} today`;
+                }
+            } else {
+                // If it's today vs yesterday
+                const today = new Date();
+                const isToday = lastHeartbeat.getDate() === today.getDate() &&
+                    lastHeartbeat.getMonth() === today.getMonth() &&
+                    lastHeartbeat.getFullYear() === today.getFullYear();
+
+                if (isToday) {
+                    lastActiveString = `Worked today for ${todayData.grand_total.text}`;
+                } else if (diffInHours < 24) {
+                    lastActiveString = `Last active ${Math.floor(diffInHours)} hrs ago`;
+                } else {
+                    lastActiveString = `Last active yesterday or earlier`;
+                }
             }
         }
 
@@ -50,9 +77,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             secondsToday: todayData.grand_total.total_seconds,
             textToday: todayData.grand_total.text,
             topLanguage: bestLang ? { name: bestLang.name, percent: bestLang.percent } : null,
+            topLanguages: topLanguages,
             topProject: bestProject ? bestProject.name : 'Secret Project',
             topEditor: bestEditor ? bestEditor.name : null,
-            isOnline
+            isOnline,
+            lastActiveString
         });
 
     } catch (error) {

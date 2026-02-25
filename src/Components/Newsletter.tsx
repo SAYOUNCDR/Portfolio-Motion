@@ -23,9 +23,11 @@ export default function Newsletter() {
     secondsToday: 0,
     textToday: "Loading...",
     topLanguage: { name: "-", percent: 0 },
+    topLanguages: [] as { name: string, percent: number, text: string }[],
     topProject: "-",
     isOnline: false,
-    topEditor: null as string | null
+    topEditor: null as string | null,
+    lastActiveString: "Loading..."
   });
 
   const [streakArray, setStreakArray] = useState<number[]>(Array(15).fill(0));
@@ -399,29 +401,49 @@ export default function Newsletter() {
             </div>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className={secondaryText}>Top Language</span>
-                <span className="font-mono">{wakaStats.topLanguage?.name || "-"}</span>
-              </div>
-              {/* Progress Bar for Top Language */}
-              <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-green-500 rounded-full"
-                  style={{ width: `${wakaStats.topLanguage?.percent || 0}%` }}
-                />
+              <div className="space-y-2">
+                <span className={`text-xs ${secondaryText}`}>Top Languages</span>
+                {wakaStats.topLanguages && wakaStats.topLanguages.length > 0 ? (
+                  wakaStats.topLanguages.map((lang, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="font-mono">{lang.name}</span>
+                        <span className={secondaryText}>{lang.text || `${lang.percent.toFixed(1)}%`}</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-current/10 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-green-500 rounded-full"
+                          style={{ width: `${lang.percent || 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-mono">{wakaStats.topLanguage?.name || "-"}</span>
+                    <div className="h-1.5 w-24 bg-current/10 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-green-500 rounded-full"
+                        style={{ width: `${wakaStats.topLanguage?.percent || 0}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
 
-              <div className="flex items-center justify-between text-xs">
-                <span className={secondaryText}>Current Project</span>
-                <span className="font-mono truncate max-w-[120px]">{wakaStats.topProject}</span>
-              </div>
-
-              <div className="h-px bg-current opacity-10 my-1" />
+              <div className="h-px bg-current opacity-10 my-2" />
 
               <div className="flex items-center justify-between text-xs text-green-500/80">
                 <span>Status</span>
                 <span className="flex items-center gap-1.5">
                   {wakaStats.isOnline ? "Online 🟢" : "Offline 💤"}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] mt-1">
+                <span className={secondaryText}>Activity</span>
+                <span className="font-mono truncate max-w-[180px] text-right" title={wakaStats.lastActiveString}>
+                  {wakaStats.lastActiveString}
                 </span>
               </div>
 

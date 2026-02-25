@@ -37,7 +37,6 @@ const HomePage = () => {
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
         <Newsletter />
-        <BottomDockMode />
         <Footer />
       </main>
       <BottomBlur />
@@ -58,6 +57,7 @@ function App() {
       <LeftSideLabel />
       <BackgroundPattern />
       <HorizonGlow />
+      <BottomDockMode />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contributions" element={<ContributionsPage />} />
