@@ -5,9 +5,10 @@ import { BsSun } from "react-icons/bs";
 import { RiMoonClearFill } from "react-icons/ri";
 import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BottomDockMode() {
-
+    const navigate = useNavigate();
     const [visible, setVisible] = useState(true);
     const lastY = useRef<number>(0);
     const ticking = useRef(false);
@@ -103,7 +104,7 @@ export default function BottomDockMode() {
                 <div className={`h-8 w-[1px] mx-1 ${dividerColor}`}></div>
 
                 {/* Profile Image with Status */}
-                <div className="relative group/profile rounded-md cursor-pointer">
+                <div className="relative group/profile rounded-md cursor-pointer" onClick={() => navigate("/")}>
                     <img
                         src="images/Profile.jpg"
                         alt="Profile"
