@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { blogs } from "../data/blogs";
 import { ChevronRight, ArrowLeft } from "lucide-react";
@@ -6,6 +7,24 @@ import { Button } from "../Components/ui/Button";
 
 export default function BlogsPage() {
     const { theme } = useTheme();
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const blogsPerPage = 3;
+    const totalPages = Math.ceil(blogs.length / blogsPerPage);
+
+    const startIndex = (currentPage - 1) * blogsPerPage;
+    const endIndex = startIndex + blogsPerPage;
+    const currentBlogs = blogs.slice(startIndex, endIndex);
+
+    const handlePrevious = () => {
+        setCurrentPage((prev) => Math.max(1, prev - 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const handleNext = () => {
+        setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     const mainStyles = theme === "dark" ? "bg-black text-white" : "bg-white text-slate-800";
     const headingStyles = theme === "dark" ? "text-white" : "text-slate-900";
@@ -31,7 +50,7 @@ export default function BlogsPage() {
             </div>
 
             <div className="space-y-0">
-                {blogs.map((blog, idx) => (
+                {currentBlogs.map((blog, idx) => (
                     <div key={blog.slug}>
                         <Link
                             to={`/blogs/${blog.slug}`}
@@ -81,11 +100,33 @@ export default function BlogsPage() {
                             </div>
                         </Link>
 
-                        {idx < blogs.length - 1 && (
+                        {idx < currentBlogs.length - 1 && (
                             <div className="border-b border-dashed border-gray-300 dark:border-zinc-800/80 my-6" />
                         )}
                     </div>
                 ))}
+            </div>
+
+            <div className="mt-10 flex items-center justify-between border-t border-dashed border-gray-300 dark:border-zinc-800/80 pt-6">
+                <div className={`text-sm font-medium ${metaStyles}`}>
+                    Page {currentPage} of {Math.max(1, totalPages)}
+                </div>
+                <div className="flex gap-3">
+                    <Button
+                        text="Previous"
+                        variant="outline"
+                        onClick={handlePrevious}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 text-sm rounded-lg sm:px-4 sm:py-2"
+                    />
+                    <Button
+                        text="Next"
+                        variant="outline"
+                        onClick={handleNext}
+                        disabled={currentPage >= totalPages}
+                        className="px-4 py-2 text-sm rounded-lg sm:px-4 sm:py-2"
+                    />
+                </div>
             </div>
 
         </main>
