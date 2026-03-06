@@ -37,7 +37,7 @@ export default function Footer() {
   const subtextColor = theme === "dark" ? "text-zinc-400" : "text-slate-600";
   const pillBorder =
     theme === "dark"
-      ? "border-zinc-800 bg-zinc-900/60 text-zinc-300"
+      ? "border-zinc-700/50 bg-white/10 text-zinc-300"
       : "border-slate-300 bg-slate-100/90 text-slate-700";
   const pillHover =
     theme === "dark" ? "group-hover:text-white" : "group-hover:text-slate-900";
@@ -113,7 +113,7 @@ export default function Footer() {
             <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shine-smooth bg-gradient-to-r from-transparent via-white/30 to-transparent [mask-image:linear-gradient(to_right,transparent,black_40%,black_60%,transparent)]" />
             {visitorCount !== null && (
               <span
-                className={`relative transition-colors duration-300 font-semibold ${theme === "dark" ? "text-black group-hover:text-black/80" : pillHover
+                className={`relative transition-colors duration-300 font-semibold ${theme === "dark" ? "text-white/50 group-hover:text-white/80" : pillHover
                   }`}
               >
                 {visitorCount.toLocaleString()} Unique Visitors
@@ -122,7 +122,7 @@ export default function Footer() {
             <Heart className="size-[10px] sm:size-3 text-pink-500 relative" />
           </div>
           <p
-            className={`text-sm leading-relaxed max-w-xl mx-auto drop-shadow-md font-medium ${theme === "dark" ? "text-black" : subtextColor
+            className={`text-sm leading-relaxed max-w-xl mx-auto drop-shadow-md font-medium ${theme === "dark" ? "text-white/50" : subtextColor
               }`}
           >
             Crafting smooth, accessible interfaces & micro–interactions.
@@ -130,7 +130,7 @@ export default function Footer() {
           </p>
         </div>
         <div
-          className={`flex flex-col items-center gap-2 text-[11px] drop-shadow-md ${theme === "dark" ? "text-black font-semibold" : metaText
+          className={`flex flex-col items-center gap-2 text-[11px] drop-shadow-md ${theme === "dark" ? "text-white/50 font-semibold" : metaText
             }`}
         >
           <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
@@ -138,7 +138,7 @@ export default function Footer() {
               © {new Date().getFullYear()}{" "}
               <span
                 className={
-                  theme === "dark" ? "text-black font-bold" : "text-slate-700"
+                  theme === "dark" ? "text-white/50 font-bold" : "text-slate-700"
                 }
               >
                 Sayoun Parui
@@ -151,14 +151,14 @@ export default function Footer() {
                 href="https://github.com/SAYOUNCDR/Portfolio-Motion"
                 target="_blank"
                 rel="noreferrer"
-                className={`underline decoration-dotted ${theme === "dark" ? "text-black font-bold hover:text-black/80" : metaLink
+                className={`underline decoration-dotted ${theme === "dark" ? "text-white/50 font-bold hover:text-white/80" : metaLink
                   }`}
               >
                 GitHub
               </a>
             </span>
           </div>
-          <p className={theme === "dark" ? "text-black font-medium" : "text-slate-500"}>
+          <p className={theme === "dark" ? "text-white/50 font-medium" : "text-slate-500"}>
             <span>
               <TypewriterText />
             </span>
@@ -171,18 +171,19 @@ export default function Footer() {
 
       {/* Footer Image with soft blur fading on top, left, and right */}
       <div
-        className="absolute bottom-0 left-0 w-full pointer-events-none flex justify-center opacity-60 select-none z-0"
+        className="absolute inset-0 w-full pointer-events-none flex justify-center opacity-60 select-none z-0"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%), linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%), linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 50%, black 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 50%, black 100%), linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
           WebkitMaskComposite: 'source-in',
           maskComposite: 'intersect',
+          filter: 'blur(2px)'
         }}
       >
         <img
           src="/images/FooterPortfolio.png"
           alt=""
-          className="w-full max-w-5xl h-auto object-cover blur-[3px]"
+          className="w-full max-w-5xl h-full object-cover object-bottom"
         />
       </div>
     </footer>
