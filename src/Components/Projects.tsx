@@ -1,12 +1,13 @@
-import { Globe, Github, ArrowUpRight } from "lucide-react";
+import { Globe, Github, ArrowUpRight, Eye } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "./ui/Button";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import ProjectModal from "./ProjectModal";
 
-type ProjectCategory = "Web2" | "AI" | "Extensions" | "Developer Tools";
+export type ProjectCategory = "Web2" | "AI" | "Extensions" | "Developer Tools";
 
-type Project = {
+export type Project = {
     title: string;
     period: string;
     description: string;
@@ -207,6 +208,7 @@ type ProjectsProps = {
 const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
     const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState<ProjectCategory | "All">("All");
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const categories: (ProjectCategory | "All")[] = ["All", "Web2", "AI", "Extensions", "Developer Tools"];
 
@@ -322,44 +324,63 @@ const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
                                 ))}
                             </div>
 
-                            <div className="flex items-center gap-2 px-3 pb-3">
-                                {project.github?.url && (
-                                    <a
-                                        href={project.github.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        onClick={(e) => e.stopPropagation()}
-                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
-                                    >
-                                        <Github className="size-3" />
-                                        <span>{project.github.label}</span>
-                                    </a>
-                                )}
+                            <div className="flex items-center justify-between px-3 pb-3">
+                                <div className="flex items-center gap-2">
+                                    {project.github?.url && (
+                                        <a
+                                            href={project.github.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            onClick={(e) => e.stopPropagation()}
+                                            className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
+                                        >
+                                            <Github className="size-3" />
+                                            <span>{project.github.label}</span>
+                                        </a>
+                                    )}
 
-                                {project.website.url ? (
-                                    <a
-                                        href={project.website.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        onClick={(e) => e.stopPropagation()}
-                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
-                                    >
-                                        <Globe className="size-3" />
-                                        <span>{project.website.label}</span>
-                                    </a>
-                                ) : (
-                                    <button
-                                        disabled
-                                        className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors opacity-50 cursor-not-allowed ${theme === "dark" ? "bg-neutral-800 text-neutral-500 border border-neutral-700" : "bg-slate-100 text-slate-400 border border-slate-200"}`}
-                                    >
-                                        <Globe className="size-3" />
-                                        <span>{project.website.label}</span>
-                                    </button>
-                                )}
+                                    {project.website.url ? (
+                                        <a
+                                            href={project.website.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            onClick={(e) => e.stopPropagation()}
+                                            className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors ${actionButton}`}
+                                        >
+                                            <Globe className="size-3" />
+                                            <span>{project.website.label}</span>
+                                        </a>
+                                    ) : (
+                                        <button
+                                            disabled
+                                            className={`flex items-center gap-1 px-2 py-1 text-[10px] font-semibold rounded-md shadow transition-colors opacity-50 cursor-not-allowed ${theme === "dark" ? "bg-neutral-800 text-neutral-500 border border-neutral-700" : "bg-slate-100 text-slate-400 border border-slate-200"}`}
+                                        >
+                                            <Globe className="size-3" />
+                                            <span>{project.website.label}</span>
+                                        </button>
+                                    )}
+                                </div>
+
+                                <Button
+                                    text="Details"
+                                    icon={<Eye className="size-3" />}
+                                    variant="outline"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedProject(project);
+                                    }}
+                                    className="rounded-md px-2 py-1 text-[10px] font-semibold"
+                                />
                             </div>
                         </div>
                     ))}
                 </div>
+
+                <ProjectModal
+                    project={selectedProject}
+                    isOpen={!!selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                />
 
                 {showViewAll && (
                     <div className="mt-8 flex justify-end">
