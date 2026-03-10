@@ -366,7 +366,10 @@ const Contributions = ({ limit, showViewAll = true }: ContributionsProps) => {
                         icon={<ArrowUpRight className="h-4 w-4" />}
                         to="/contributions"
                         variant="outline"
-                        className="rounded-lg px-3 py-2 text-xs font-semibold"
+                        className={`rounded-md px-5 py-2.5 text-sm font-medium transition-all ${theme === "dark"
+                            ? "bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white"
+                            : "bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                            }`}
                     />
                 </div>
             )}

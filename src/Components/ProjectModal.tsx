@@ -51,10 +51,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         className={`relative w-full max-w-3xl max-h-[90vh] rounded-2xl shadow-xl ${modalBg} overflow-hidden flex flex-col`}
                     >
-                        <div className={`overflow-y-auto p-6 scrollbar-thin ${theme === 'dark' ? 'scrollbar-thumb-zinc-700 scrollbar-track-zinc-900' : 'scrollbar-thumb-slate-300 scrollbar-track-slate-100'}`}>
+                        <div className="overflow-y-auto p-6 custom-scrollbar">
                             <button
                                 onClick={onClose}
-                                className={`absolute top-4 right-4 z-10 p-2 rounded-full transition-colors bg-white/10 backdrop-blur-sm ${theme === "dark" ? "hover:bg-zinc-800 text-zinc-400 hover:text-white" : "hover:bg-slate-100 text-slate-500 hover:text-slate-900"}`}
+                                className={`cursor-pointer absolute top-4 right-4 z-10 p-2 rounded-full transition-colors bg-white/10 backdrop-blur-sm ${theme === "dark" ? "hover:bg-zinc-800 text-zinc-400 hover:text-white" : "hover:bg-slate-100 text-slate-500 hover:text-slate-900"}`}
                             >
                                 <X className="w-5 h-5" />
                             </button>
