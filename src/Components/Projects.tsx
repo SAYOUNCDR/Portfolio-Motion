@@ -27,8 +27,27 @@ type Project = {
 
 const projects: Project[] = [
     {
+        title: "KeyRush",
+        period: "March 2026",
+        description:
+            "A gamified, beautiful typing platform designed to engage and visually stun. Built with React, Vite, Shadcn UI and Framer Motion, it features a custom interactive keyboard component with realistic sound effects and haptics.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "/images/ProjectImage/keyrush.webp",
+        tags: ["React", "Vite", "Shadcn UI", "Framer Motion", "Vercel"],
+        website: { label: "Website", url: "https://key-rush-five.vercel.app/" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/KeyRush" },
+        category: "Web2",
+    },
+    {
         title: "Okunix",
-        period: "2025",
+        period: "January 2026",
         description:
             "A lightweight web analytics platform. Tracks visits, visitors, bounce rate, live viewers, page entry exits and so on.",
         video: {
@@ -47,7 +66,7 @@ const projects: Project[] = [
     },
     {
         title: "Auto-Timetable",
-        period: "2025",
+        period: "December 2025",
         description:
             "The TimeTable Management & Generation System is a sophisticated full-stack application designed to automate the complex process of academic scheduling. By leveraging AI-powered constraint programming (Google OR-Tools), it generates conflict-free timetables.",
         video: {
@@ -66,7 +85,7 @@ const projects: Project[] = [
     },
     {
         title: "DevCalander",
-        period: "Aug 2025 - Aug 2025",
+        period: "December 2025",
         description:
             "Your curated intelligence feed for top Open Source Programs, Hackathons, and Hiring Cycles.",
         video: {
@@ -85,7 +104,7 @@ const projects: Project[] = [
     },
     {
         title: "ElevateX",
-        period: "June 2025 - July 2025",
+        period: "April 2025",
         description:
             "A Collaborative platform designed to connect aspiring entrepreneurs with seasoned mentors, fostering innovation and business growth through shared expertise.",
         video: {
@@ -104,7 +123,7 @@ const projects: Project[] = [
     },
     {
         title: "PolySee",
-        period: "Oct 2025 - Oct 2025",
+        period: "November 2025",
         description:
             "A Rag based ai assistant for college queries that can be fed with documents by admins and verified then embedded into vectorDB to answer questions related to them.",
         video: {
@@ -123,7 +142,7 @@ const projects: Project[] = [
     },
     {
         title: "NyaySaathi",
-        period: "Aug 2025 - Aug 2025",
+        period: "November 2025",
         description:
             "An AI-powered legal assistant designed to help users navigate legal processes, understand their rights, and access legal resources with ease.",
         video: {
@@ -142,7 +161,7 @@ const projects: Project[] = [
     },
     {
         title: "better-chatgpt-sidebar",
-        period: "2025",
+        period: "November 2025",
         description:
             "The ultimate workflow upgrade for ChatGPT. A dedicated sidebar to save, organize, and color-code your most important conversations with folders and drag-drop.",
         video: {
@@ -161,7 +180,7 @@ const projects: Project[] = [
     },
     {
         title: "Advance-Auth-Templete",
-        period: "2025",
+        period: "January 2025",
         description:
             "A production-ready authentication template built with Node.js, MongoDB, and TypeScript, featuring JWT-based auth, email verification, and OAuth integration.",
         video: {
