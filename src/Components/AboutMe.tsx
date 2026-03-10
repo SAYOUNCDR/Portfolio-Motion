@@ -144,9 +144,9 @@ export default function AboutMe() {
                     onMouseEnter={() => setShowKaizenTip(true)}
                     onMouseLeave={() => setShowKaizenTip(false)}
                 >
-                    <span className={`transition-all duration-700 text-center font-serif italic text-7xl sm:text-8xl md:text-9xl font-bold whitespace-nowrap ${theme === "dark" ? "text-zinc-400/50 group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "text-zinc-800/50 group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
+                    <span className={`transition-all duration-700 text-center font-serif italic text-7xl sm:text-8xl md:text-7xl font-bold whitespace-nowrap ${theme === "dark" ? "text-zinc-400/50 group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" : "text-zinc-800/50 group-hover:text-zinc-900 group-hover:drop-shadow-[0_0_15px_rgba(0,0,0,0.3)]"
                         }`}>
-                        継続
+                        Sayoun
                     </span>
                     <AnimatePresence>
                         {showKaizenTip && (
@@ -174,28 +174,28 @@ export default function AboutMe() {
                                     className="space-y-3 text-center relative z-10"
                                 >
                                     <p className="text-sm leading-relaxed font-medium">
-                                        The word <span className="font-bold text-lg mx-1">継続</span> translates to "consistency" or "continuance".
+                                        Derived from <span className="font-bold text-base mx-1">Sayan</span> (Sanskrit/Indian).
                                     </p>
                                     <div className="w-full h-px bg-current opacity-10" />
                                     <p className="text-sm italic font-serif text-center">
-                                        "継続は力なり"
+                                        "Precious Friend"
                                         <br />
                                         <span className="text-xs opacity-70 not-italic font-sans">
-                                            (Consistency is power)
+                                            (Companion & Guardian)
                                         </span>
                                     </p>
                                     <div className="w-full h-px bg-current opacity-10" />
                                     <p className="text-xs opacity-80 uppercase tracking-wider font-semibold">
-                                        Composed of two characters
+                                        Core Attributes
                                     </p>
                                     <div className="grid grid-cols-2 gap-3">
                                         <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
-                                            <span className="text-2xl font-bold mb-1">継</span>
-                                            <span className="text-[10px] opacity-70">Inherit</span>
+                                            <span className="text-lg font-bold mb-1">Kind</span>
+                                            <span className="text-[10px] opacity-70">Hearted</span>
                                         </div>
                                         <div className={`flex flex-col items-center p-2 rounded-lg ${theme === "dark" ? "bg-zinc-800/50" : "bg-slate-100/50"}`}>
-                                            <span className="text-2xl font-bold mb-1">続</span>
-                                            <span className="text-[10px] opacity-70">Continue</span>
+                                            <span className="text-lg font-bold mb-1">Gentle</span>
+                                            <span className="text-[10px] opacity-70">Nature</span>
                                         </div>
                                     </div>
                                 </motion.div>
