@@ -9,7 +9,6 @@ import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
 import LiveViewCounter from "./LiveViewCounter";
 import LivePingChat from "./LivePingChat";
-import RotateText from "./RotateText";
 
 interface SocialIconProps {
     icon: React.ReactNode;
@@ -124,7 +123,7 @@ export default function AboutMe() {
     return (
         <section className={`relative w-full max-w-4xl mx-auto ${theme === "dark" ? "" : "text-slate-800"}`}>
             {/* First Section */}
-            <div className="flex flex-col items-center justify-center w-full mb-4 select-none relative z-10 pt-4 pb-10">
+            <div className="flex flex-col items-center justify-center w-full mb-4 select-none relative z-30 pt-8 pb-10">
                 <div
                     className={`absolute inset-0 z-0 bg-cover bg-center pointer-events-none rounded-lg overflow-hidden ${theme === "dark" ? "opacity-10" : "opacity-60"}`}
                     style={{
@@ -232,11 +231,8 @@ export default function AboutMe() {
                     <div className="flex w-full flex-col gap-2 items-center md:flex-row md:items-center md:gap-3 mb-3">
                     </div>
 
-                    <div className={`text-lg ${roleColor} flex justify-start w-full`}>
-                        <RotateText
-                            texts={["Full Stack Developer", "DevOps Engineer", "Applied AI Engineer"]}
-                            className="font-medium justify-start"
-                        />
+                    <div className={`text-lg font-medium ${roleColor} flex justify-start w-full`}>
+                        Full Stack AI Engineer
                     </div>
                     {/* Social Icons */}
                     <div className="relative group">
