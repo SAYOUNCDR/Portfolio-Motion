@@ -30,7 +30,7 @@ const AboutContent = () => {
         <Button
           text="Resume"
           icon={<Eye className="w-4 h-4" />}
-          href="https://drive.google.com/file/d/1qyoIjzLTPgbd67_Q-UOu6JuN3gBMGThp/view?usp=sharing"
+          href="https://drive.google.com/file/d/1rCKaT0nFE54fzEHIxoTehd_SOhIf5Ay3/view?usp=sharing"
         />
 
         <div className="relative">
