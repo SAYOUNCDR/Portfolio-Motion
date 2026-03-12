@@ -91,7 +91,7 @@ const InteractiveEyeButton = ({ theme, className }: { theme: string, className?:
             rel="noopener noreferrer"
             className={`flex items-center justify-center gap-3 px-6 py-2.5 rounded-md transition-all duration-300 font-medium text-[15px] shadow-md hover:shadow-lg ${baseClass} ${className || ''}`}
         >
-            <span className="tracking-wide">Book a call</span>
+            <span className="tracking-wide">Let's Connect</span>
             <div className="flex gap-1.5 ml-1">
                 <div ref={eyeLeftRef} className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] bg-white rounded-full flex items-center justify-center relative shadow-inner overflow-hidden">
                     <div
