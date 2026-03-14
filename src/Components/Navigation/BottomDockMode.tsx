@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { BsSun } from "react-icons/bs";
 import { RiMoonClearFill } from "react-icons/ri";
 import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 export default function BottomDockMode() {
