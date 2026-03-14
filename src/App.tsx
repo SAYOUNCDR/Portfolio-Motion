@@ -5,8 +5,8 @@ import Projects from "./Components/Projects";
 import Skills from "./Components/Skills";
 import Newsletter from "./Components/Newsletter";
 import Education from "./Components/Education";
-import Footer from "./Components/Footer";
-import BottomBlur from "./Components/BottomBlur";
+import Footer from "./Components/Layout/Footer";
+import BottomBlur from "./Components/Layout/BottomBlur";
 import Contributions from "./Components/Contributions";
 import GithubHeatmap from "./Components/GithubHeatmap";
 import { Routes, Route } from "react-router-dom";
@@ -17,14 +17,14 @@ import BlogDetail from "./Components/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/BottomDockMode";
 import LivePingOverlay from "./Components/LivePingOverlay";
-import Loader from "./Components/Loader";
+import Loader from "./Components/Layout/Loader";
 import { useState } from "react";
 import AboutMe from "./Components/AboutMe";
-import SideLabel from "./Components/SideLabel";
-import LeftSideLabel from "./Components/LeftSideLabel";
-import BackgroundPattern from "./Components/BackgroundPattern";
-import HorizonGlow from "./Components/HorizonGlow";
+import LeftSideLabel from "./Components/Layout/LeftSideLabel";
+import BackgroundPattern from "./Components/Layout/BackgroundPattern";
+import HorizonGlow from "./Components/Layout/HorizonGlow";
 import ScrollToTop from "./Components/ScrollToTop";
+import RightSideLabel from "./Components/Layout/RightSideLabel";
 
 const HomePage = () => {
   return (
@@ -55,7 +55,7 @@ function App() {
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <LivePingOverlay />
-      <SideLabel />
+      <RightSideLabel />
       <LeftSideLabel />
       <BackgroundPattern />
       <HorizonGlow />

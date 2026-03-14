@@ -1,6 +1,6 @@
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
-export default function SideLabel() {
+export default function RightSideLabel() {
     const { theme } = useTheme();
 
     const textColor = theme === 'dark' ? 'text-white' : 'text-slate-900';

@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useTheme } from "../contexts/ThemeContext";
-import { supabase } from "../lib/supabaseClient";
+import { useTheme } from "../../contexts/ThemeContext";
+import { supabase } from "../../lib/supabaseClient";
 
 export default function Footer() {
   const { theme } = useTheme();
