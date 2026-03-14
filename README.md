@@ -1,128 +1,101 @@
-# Portfolio – Motion
+<div align='center'>
+  <img src='public/images/SocialCard.png' alt='Sayoun Parui Portfolio Social Card' width='100%' />
 
-A fast, minimal, and animated developer portfolio built with React + TypeScript, Vite, Tailwind CSS, and Framer Motion.
+  <br />
+  <br />
 
-## ✨ Highlights
+  <h1>Sayoun Parui <br/> <span style='font-size: 0.6em; font-weight: normal; color: gray;'>Full Stack AI Engineer</span></h1>
 
-- Clean dark UI with soft gradients and glassy details
-- Skills as compact pill badges with icons
-- Projects grid with autoplaying muted video previews, Website + GitHub buttons, and text-only tech tags
-- Open‑source contributions section
-- Animated, unique footer with a shimmering “Built with…” badge
-- Subtle bottom-blur overlay that softly fades content near the viewport edge
+  [![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+  [![Supabase](https://img.shields.io/badge/Supabase-181818?style=for-the-badge&logo=supabase&logoColor=3ECF8E)](https://supabase.com/)
+  [![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 
-## 🧱 Tech Stack
-
-- React 18 + Vite
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- lucide-react (icons) and react-icons
-
-## 📁 Project Structure
-
-```
-src/
-	App.tsx
-	App.css
-	index.css
-	main.tsx
-	Components/
-		AboutMe.tsx
-		ContentAbout.tsx
-		Skills.tsx
-		Projects.tsx
-		OpenSource.tsx
-		Blogs.tsx
-		Newsletter.tsx
-		BottomDock.tsx
-		Footer.tsx
-		BottomBlur.tsx
-public/
-	videos/
-		ElevateX.mp4
-		Polysee.mp4
-	assets/ ...
-```
-
-## 🚀 Getting Started
-
-1. Install dependencies
-
-```cmd
-npm install
-```
-
-2. Start the dev server
-
-```cmd
-npm run dev
-```
-
-3. Build for production
-
-```cmd
-npm run build
-```
-
-4. Preview the production build
-
-```cmd
-npm run preview
-```
-
-> Tip: You can also use `yarn` or `pnpm` if that’s your preference.
-
-## 🧩 Key Components
-
-- `Skills.tsx`: Technologies list rendered as white pill badges with small icons.
-- `Projects.tsx`: Responsive 2‑column grid, gradient cards, autoplaying muted looping video banners, text‑only tags, Website + GitHub buttons, and conditional rendering if the website URL is missing.
-- `OpenSource.tsx`: PRs and contributions with tidy card styling.
-- `Footer.tsx`: Minimalist gradient footer with a shiny animated badge and concise meta line.
-- `BottomBlur.tsx`: Fixed bottom overlay (masked backdrop blur) that fades upward to softly blend content near the viewport edge.
-
-## 🎥 Project Videos
-
-Place your demos in `public/videos/` and update paths in `Projects.tsx`.
-
-Example files used:
-
-- `public/videos/ElevateX.mp4`
-- `public/videos/Polysee.mp4`
-
-Make sure videos are optimized (short length, reasonable bitrate) for quick loading.
-
-## 🖌️ Styling Notes
-
-- Tailwind classes are used throughout; tweak spacing, borders, and colors directly in components.
-- The shiny badge uses custom keyframes in `App.css` (`animate-shine-smooth`).
-- The bottom blur uses a CSS mask for a smooth fade; adjust height/opacity in `BottomBlur.tsx`.
-
-## 🧪 Commands (quick reference)
-
-```cmd
-npm run dev
-npm run build
-npm run preview
-```
-
-## 📦 Deploy
-
-This project works great on Vercel, Netlify, or any static host.
-
-- Build: `npm run build`
-- Deploy the `dist/` directory
-
-## ✅ Roadmap / Ideas
-
-- Add theme toggle (light/dark)
-- Add more project filters (tags) and animations
-- Hook newsletter to a backend/email service
-
-## 📝 License
-
-MIT
+  <p align='center'>
+    <b>The Next-Gen Developer Portfolio</b><br/>
+    <i>Interactive. Real-time. Motion-driven.</i>
+  </p>
+</div>
 
 ---
 
-Built with focus, curiosity, and a tasteful dose of motion.
+## ⚡ Overview
+
+This isn't just a static resume it's an **immersive digital experience**. Built with the latest web technologies, this portfolio showcases projects with high-fidelity animations, real-time user tracking, and a command-center interface. 
+
+Designed to feel like a premium product, it bridges the gap between functional utility and artistic expression.
+
+## ✨ Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| **🎨 Dynamic Theming** | Seamless **Dark/Light mode** switching with deep, glossy aesthetic touches. |
+| **🔴 Live Presence** | Real-time **visitor counter** and **ping chat** powered by Supabase. See who's online! |
+| **🌊 Liquid Motion** | Silky smooth transitions using **Framer Motion** |
+| **📊 GitHub Heatmap** | Custom-styled contribution graph to showcase coding activity. |
+| **📱 Responsive Dock** | MacOS-style **Bottom Dock** for intuitive mobile and desktop navigation. |
+| **📹 Video Previews** | Autoplaying, muted project previews for instant visual context. |
+
+## 🛠️ Tech Stack Upgrade
+
+This project runs on the bleeding edge:
+
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite (Blazing fast HMR)
+- **Styling**: Tailwind CSS v4 (The latest engine)
+- **Animation**: Framer Motion 12 + Lucide Icons
+- **Backend**: Supabase (Real-time DB)
+- **Routing**: React Router 7
+
+## 🚀 Quick Start
+
+Get this portfolio running locally in seconds.
+
+### 1. Clone & Install
+`
+git clone https://github.com/SayounParui/Portfolio.git
+cd Portfolio
+npm install
+`
+
+### 2. Environment Setup
+Create a .env file in the root directory and add your Supabase credentials to enable real-time features:
+`
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+`
+
+### 3. Run Development Server
+`
+npm run dev
+`
+
+### 4. Build for Production
+`
+npm run build
+`
+
+
+## 🤝 Connect
+
+Let's build something amazing together.
+
+<div align='left'>
+  <a href='https://x.com/DriftNBlde' target='_blank'>
+    <img src='https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white' alt='Twitter' />
+  </a>
+  <a href='https://www.linkedin.com/in/sayoun-parui-868b4228b/' target='_blank'>
+    <img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' alt='LinkedIn' />
+  </a>
+  <a href='https://github.com/SAYOUNCDR/' target='_blank'>
+    <img src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white' alt='GitHub' />
+  </a>
+</div>
+
+---
+
+<div align='center'>
+  <p>© 2026 Sayoun Parui. Crafted with 🖤 and React.</p>
+</div>
