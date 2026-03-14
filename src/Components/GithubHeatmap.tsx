@@ -119,12 +119,13 @@ const GithubHeatmap: React.FC<GithubHeatmapProps> = ({ username = "SAYOUNCDR" })
             className="w-[95%] max-w-3xl mt-10 mb-16 relative"
         >
             {/* Slogan */}
-            <div className={`absolute -top-8 left-4 flex items-end gap-2 ${textColor} opacity-80`}>
-                <span className="text-sm font-handwriting transform -rotate-6">Consistency is key</span>
-                <svg width="20" height="20" viewBox="0 0 100 100" className="transform translate-y-2 opacity-70 fill-current">
-                    <path d="M10,10 Q50,50 30,80" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path d="M20,80 L35,85 L35,70" stroke="currentColor" strokeWidth="4" fill="none" />
+            <div className={`absolute -top-10 right-0 flex items-end gap-1 ${textColor} opacity-80`}>
+                <svg width="30" height="30" viewBox="0 0 100 100" className="transform translate-y-4 opacity-70 stroke-current">
+                    <path d="M90,10 Q45,10 20,60" strokeWidth="5" fill="none" strokeLinecap="round" />
+                    <path d="M5,50 L15,75" strokeWidth="5" fill="none" strokeLinecap="round" />
+                    <path d="M20,73 L38,60" strokeWidth="5" fill="none" strokeLinecap="round" />
                 </svg>
+                <span className="text-sm font-handwriting transform -rotate-6 mb-2">Consistency is key</span>
             </div>
 
             <div className={`p-6 rounded-2xl border ${borderColor} backdrop-blur-sm shadow-sm`}>
