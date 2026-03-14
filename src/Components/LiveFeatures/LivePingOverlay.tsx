@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { supabase } from "../lib/supabaseClient";
-import { useTheme } from "../contexts/ThemeContext";
+import { supabase } from "../../lib/supabaseClient";
+import { useTheme } from "../../contexts/ThemeContext";
 import {
     CHANNEL_SUFFIX,
     MESSAGE_TTL_MS,
     MAX_VISIBLE,
     derivePingAlias,
     type PingPayload,
-} from "../lib/pingConstants";
-import { subscribeToPingBus } from "../lib/pingBus";
+} from "../../lib/pingConstants";
+import { subscribeToPingBus } from "../../lib/pingBus";
 
 interface LivePingOverlayProps {
     channelTopic?: string;

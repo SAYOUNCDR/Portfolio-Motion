@@ -31,7 +31,7 @@ import {
     FaLightbulb,
     FaServer
 } from "react-icons/fa";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 
 type Skill = {

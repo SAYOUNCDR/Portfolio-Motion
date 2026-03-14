@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import Contributions from "../Components/Contributions";
+import Contributions from "../Components/Social/Contributions";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "../Components/ui/Button";
 

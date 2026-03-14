@@ -1,15 +1,15 @@
 import { type FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { SendHorizonal } from "lucide-react";
-import { supabase } from "../lib/supabaseClient";
-import { useTheme } from "../contexts/ThemeContext";
-import { emitPing } from "../lib/pingBus";
+import { supabase } from "../../lib/supabaseClient";
+import { useTheme } from "../../contexts/ThemeContext";
+import { emitPing } from "../../lib/pingBus";
 
 import {
     RATE_LIMIT_MS,
     CHANNEL_SUFFIX,
     derivePingAlias,
     type PingPayload,
-} from "../lib/pingConstants";
+} from "../../lib/pingConstants";
 
 type LivePingChatProps = {
     className?: string;

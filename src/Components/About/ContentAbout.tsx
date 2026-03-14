@@ -1,8 +1,8 @@
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { motion } from "framer-motion";
 import { Mail, Eye } from "lucide-react";
 import { useState } from "react";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 
 const AboutContent = () => {
   const { theme } = useTheme();

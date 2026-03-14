@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, X, Mail, Send, Rocket } from "lucide-react";
 import { VscVscode } from "react-icons/vsc";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const validateEmail = (email: string) => /\S+@\S+\.\S+/.test(email);
 

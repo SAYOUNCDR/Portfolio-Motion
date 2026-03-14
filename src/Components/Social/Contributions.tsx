@@ -1,8 +1,8 @@
 import { Github, ArrowUpRight, ChevronRight, Globe } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 
 type Contribution = {
     repo: string;

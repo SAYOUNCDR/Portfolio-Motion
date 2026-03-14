@@ -1,29 +1,29 @@
 import "./App.css";
-import Blogs from "./Components/Blogs";
-import AboutContent from "./Components/ContentAbout";
-import Projects from "./Components/Projects";
-import Skills from "./Components/Skills";
-import Newsletter from "./Components/Newsletter";
-import Education from "./Components/Education";
+import Blogs from "./Components/Blogs/Blogs";
+import AboutContent from "./Components/About/ContentAbout";
+import Projects from "./Components/Projects/Projects";
+import Skills from "./Components/About/Skills";
+import Newsletter from "./Components/LiveFeatures/Newsletter";
+import Education from "./Components/About/Education";
 import Footer from "./Components/Layout/Footer";
 import BottomBlur from "./Components/Layout/BottomBlur";
-import Contributions from "./Components/Contributions";
-import GithubHeatmap from "./Components/GithubHeatmap";
+import Contributions from "./Components/Social/Contributions";
+import GithubHeatmap from "./Components/Social/GithubHeatmap";
 import { Routes, Route } from "react-router-dom";
 import ContributionsPage from "./Pages/ContributionsPage";
 import ProjectsPage from "./Pages/ProjectsPage"
 import BlogsPage from "./Pages/BlogsPage";
-import BlogDetail from "./Components/BlogDetail";
+import BlogDetail from "./Components/Blogs/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/Navigation/BottomDockMode";
-import LivePingOverlay from "./Components/LivePingOverlay";
+import LivePingOverlay from "./Components/LiveFeatures/LivePingOverlay";
 import Loader from "./Components/Layout/Loader";
 import { useState } from "react";
 import AboutMe from "./Components/About/AboutMe";
 import LeftSideLabel from "./Components/Layout/LeftSideLabel";
 import BackgroundPattern from "./Components/Layout/BackgroundPattern";
 import HorizonGlow from "./Components/Layout/HorizonGlow";
-import ScrollToTop from "./Components/ScrollToTop";
+import ScrollToTop from "./Components/LiveFeatures/ScrollToTop";
 import RightSideLabel from "./Components/Layout/RightSideLabel";
 
 const HomePage = () => {

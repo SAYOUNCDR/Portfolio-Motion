@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Globe, Github } from "lucide-react";
 import { useEffect } from "react";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import type { Project } from "./Projects";
 
 interface ProjectModalProps {

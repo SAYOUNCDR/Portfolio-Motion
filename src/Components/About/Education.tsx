@@ -1,4 +1,4 @@
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 import { motion } from "framer-motion";
 import { MapPin, CalendarDays, ExternalLink } from "lucide-react";
 

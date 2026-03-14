@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users } from "lucide-react";
-import { usePresenceCount } from "../hooks/usePresenceCount";
-import { useTheme } from "../contexts/ThemeContext";
+import { usePresenceCount } from "../../hooks/usePresenceCount";
+import { useTheme } from "../../contexts/ThemeContext";
 
 type LiveViewCounterProps = {
     className?: string;

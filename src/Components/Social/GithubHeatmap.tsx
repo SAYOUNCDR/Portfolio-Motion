@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 interface GithubHeatmapProps {
     username?: string;

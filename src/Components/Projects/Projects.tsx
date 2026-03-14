@@ -1,6 +1,6 @@
 import { Globe, Github, ArrowUpRight, Eye } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
-import { Button } from "./ui/Button";
+import { useTheme } from "../../contexts/ThemeContext";
+import { Button } from "../ui/Button";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ProjectModal from "./ProjectModal";

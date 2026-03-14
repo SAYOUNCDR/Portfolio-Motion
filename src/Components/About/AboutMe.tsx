@@ -7,8 +7,8 @@ import { SiGithub } from "react-icons/si";
 // import { SiBuymeacoffee } from "react-icons/si";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { useTheme } from "../../contexts/ThemeContext";
-import LiveViewCounter from "../LiveViewCounter";
-import LivePingChat from "../LivePingChat";
+import LiveViewCounter from "../LiveFeatures/LiveViewCounter";
+import LivePingChat from "../LiveFeatures/LivePingChat";
 
 interface SocialIconProps {
     icon: React.ReactNode;

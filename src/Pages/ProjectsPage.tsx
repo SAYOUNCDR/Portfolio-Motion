@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import Projects from "../Components/Projects";
+import Projects from "../Components/Projects/Projects";
 import { useTheme } from "../contexts/ThemeContext";
 import { Button } from "../Components/ui/Button";
 

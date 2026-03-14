@@ -1,8 +1,8 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { blogs } from "../data/blogs";
-import { useTheme } from "../contexts/ThemeContext";
-import { Button } from "./ui/Button";
+import { blogs } from "../../data/blogs";
+import { useTheme } from "../../contexts/ThemeContext";
+import { Button } from "../ui/Button";
 
 interface BlogsProps {
     limit?: number;

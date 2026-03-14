@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { findBlogBySlug, type BlogContentBlock } from "../data/blogs";
+import { findBlogBySlug, type BlogContentBlock } from "../../data/blogs";
 import { ArrowLeft, Terminal, Info, AlertTriangle, Lightbulb } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
-import { Button } from "./ui/Button";
+import { useTheme } from "../../contexts/ThemeContext";
+import { Button } from "../ui/Button";
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
