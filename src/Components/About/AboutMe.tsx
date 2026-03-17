@@ -1,6 +1,6 @@
 "use client";
 
-import { MousePointerClick } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGithub } from "react-icons/si";
@@ -111,14 +111,29 @@ const InteractiveEyeButton = ({ theme, className }: { theme: string, className?:
 };
 
 export default function AboutMe() {
-    const [showComponentTip, setShowComponentTip] = useState(false);
     const [showKaizenTip, setShowKaizenTip] = useState(false);
+    const [currentTime, setCurrentTime] = useState<string>("");
     const { theme } = useTheme();
 
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+                timeZone: 'Asia/Kolkata'
+            });
+            setCurrentTime(timeString);
+        };
+        updateTime();
+        const timer = setInterval(updateTime, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+
     const roleColor = theme === "dark" ? "text-gray-400" : "text-slate-600";
-    const componentLinkStyles = theme === "dark"
-        ? "bg-zinc-900/70 border border-zinc-700 text-white hover:border-zinc-500 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.7),inset_-4px_-4px_12px_rgba(161,161,170,0.25)] hover:shadow-[inset_3px_3px_9px_rgba(0,0,0,0.75),inset_-3px_-3px_9px_rgba(200,200,210,0.22)]"
-        : "bg-white border border-slate-300 text-slate-800 hover:border-slate-500 shadow-[inset_6px_6px_16px_rgba(148,163,184,0.3),inset_-6px_-6px_16px_rgba(255,255,255,0.95)] hover:shadow-[inset_4px_4px_12px_rgba(148,163,184,0.35),inset_-4px_-4px_12px_rgba(255,255,255,0.9)]";
+
 
     return (
         <section className={`relative w-full max-w-4xl mx-auto ${theme === "dark" ? "" : "text-slate-800"}`}>
@@ -203,6 +218,16 @@ export default function AboutMe() {
                     </AnimatePresence>
                 </div>
                 <span className="text-lg m-6"></span>
+                <div className={`absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm transition-all duration-300 ${theme === "dark" ? "bg-zinc-900/40 border-zinc-800 text-zinc-500 hover:text-zinc-300" : "bg-white border-slate-200 text-slate-400 hover:text-slate-600"}`}>
+                    <div className="flex items-center gap-1.5 border-r pr-2 border-current opacity-80">
+                        <MapPin size={12} />
+                        <span className="text-[11px] font-bold tracking-widest uppercase">India</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 pl-0.5">
+                        <span className="text-[11px] font-mono font-medium">{currentTime}</span>
+                        <span className="text-[9px] font-bold opacity-60">IST</span>
+                    </div>
+                </div>
             </div>
 
             {/* <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} /> */}
@@ -298,39 +323,7 @@ export default function AboutMe() {
                 <InteractiveEyeButton theme={theme} className="w-full" />
             </div>
 
-            <a
-                href="https://github.com/SAYOUNCDR/Kairo-Ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => setShowComponentTip(true)}
-                onMouseLeave={() => setShowComponentTip(false)}
-                onFocus={() => setShowComponentTip(true)}
-                onBlur={() => setShowComponentTip(false)}
-                className={`hidden md:flex absolute right-[2.5rem] top-[10rem] -translate-y-1/2 flex-col gap-0.5 rounded-xl px-4 py-3 text-xs font-medium transition-opacity duration-300 rotate-[-8deg] opacity-50 hover:opacity-100 ${componentLinkStyles} z-50`}
-            >
-                <div className="relative flex flex-col gap-0.5">
-                    <span className="flex items-center gap-2 text-sm font-semibold">
-                        <MousePointerClick className="h-3.5 w-3.5" />
-                        Components lab
-                    </span>
-                    <span className="text-[11px] font-normal opacity-80">
-                        under development
-                    </span>
-                    <AnimatePresence>
-                        {showComponentTip && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 4 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 4 }}
-                                transition={{ type: "spring", stiffness: 240, damping: 20 }}
-                                className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 whitespace-nowrap rounded-md px-3 py-1.5 text-[10px] font-medium shadow-lg backdrop-blur-md  ${theme === "dark" ? "bg-zinc-900/85 text-zinc-100 border border-zinc-700" : "bg-white/95 text-slate-700 border border-slate-200"}`}
-                            >
-                                under development
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </a>
+
             <div className={`w-full h-[1px] my-8 bg-gradient-to-r from-transparent ${theme === "dark" ? "via-zinc-700" : "via-slate-300"} to-transparent opacity-60`} />
         </section >
     );

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import { BsSun } from "react-icons/bs";
 import { RiMoonClearFill } from "react-icons/ri";
-import { FaGithub, FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { FaGithub, FaEnvelope, FaFlask } from "react-icons/fa6";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
@@ -84,19 +84,11 @@ export default function BottomDockMode() {
                     </span>
                 </a>
 
-                {/* Twitter (X) */}
-                <a href="https://x.com/DriftNBlde" target="_blank" className="group relative flex">
-                    <FaXTwitter className={`${iconColor} text-xl`} />
+                {/* Mail */}
+                <a href="mailto:sayounparui45@gmail.com" target="_blank" className="group relative flex">
+                    <FaEnvelope className={`${iconColor} text-xl`} />
                     <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
-                        Twitter
-                    </span>
-                </a>
-
-                {/* LinkedIn */}
-                <a href="https://www.linkedin.com/in/sayoun-parui-868b4228b/" target="_blank" className="group relative flex">
-                    <FaLinkedin className={`${iconColor} text-xl`} />
-                    <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
-                        LinkedIn
+                        sayounparui45@gmail.com
                     </span>
                 </a>
 
@@ -109,6 +101,14 @@ export default function BottomDockMode() {
                     </svg>
                     <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
                         Medium
+                    </span>
+                </a>
+
+                {/* Components Lab (Flask) */}
+                <a href="https://github.com/SAYOUNCDR/Kairo-Ui" target="_blank" className="group relative flex">
+                    <FaFlask className={`${iconColor} text-xl`} />
+                    <span className={`absolute bottom-[30px] left-1/2 -translate-x-1/2 w-max font-medium text-sm rounded-md py-1 px-1.5 scale-0 group-hover:scale-100 transition ${tooltipStyles}`}>
+                        Components Lab
                     </span>
                 </a>
 
