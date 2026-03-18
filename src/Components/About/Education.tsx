@@ -39,7 +39,7 @@ const Education = () => {
                     {/* LPU Logo */}
                     <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-white overflow-hidden flex items-center justify-center p-1.5`}>
                         <img
-                            src="/images/LPU.png"
+                            src="/images/Edu-Cert/LPU.webp"
                             alt="Lovely Professional University"
                             className="w-full h-full object-contain"
                         />

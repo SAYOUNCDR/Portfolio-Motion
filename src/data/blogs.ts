@@ -42,7 +42,7 @@ export const blogs: Blog[] = [
       },
       {
         type: 'image',
-        src: '/images/Blogs/Deployment.png',
+        src: '/images/Blogs/Deployment.webp',
         alt: 'Azure Server Deployment Graphic',
         caption: 'Taking your app from localhost to the cloud'
       },
@@ -278,7 +278,7 @@ export const blogs: Blog[] = [
     readTime: "10 min read",
     date: "February 2026",
     relativeTime: "Just now",
-    thumbnail: "/images/Blogs/Deployment.png",
+    thumbnail: "/images/Blogs/Deployment.webp",
     mediumLink: "https://medium.com/@0xsyn.dev/from-localhost-to-live-production-ready-deployment-on-azure-vm-nodejs-react-app-879c3e3f772c"
   },
   {
@@ -292,11 +292,11 @@ export const blogs: Blog[] = [
     readTime: "7 min read",
     date: "February 2026",
     relativeTime: "Just now",
-    thumbnail: "/images/Blogs/DockerBlog.png",
+    thumbnail: "/images/Blogs/DockerBlog.webp",
     content: [
       {
         type: 'image',
-        src: '/images/Blogs/DockerBlog.png',
+        src: '/images/Blogs/DockerBlog.webp',
         alt: 'Docker Containers',
         caption: 'Containerize everything!'
       },

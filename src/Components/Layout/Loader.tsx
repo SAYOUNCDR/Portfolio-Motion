@@ -78,7 +78,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
                 }}
             >
                 <img
-                    src="/images/loader.jpg"
+                    src="/images/Common/loader.webp"
                     alt=""
                     className="absolute top-0 left-0 w-full h-[200%] object-cover opacity-[0.05] pointer-events-none" // Translucent opacity-5/100 = 0.05
                 />
@@ -110,7 +110,7 @@ const Loader = ({ onComplete }: LoaderProps) => {
                 }}
             >
                 <img
-                    src="/images/loader.jpg"
+                    src="/images/Common/loader.webp"
                     alt=""
                     className="absolute top-[-100%] left-0 w-full h-[200%] object-cover opacity-[0.05] pointer-events-none"
                 />

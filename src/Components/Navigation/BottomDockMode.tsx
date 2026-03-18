@@ -118,7 +118,7 @@ export default function BottomDockMode() {
                 {/* Profile Image with Status */}
                 <div className="relative group/profile rounded-md cursor-pointer" onClick={() => navigate("/")}>
                     <img
-                        src="images/Profile.jpg"
+                        src="images/Common/Temp_Profile.webp"
                         alt="Profile"
                         className="w-9 h-9 rounded-md object-cover"
                     />
