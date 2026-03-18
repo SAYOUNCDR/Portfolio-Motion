@@ -47,45 +47,62 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon, username, link }) => {
 };
 
 const InteractiveEyeButton = ({ theme, className }: { theme: string, className?: string }) => {
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [eyePos, setEyePos] = useState({ left: { x: 0, y: 0 }, right: { x: 0, y: 0 } });
+    const buttonRef = useRef<HTMLAnchorElement>(null);
     const eyeLeftRef = useRef<HTMLDivElement>(null);
     const eyeRightRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            setMousePos({ x: e.clientX, y: e.clientY });
+            if (!eyeLeftRef.current || !eyeRightRef.current || !buttonRef.current) return;
+
+            const buttonRect = buttonRef.current.getBoundingClientRect();
+            const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+            const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+
+            const distFromButton = Math.hypot(e.clientX - buttonCenterX, e.clientY - buttonCenterY);
+            const trackingRadius = 250;
+
+            if (distFromButton > trackingRadius) {
+                setEyePos({ left: { x: 0, y: 0 }, right: { x: 0, y: 0 } });
+                return;
+            }
+
+            const calculate = (eyeRect: DOMRect) => {
+                const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+                const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+                const dx = e.clientX - eyeCenterX;
+                const dy = e.clientY - eyeCenterY;
+                const angle = Math.atan2(dy, dx);
+                const maxRadius = 4;
+                const dist = Math.hypot(dx, dy);
+                const distance = Math.min(maxRadius, dist / 8);
+
+                return {
+                    x: Math.cos(angle) * distance,
+                    y: Math.sin(angle) * distance
+                };
+            };
+
+            setEyePos({
+                left: calculate(eyeLeftRef.current.getBoundingClientRect()),
+                right: calculate(eyeRightRef.current.getBoundingClientRect())
+            });
         };
+
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
-    const calculatePupilTransform = (eyeRef: React.RefObject<HTMLDivElement | null>) => {
-        if (!eyeRef.current) return "translate(0px, 0px)";
-        const rect = eyeRef.current.getBoundingClientRect();
-        const eyeCenterX = rect.left + rect.width / 2;
-        const eyeCenterY = rect.top + rect.height / 2;
-
-        const dx = mousePos.x - eyeCenterX;
-        const dy = mousePos.y - eyeCenterY;
-        const angle = Math.atan2(dy, dx);
-
-        const maxRadius = 4; // Max distance pupil can move from center
-        // Only move pupil if mouse is outside the inner distance, otherwise scale it smoothly
-        const dist = Math.hypot(dx, dy);
-        const distance = Math.min(maxRadius, dist / 8);
-
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-        return `translate(${tx}px, ${ty}px)`;
-    };
-
-    // Giving it a polished, deep dark look for both modes, as requested by the provided style
+    // Giving it a polished, deep dark look for both modes
     const baseClass = theme === "dark"
         ? "text-white bg-[#0a0a0a] hover:bg-[#1a1a1a] border border-zinc-800"
         : "text-white bg-black hover:bg-gray-900 border border-slate-800";
 
     return (
         <a
+            ref={buttonRef}
             href="https://cal.com/sayoun-parui-sdv05p/30min"
             target="_blank"
             rel="noopener noreferrer"
@@ -95,14 +112,14 @@ const InteractiveEyeButton = ({ theme, className }: { theme: string, className?:
             <div className="flex gap-1.5 ml-1">
                 <div ref={eyeLeftRef} className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] bg-white rounded-full flex items-center justify-center relative shadow-inner overflow-hidden">
                     <div
-                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute"
-                        style={{ transform: calculatePupilTransform(eyeLeftRef) }}
+                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute transition-transform duration-100 ease-out"
+                        style={{ transform: `translate(${eyePos.left.x}px, ${eyePos.left.y}px)` }}
                     />
                 </div>
                 <div ref={eyeRightRef} className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] bg-white rounded-full flex items-center justify-center relative shadow-inner overflow-hidden">
                     <div
-                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute"
-                        style={{ transform: calculatePupilTransform(eyeRightRef) }}
+                        className="w-[8px] h-[8px] sm:w-[10px] sm:h-[10px] bg-black rounded-full absolute transition-transform duration-100 ease-out"
+                        style={{ transform: `translate(${eyePos.right.x}px, ${eyePos.right.y}px)` }}
                     />
                 </div>
             </div>
