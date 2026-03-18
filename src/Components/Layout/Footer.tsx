@@ -181,7 +181,7 @@ export default function Footer() {
         }}
       >
         <img
-          src="/images/FooterPortfolio.png"
+          src="/images/Common/FooterPortfolio.webp"
           alt=""
           className="w-full max-w-5xl h-full object-cover object-bottom"
         />
