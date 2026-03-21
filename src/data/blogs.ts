@@ -277,7 +277,6 @@ export const blogs: Blog[] = [
     tags: ["Azure", "Deployment", "Node.js", "React", "Cloud"],
     readTime: "10 min read",
     date: "February 2026",
-    relativeTime: "Just now",
     thumbnail: "/images/Blogs/Deployment.webp",
     mediumLink: "https://medium.com/@0xsyn.dev/from-localhost-to-live-production-ready-deployment-on-azure-vm-nodejs-react-app-879c3e3f772c"
   },
@@ -291,7 +290,6 @@ export const blogs: Blog[] = [
     tags: ["Docker", "Node.js", "MongoDB", "Backend", "DevOps"],
     readTime: "7 min read",
     date: "February 2026",
-    relativeTime: "Just now",
     thumbnail: "/images/Blogs/DockerBlog.webp",
     content: [
       {

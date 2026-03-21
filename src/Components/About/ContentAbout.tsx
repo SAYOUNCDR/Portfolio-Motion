@@ -36,7 +36,7 @@ const AboutContent = () => {
           <Button
             text="Resume"
             icon={<Eye className="w-4 h-4" />}
-            href="https://drive.google.com/file/d/1rCKaT0nFE54fzEHIxoTehd_SOhIf5Ay3/view?usp=sharing"
+            href="https://drive.google.com/file/d/1STyotpYA8hKFaZh21LX-GruplwNo_odU/view?usp=sharing"
           />
           <AnimatePresence>
             {showResumeTooltip && (
@@ -49,7 +49,7 @@ const AboutContent = () => {
                   }`}
               >
                 <iframe
-                  src="https://drive.google.com/file/d/1rCKaT0nFE54fzEHIxoTehd_SOhIf5Ay3/preview"
+                  src="https://drive.google.com/file/d/1STyotpYA8hKFaZh21LX-GruplwNo_odU/preview"
                   className="w-full h-full border-0 bg-white"
                   title="Resume Preview"
                   loading="lazy"
