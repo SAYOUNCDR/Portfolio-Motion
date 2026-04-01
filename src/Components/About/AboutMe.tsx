@@ -254,7 +254,7 @@ export default function AboutMe() {
                 <div className="w-auto md:w-1/4 p-3 md:p-6 md:pr-4 md:pb-3 flex flex-col items-center md:items-start gap-4 relative">
                     <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-lg overflow-hidden relative">
                         <img
-                            src="images/Common/Profile.png"
+                            src="images/Common/Temp_Profile.webp"
                             alt="Sayoun"
                             className="w-full h-full object-cover"
                         />
