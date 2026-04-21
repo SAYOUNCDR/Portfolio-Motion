@@ -4,7 +4,6 @@ import AboutContent from "./Components/About/ContentAbout";
 import Projects from "./Components/Projects/Projects";
 import Skills from "./Components/About/Skills";
 import Newsletter from "./Components/LiveFeatures/Newsletter";
-import Education from "./Components/About/Education";
 import Footer from "./Components/Layout/Footer";
 import BottomBlur from "./Components/Layout/BottomBlur";
 import Contributions from "./Components/Social/Contributions";
@@ -37,7 +36,6 @@ const HomePage = () => {
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
         <Skills />
-        <Education />
         <Newsletter />
         <Footer />
       </main>
