@@ -7,7 +7,6 @@ import {
     SiNodedotjs,
     SiExpress,
     SiFastapi,
-    SiJsonwebtokens,
     SiMongodb,
     SiPostgresql,
     SiDocker,
@@ -20,16 +19,13 @@ import {
     SiBun,
     SiPrisma,
     SiLangchain,
+    SiAmazon,
 } from "react-icons/si";
+import { FaCloud } from "react-icons/fa";
 import {
-    FaNetworkWired,
-    FaUserShield,
-    FaDatabase,
     FaBrain,
-    FaEye,
     FaRobot,
-    FaLightbulb,
-    FaServer
+    FaProjectDiagram,
 } from "react-icons/fa";
 import { useTheme } from "../../contexts/ThemeContext";
 
@@ -48,29 +44,22 @@ const skills: Skill[] = [
     { name: "Express.js", icon: <SiExpress size={14} /> },
     { name: "FastAPI", icon: <SiFastapi size={14} /> },
     { name: "Prisma", icon: <SiPrisma size={14} /> },
-    { name: "REST APIs", icon: <FaNetworkWired size={14} /> },
-    { name: "JWT", icon: <SiJsonwebtokens size={14} /> },
-    { name: "RBAC", icon: <FaUserShield size={14} /> },
-    { name: "Schema Design", icon: <FaDatabase size={14} /> },
-    { name: "RAG Systems", icon: <FaBrain size={14} /> },
-    { name: "LangChain", icon: <SiLangchain size={14} /> },
-    { name: "OCR Pipelines", icon: <FaEye size={14} /> },
-    { name: "Agent Workflows", icon: <FaRobot size={14} /> },
-    { name: "Context Optimization", icon: <FaLightbulb size={14} /> },
     { name: "MongoDB", icon: <SiMongodb size={14} /> },
     { name: "PostgreSQL", icon: <SiPostgresql size={14} /> },
+    { name: "AWS", icon: <SiAmazon size={14} /> },
+    { name: "Azure", icon: <FaCloud size={14} /> },
     { name: "Docker", icon: <SiDocker size={14} /> },
     { name: "Nginx", icon: <SiNginx size={14} /> },
-    { name: "VPS", icon: <FaServer size={14} /> },
-    { name: "GitHub Actions", icon: <SiGithubactions size={14} /> },
     { name: "Linux", icon: <SiLinux size={14} /> },
+    { name: "GitHub Actions", icon: <SiGithubactions size={14} /> },
+    { name: "RAG Systems", icon: <FaBrain size={14} /> },
+    { name: "LangChain", icon: <SiLangchain size={14} /> },
+    { name: "LangGraph", icon: <FaProjectDiagram size={14} /> },
+    { name: "Agent Workflows", icon: <FaRobot size={14} /> },
     { name: "React.js", icon: <SiReact size={14} /> },
     { name: "TailwindCSS", icon: <SiTailwindcss size={14} /> },
     { name: "Framer Motion", icon: <SiFramer size={14} /> },
 ];
-
-const skills1 = skills.slice(0, Math.ceil(skills.length / 2));
-const skills2 = skills.slice(Math.ceil(skills.length / 2));
 
 const SkillRow = ({ skills }: { skills: Skill[] }) => {
     const { theme } = useTheme();
@@ -106,8 +95,7 @@ export default function Skills() {
             <h2 className={`text-2xl font-bold mb-8 ${headingColor}`}>Skills</h2>
 
             <div className="flex flex-col gap-6">
-                <SkillRow skills={skills1} />
-                <SkillRow skills={skills2} />
+                <SkillRow skills={skills} />
             </div>
         </section>
     );
