@@ -19,6 +19,7 @@ import LivePingOverlay from "./Components/LiveFeatures/LivePingOverlay";
 import Loader from "./Components/Layout/Loader";
 import { useState } from "react";
 import AboutMe from "./Components/About/AboutMe";
+import Experience from "./Components/About/Experience";
 import LeftSideLabel from "./Components/Layout/LeftSideLabel";
 import BackgroundPattern from "./Components/Layout/BackgroundPattern";
 import HorizonGlow from "./Components/Layout/HorizonGlow";
@@ -32,6 +33,7 @@ const HomePage = () => {
         <AboutMe />
         <AboutContent />
         <Projects limit={2} showViewAll={true} />
+        <Experience />
         <Contributions limit={3} showViewAll={true} />
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
