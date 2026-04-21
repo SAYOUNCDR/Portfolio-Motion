@@ -28,6 +28,25 @@ export type Project = {
 
 const projects: Project[] = [
     {
+        title: "Pebble",
+        period: "April 2026",
+        description:
+            "Pebble turns technical manuals into structured, editable checklists with citation-aware AI support, helping teams reason through manuals instead of relying on keyword search.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "/images/ProjectImage/Pebble.png",
+        tags: ["React + Vite", "Node.js + Express", "Python + FastAPI", "BullMQ", "MongoDB", "Redis"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/Pebble" },
+        category: "AI",
+    },
+    {
         title: "KeyRush",
         period: "March 2026",
         description:
