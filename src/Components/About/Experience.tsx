@@ -36,7 +36,7 @@ export default function Experience() {
                                 <button
                                     type="button"
                                     onClick={() => setShowCompanyInfo((prev) => !prev)}
-                                    className={`text-left text-lg sm:text-xl font-semibold leading-tight cursor-pointer transition-colors ${companyText} ${companyHoverText}`}
+                                    className={`text-left text-md sm:text-lg font-semibold leading-tight cursor-pointer transition-colors ${companyText} ${companyHoverText}`}
                                     aria-label="Toggle DrCode AI details"
                                 >
                                     DrCode AI
@@ -54,10 +54,6 @@ export default function Experience() {
                             </div>
                             <p className={`text-xs sm:text-sm ${subtitleText}`}>
                                 FullStack AI Engineer Intern | remote
-                                <span className="inline-flex items-center gap-1 ml-2 align-middle">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                                    <span className="text-[10px] sm:text-xs text-emerald-500"></span>
-                                </span>
                             </p>
                         </div>
                     </div>
@@ -73,7 +69,11 @@ export default function Experience() {
                             <ExternalLink className="w-3 h-3" />
                         </a>
                         <p className={`text-xs sm:text-sm whitespace-nowrap ${dateText}`}>
-                            april 2026 - present
+                            april 2026 -
+                            <span className="inline-flex items-center gap-0.5 ml-1 align-middle">
+                                <span className="h-1 w-1 rounded-full bg-emerald-500" />
+                                <span className="text-[9px] sm:text-[10px] text-emerald-500">present</span>
+                            </span>
                         </p>
                     </div>
                 </div>
