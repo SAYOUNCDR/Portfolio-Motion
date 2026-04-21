@@ -72,42 +72,25 @@ const skills: Skill[] = [
 const skills1 = skills.slice(0, Math.ceil(skills.length / 2));
 const skills2 = skills.slice(Math.ceil(skills.length / 2));
 
-const SkillRow = ({ skills, direction = "left" }: { skills: Skill[], direction?: "left" | "right" }) => {
+const SkillRow = ({ skills }: { skills: Skill[] }) => {
     const { theme } = useTheme();
     const chipBg = theme === "dark"
         ? "bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700"
         : "bg-white border border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300";
 
     return (
-        <div className="flex overflow-hidden relative z-10 [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] group">
-            <div
-                className={`flex flex-shrink-0 gap-4 py-2 w-max min-w-full group-hover:[animation-play-state:paused]`}
-                style={{
-                    animation: `scroll-${direction} 25s linear infinite`,
-                }}
-            >
-                {[...skills, ...skills].map((skill, index) => (
-                    <div
-                        key={`${skill.name}-${index}`}
-                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors cursor-default ${chipBg}`}
-                    >
-                        <span className="flex items-center text-lg">
-                            {skill.icon}
-                        </span>
-                        <span>{skill.name}</span>
-                    </div>
-                ))}
-            </div>
-            <style>{`
-                @keyframes scroll-left {
-                    from { transform: translateX(0); }
-                    to { transform: translateX(-50%); }
-                }
-                @keyframes scroll-right {
-                    from { transform: translateX(-50%); }
-                    to { transform: translateX(0); }
-                }
-            `}</style>
+        <div className="flex flex-wrap gap-4 py-2">
+            {skills.map((skill) => (
+                <div
+                    key={skill.name}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors cursor-default ${chipBg}`}
+                >
+                    <span className="flex items-center text-lg">
+                        {skill.icon}
+                    </span>
+                    <span>{skill.name}</span>
+                </div>
+            ))}
         </div>
     );
 };
@@ -123,8 +106,8 @@ export default function Skills() {
             <h2 className={`text-2xl font-bold mb-8 ${headingColor}`}>Skills</h2>
 
             <div className="flex flex-col gap-6">
-                <SkillRow skills={skills1} direction="right" />
-                <SkillRow skills={skills2} direction="left" />
+                <SkillRow skills={skills1} />
+                <SkillRow skills={skills2} />
             </div>
         </section>
     );
