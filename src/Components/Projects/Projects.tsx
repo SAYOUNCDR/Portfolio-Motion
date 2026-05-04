@@ -24,9 +24,38 @@ export type Project = {
     website: { label: string; url: string };
     github?: { label: string; url: string };
     category: ProjectCategory;
+    details?: {
+        overview?: string[];
+        links?: { label: string; url: string }[];
+        sections?: {
+            title: string;
+            items: { title: string; description: string }[];
+        }[];
+        stack?: { label: string; value: string }[];
+        snippet?: { title: string; code: string };
+    };
 };
 
 const projects: Project[] = [
+    {
+        title: "OpenDesk",
+        period: "In Progress",
+        description:
+            "An open-source, self-hostable Intercom alternative with AI-powered support agents using RAG to automate repetitive customer queries and escalate complex cases to humans.",
+        video: {
+            src: "",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            className: "h-40 w-full object-cover object-top rounded-t-lg",
+        },
+        imageLink: "",
+        tags: ["TypeScript", "Helpdesk", "Self-hosted", "AI Agents", "RAG", "Real-time Chat", "Turborepo", "Omnichannel"],
+        website: { label: "Website", url: "" },
+        github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/OpenDesk" },
+        category: "AI",
+    },
     {
         title: "Pebble",
         period: "April 2026",
@@ -69,7 +98,7 @@ const projects: Project[] = [
         title: "Okunix",
         period: "January 2026",
         description:
-            "A lightweight web analytics platform. Tracks visits, visitors, bounce rate, live viewers, page entry exits and so on.",
+            "A lightweight, privacy-focused analytics engine for modern web applications, with real-time telemetry, route analytics, and self-hostable infrastructure.",
         video: {
             src: "",
             autoPlay: true,
@@ -79,10 +108,63 @@ const projects: Project[] = [
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
         imageLink: "/images/ProjectImage/Okunix.webp",
-        tags: ["Nodejs/express", "Reactjs", "Mongodb", "Azure", "Github Actions", "Nginx"],
-        website: { label: "Website", url: "https://okunix.sayoun.studio" },
+        tags: ["React.js", "Tailwind CSS", "Chart.js", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT"],
+        website: { label: "Website", url: "https://okunix.tech" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/okunix" },
         category: "Web2",
+        details: {
+            overview: [
+                "Okunix Analytics is a self-hostable web analytics platform designed to track, aggregate, and visualize key telemetry metrics in real time.",
+                "It focuses on simplicity, performance, and privacy, giving developers immediate insight into application traffic without relying on heavy third-party analytics suites.",
+            ],
+            links: [
+                { label: "Website 1", url: "https://okunix.tech" },
+                { label: "Website 2", url: "https://okunix.sayoun.studio" },
+                { label: "GitHub Repository", url: "https://github.com/SAYOUNCDR/okunix" },
+                { label: "API Reference", url: "https://github.com/SAYOUNCDR/okunix/blob/main/API.md" },
+            ],
+            sections: [
+                {
+                    title: "Telemetry & Metrics",
+                    items: [
+                        { title: "Live Viewers", description: "Tracks concurrent active sessions in real time through WebSocket-based presence updates." },
+                        { title: "Traffic Analytics", description: "Aggregates unique visitors, total visits, and high-level application traffic trends." },
+                        { title: "Engagement Tracking", description: "Calculates bounce rate and session duration to show how visitors actually use the product." },
+                    ],
+                },
+                {
+                    title: "Data Visualization",
+                    items: [
+                        { title: "Geographic Distribution", description: "Shows traffic by country, region, and city with map and table views." },
+                        { title: "Traffic Heatmaps", description: "Visualizes activity intensity by day and 24-hour operational windows." },
+                        { title: "Environment Profiling", description: "Extracts device, operating system, and browser telemetry for debugging audience patterns." },
+                    ],
+                },
+                {
+                    title: "Deep Routing Analytics",
+                    items: [
+                        { title: "Referrer Attribution", description: "Classifies incoming traffic from direct, organic search, social, and other channels." },
+                        { title: "Path Analysis", description: "Monitors route-level performance with pageviews, entry nodes, and exit nodes." },
+                        { title: "Privacy-first Tracking", description: "Uses a lightweight async beacon approach to keep analytics fast and unobtrusive." },
+                    ],
+                },
+            ],
+            stack: [
+                { label: "Frontend", value: "React.js, Tailwind CSS, Chart.js, Lucide Icons" },
+                { label: "Backend", value: "Node.js, Express.js, WebSocket telemetry" },
+                { label: "Database", value: "MongoDB and Mongoose aggregation pipelines" },
+                { label: "Authentication", value: "JWT-based stateless authentication" },
+                { label: "Self-hosting", value: "Node.js 18+, MongoDB 6+, npm or yarn" },
+            ],
+            snippet: {
+                title: "Tracking Script",
+                code: `<script
+  defer
+  src="https://okunix.tech/api/tracker/script.js"
+  data-website-id="YOUR_WEBSITE_ID"
+></script>`,
+            },
+        },
     },
     {
         title: "Auto-Timetable",
@@ -222,18 +304,25 @@ const projects: Project[] = [
 type ProjectsProps = {
     limit?: number;
     showViewAll?: boolean;
+    featuredTitles?: string[];
 };
 
-const Projects = ({ limit, showViewAll = true }: ProjectsProps) => {
+const Projects = ({ limit, showViewAll = true, featuredTitles }: ProjectsProps) => {
     const { theme } = useTheme();
     const [activeTab, setActiveTab] = useState<ProjectCategory | "All">("All");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const categories: (ProjectCategory | "All")[] = ["All", "Web2", "AI", "Extensions", "Developer Tools"];
 
+    const visibleProjects = featuredTitles?.length
+        ? featuredTitles
+            .map((title) => projects.find((project) => project.title.toLowerCase() === title.toLowerCase()))
+            .filter((project): project is Project => Boolean(project))
+        : projects;
+
     const filteredProjects = activeTab === "All"
-        ? projects
-        : projects.filter(project => project.category === activeTab);
+        ? visibleProjects
+        : visibleProjects.filter(project => project.category === activeTab);
 
     const items = typeof limit === "number" ? filteredProjects.slice(0, limit) : filteredProjects;
 

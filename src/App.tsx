@@ -32,7 +32,11 @@ const HomePage = () => {
       <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col">
         <AboutMe />
         <AboutContent />
-        <Projects limit={2} showViewAll={true} />
+        <Projects
+          limit={4}
+          featuredTitles={["Okunix", "OpenDesk", "Auto-Timetable", "Pebble"]}
+          showViewAll={true}
+        />
         <Experience />
         <Contributions limit={3} showViewAll={true} />
         <GithubHeatmap username="SAYOUNCDR" />
