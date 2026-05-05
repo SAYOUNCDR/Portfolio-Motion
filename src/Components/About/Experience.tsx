@@ -1,5 +1,6 @@
 import { ChevronRight, ExternalLink } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Experience() {
@@ -19,8 +20,12 @@ export default function Experience() {
                 cool places I worked at
             </h2>
 
-            <div className="mt-5">
-                <div className="group flex items-start sm:items-center justify-between gap-4 rounded-xl px-2.5 py-2.5">
+            <div
+                className="mt-5 group"
+                onMouseEnter={() => setShowCompanyInfo(true)}
+                onMouseLeave={() => setShowCompanyInfo(false)}
+            >
+                <div className="flex items-start sm:items-center justify-between gap-4 rounded-xl px-2.5 py-2.5">
                     <div className="flex items-start gap-3.5 min-w-0">
                         <a
                             href="https://www.drcode.ai/"
@@ -78,11 +83,21 @@ export default function Experience() {
                     </div>
                 </div>
 
-                {showCompanyInfo && (
-                    <p className={`mt-1 pl-[3.4rem] text-xs sm:text-sm ${subtitleText}`}>
-                        DrCode is all about building AI products from idea to production. We partner with startups and companies to design, build and launch AI-native products used by mass.
-                    </p>
-                )}
+                <AnimatePresence>
+                    {showCompanyInfo && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                        >
+                            <p className={`mt-1 pl-[3.4rem] text-xs sm:text-sm ${subtitleText}`}>
+                                DrCode is all about building AI products from idea to production. We partner with startups and companies to design, build and launch AI-native products used by mass.
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
