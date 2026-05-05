@@ -1,51 +1,29 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type MacbookLoaderProps = {
     onComplete: () => void;
 };
 
-const greetings = [
-    { text: "Hello", language: "English" },
-    { text: "Hola", language: "Spanish" },
-    { text: "Bonjour", language: "French" },
-    { text: "Ciao", language: "Italian" },
-    { text: "Hallo", language: "German" },
-    { text: "Namaste", language: "Hindi" },
-    { text: "Salaam", language: "Urdu" },
-    { text: "Konnichiwa", language: "Japanese" },
-    { text: "Annyeong", language: "Korean" },
-    { text: "Ni hao", language: "Mandarin" },
-    { text: "Merhaba", language: "Turkish" },
+const nameLetters = [
+    { char: "S", x: 76 },
+    { char: "a", x: 124 },
+    { char: "y", x: 169 },
+    { char: "o", x: 213 },
+    { char: "u", x: 253 },
+    { char: "n", x: 294 },
 ];
 
 const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
     const [isExit, setIsExit] = useState(false);
-    const [greetingIndex, setGreetingIndex] = useState(0);
-    const greeting = greetings[greetingIndex];
 
     useEffect(() => {
-        let greetingTimer: ReturnType<typeof setInterval> | undefined;
-
-        const startGreetingTimer = setTimeout(() => {
-            greetingTimer = setInterval(() => {
-                setGreetingIndex((current) => (current + 1) % greetings.length);
-            }, 620);
-        }, 1280);
-
-        const stopGreetingTimer = setTimeout(() => {
-            if (greetingTimer) clearInterval(greetingTimer);
-        }, 4380);
-
         const exitTimer = setTimeout(() => {
             setIsExit(true);
-        }, 4920);
+        }, 3700);
 
         return () => {
-            clearTimeout(startGreetingTimer);
-            clearTimeout(stopGreetingTimer);
             clearTimeout(exitTimer);
-            if (greetingTimer) clearInterval(greetingTimer);
         };
     }, []);
 
@@ -95,43 +73,59 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
                                 />
 
                                 <div className="relative flex h-full flex-col items-center justify-center px-8 text-center">
-                                    <motion.div
-                                        className="mb-5 grid h-12 w-12 place-items-center rounded-[14px] border border-white/15 bg-white/10 text-sm font-bold text-white shadow-inner"
-                                        initial={{ opacity: 0, scale: 0.86, y: 8 }}
-                                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                                        transition={{ delay: 1.18, duration: 0.45 }}
+                                    <motion.svg
+                                        viewBox="0 0 380 112"
+                                        className="h-24 w-full max-w-[300px] overflow-visible"
+                                        aria-hidden="true"
+                                        initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
+                                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                        transition={{ delay: 1.12, duration: 0.46, ease: [0.42, 0, 0.58, 1] }}
                                     >
-                                        SP
-                                    </motion.div>
+                                        {nameLetters.map((letter, index) => {
+                                            const delay = 1.16 + index * 0.18;
 
-                                    <div className="h-16 w-full">
-                                        <AnimatePresence mode="wait">
-                                            <motion.div
-                                            key={greeting.text}
-                                            initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
-                                            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                                            exit={{ opacity: 0, y: -12, filter: "blur(5px)" }}
-                                            transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
-                                            className="flex flex-col items-center"
-                                        >
-                                                <span className="text-3xl font-semibold tracking-normal text-white sm:text-4xl">
-                                                    {greeting.text}
-                                                </span>
-                                                <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.24em] text-white/45">
-                                                    {greeting.language}
-                                                </span>
-                                            </motion.div>
-                                        </AnimatePresence>
-                                    </div>
-
-                                    <div className="mt-4 h-1.5 w-full max-w-[220px] overflow-hidden rounded-full bg-white/15">
-                                        <motion.div
-                                        className="h-full rounded-full bg-white"
-                                        initial={{ width: "0%" }}
-                                        animate={{ width: "100%" }}
-                                        transition={{ delay: 1.08, duration: 3.55, ease: [0.22, 1, 0.36, 1] }}
-                                    />
-                                    </div>
+                                            return (
+                                                <g key={letter.char}>
+                                                    <motion.text
+                                                        x={letter.x}
+                                                        y="62"
+                                                        textAnchor="middle"
+                                                        dominantBaseline="middle"
+                                                        fontFamily='"Segoe Script", "Snell Roundhand", "Brush Script MT", cursive'
+                                                        fontSize={letter.char === "S" ? "64" : "58"}
+                                                        fontWeight="400"
+                                                        letterSpacing="0"
+                                                        fill="transparent"
+                                                        stroke="rgba(255,255,255,0.96)"
+                                                        strokeWidth="1.8"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        initial={{ opacity: 0, strokeDasharray: 150, strokeDashoffset: 150, x: -8 }}
+                                                        animate={{ opacity: 1, strokeDashoffset: 0, x: 0 }}
+                                                        transition={{ delay, duration: 0.72, ease: [0.42, 0, 0.58, 1] }}
+                                                    >
+                                                        {letter.char}
+                                                    </motion.text>
+                                                    <motion.text
+                                                        x={letter.x}
+                                                        y="62"
+                                                        textAnchor="middle"
+                                                        dominantBaseline="middle"
+                                                        fontFamily='"Segoe Script", "Snell Roundhand", "Brush Script MT", cursive'
+                                                        fontSize={letter.char === "S" ? "64" : "58"}
+                                                        fontWeight="400"
+                                                        letterSpacing="0"
+                                                        fill="rgba(255,255,255,0.96)"
+                                                        initial={{ opacity: 0, x: -8 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: delay + 0.46, duration: 0.34, ease: "easeInOut" }}
+                                                    >
+                                                        {letter.char}
+                                                    </motion.text>
+                                                </g>
+                                            );
+                                        })}
+                                    </motion.svg>
                                 </div>
                             </div>
                         </motion.div>
@@ -154,15 +148,6 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
                     <div className="absolute bottom-8 left-1/2 z-0 h-3 w-[78%] -translate-x-1/2 rounded-b-full bg-slate-400/24 blur-sm" />
                 </div>
 
-                <motion.div
-                    className="mt-4 flex items-center gap-2 text-xs font-medium text-slate-500"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: isExit ? 0 : 1, y: isExit ? -4 : 0 }}
-                    transition={{ delay: isExit ? 0 : 1.45, duration: 0.4 }}
-                >
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    <span>starting portfolio</span>
-                </motion.div>
             </motion.div>
 
             <motion.div
