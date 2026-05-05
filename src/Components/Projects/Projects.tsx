@@ -27,6 +27,7 @@ export type Project = {
     details?: {
         overview?: string[];
         links?: { label: string; url: string }[];
+        gallery?: { label: string; url: string }[];
         sections?: {
             title: string;
             items: { title: string; description: string }[];
@@ -74,6 +75,80 @@ const projects: Project[] = [
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/Pebble" },
         category: "AI",
+        details: {
+            overview: [
+                "Pebble helps teams transform dense maintenance and operations manuals into practical, auditable checklist workflows.",
+                "It is built for reasoning through manuals rather than keyword searching them, with citation-aware AI support and editable generated checklists.",
+            ],
+            links: [
+                { label: "GitHub Repository", url: "https://github.com/SAYOUNCDR/Pebble" },
+                { label: "Docs Index", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/README.md" },
+                { label: "Local Setup", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/setup-local.md" },
+                { label: "Architecture", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/architecture.md" },
+                { label: "API Reference", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/api-reference.md" },
+                { label: "Operations Runbook", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/operations-runbook.md" },
+                { label: "Troubleshooting", url: "https://github.com/SAYOUNCDR/Pebble/blob/main/docs/troubleshooting.md" },
+            ],
+            gallery: [
+                { label: "Pebble Overview", url: "https://raw.githubusercontent.com/SAYOUNCDR/Pebble/main/docs/github.png" },
+            ],
+            sections: [
+                {
+                    title: "Core Workflow",
+                    items: [
+                        { title: "Manual Upload", description: "Users upload technical manuals and manage them from the web app before starting checklist generation." },
+                        { title: "Checklist Jobs", description: "Generation runs as tracked background jobs, with status updates flowing back into the product experience." },
+                        { title: "Checklist Editing", description: "Generated checklist items can be opened, reviewed, updated, and exported as PDFs." },
+                    ],
+                },
+                {
+                    title: "AI Pipeline",
+                    items: [
+                        { title: "PDF Ingest", description: "The FastAPI service parses manuals and prepares document context for downstream generation." },
+                        { title: "Retrieval Modes", description: "Supports local or page-index based indexing, plus heuristic or tree-search retrieval for checklist generation." },
+                        { title: "Citation Verification", description: "Checklist output is verified with strict citation behavior so generated steps remain auditable." },
+                    ],
+                },
+                {
+                    title: "Product Features",
+                    items: [
+                        { title: "Auth", description: "Register, login, and current-user flows protect the manual and checklist workspace." },
+                        { title: "Manual Chat", description: "Each manual can keep persisted chat history for follow-up reasoning and support." },
+                        { title: "Operational Health", description: "Health endpoints cover both the API and dependency checks for services like MongoDB and Redis." },
+                    ],
+                },
+            ],
+            stack: [
+                { label: "Frontend", value: "React and Vite in apps/web" },
+                { label: "API", value: "Express and TypeScript in services/api" },
+                { label: "AI Service", value: "Python FastAPI service in services/ai" },
+                { label: "Worker", value: "BullMQ worker consumes checklist jobs and runs the AI pipeline" },
+                { label: "Data Stores", value: "MongoDB for users, manuals, jobs, checklists, exports, and chats; Redis for BullMQ queues" },
+                { label: "Request Flow", value: "Browser -> Express /api/* -> FastAPI /v1/*" },
+            ],
+            snippet: {
+                title: "Quick Start",
+                code: `cd apps/web && npm install
+cd ../../services/api && npm install
+cd ../ai && pip install -r requirements.txt
+
+# AI service
+cd services/ai
+uvicorn app.main:app --reload --port 8001
+
+# API service
+cd services/api
+npm run dev
+
+# Worker service
+cd services/api
+npm run worker:dev
+
+# Web app
+cd apps/web
+npm run dev`,
+            },
+        },
     },
     {
         title: "KeyRush",
@@ -170,7 +245,7 @@ const projects: Project[] = [
         title: "Auto-Timetable",
         period: "December 2025",
         description:
-            "The TimeTable Management & Generation System is a sophisticated full-stack application designed to automate the complex process of academic scheduling. By leveraging AI-powered constraint programming (Google OR-Tools), it generates conflict-free timetables.",
+            "A full-stack academic scheduling system that uses Google OR-Tools to generate conflict-free timetables across faculty availability, rooms, labs, batches, and curriculum constraints.",
         video: {
             src: "",
             autoPlay: true,
@@ -180,10 +255,79 @@ const projects: Project[] = [
             className: "h-40 w-full object-cover object-top rounded-t-lg",
         },
         imageLink: "/images/ProjectImage/auto-timetable.webp",
-        tags: ["React.js", "Python", "Google OR-Tools", "Flask"],
+        tags: ["React 19", "Vite", "Tailwind CSS", "Node.js", "Express 5", "MongoDB", "FastAPI", "Google OR-Tools", "JWT"],
         website: { label: "Website", url: "" },
         github: { label: "GitHub", url: "https://github.com/SAYOUNCDR/auto-timetable" },
         category: "Web2",
+        details: {
+            overview: [
+                "The TimeTable Management & Generation System automates academic scheduling for institutions that need to coordinate faculty, rooms, labs, subjects, and batches without manual conflict checking.",
+                "Its scheduler service uses Google OR-Tools to solve constraint-heavy timetable generation, while the React dashboard gives admins, faculty, and students role-specific views of the final schedules.",
+            ],
+            links: [
+                { label: "GitHub Repository", url: "https://github.com/SAYOUNCDR/auto-timetable" },
+                { label: "Visual Guide", url: "https://mapmyrepo.vasudev.live/?user=SAYOUNCDR&repo=auto-timetable" },
+                { label: "API Documentation", url: "https://github.com/SAYOUNCDR/auto-timetable/blob/main/docs/API-Documentation.md" },
+            ],
+            gallery: [
+                { label: "Landing Page", url: "https://github.com/user-attachments/assets/7231f9c7-e979-4566-8b92-a16065fe8de9" },
+                { label: "Admin Login", url: "https://github.com/user-attachments/assets/7ba7dbeb-8138-4d05-a571-cc5708345326" },
+                { label: "Admin Dashboard", url: "https://github.com/user-attachments/assets/ea3338da-5f4d-43e4-ba4e-53e1ea632562" },
+                { label: "Data Management", url: "https://github.com/user-attachments/assets/74470195-b2e5-4151-b995-0fa861b028e7" },
+                { label: "Generator", url: "https://github.com/user-attachments/assets/154c7208-eb45-4945-8624-37ac56f4bc0a" },
+                { label: "Generated Timetable", url: "https://github.com/user-attachments/assets/f140e2a5-a150-41ad-8b57-05ad7266c1ae" },
+                { label: "Faculty View", url: "https://github.com/user-attachments/assets/9743a986-db22-4e8c-bf4a-cdc294d9ece5" },
+                { label: "Student View", url: "https://github.com/user-attachments/assets/04fdc96c-5b62-4906-a3c5-483121ad0c5e" },
+            ],
+            sections: [
+                {
+                    title: "Key Features",
+                    items: [
+                        { title: "Automated Scheduling", description: "Generates conflict-free timetables with AI-assisted constraint programming instead of manual slot allocation." },
+                        { title: "Role-Based Access", description: "Provides separate portals for admins, faculty, and students so each role gets the right operational view." },
+                        { title: "Resource Management", description: "Manages classrooms, labs, subjects, batches, faculty, and other timetable inputs from one dashboard." },
+                    ],
+                },
+                {
+                    title: "Constraint Handling",
+                    items: [
+                        { title: "Faculty Availability", description: "Respects unavailable slots, teaching load limits, and assignment boundaries while generating schedules." },
+                        { title: "Room and Lab Fit", description: "Accounts for room capacity, lab requirements, and resource availability before assigning sessions." },
+                        { title: "Curriculum Requirements", description: "Balances subjects, batches, and academic structure so generated timetables match institutional rules." },
+                    ],
+                },
+                {
+                    title: "User Views",
+                    items: [
+                        { title: "Admin View", description: "Central dashboard for managing data, running the generator, and reviewing generated timetables." },
+                        { title: "Faculty View", description: "Faculty-facing timetable view focused on teaching assignments and schedule visibility." },
+                        { title: "Student View", description: "Student-facing schedule view for quickly checking batch-wise timetable information." },
+                    ],
+                },
+            ],
+            stack: [
+                { label: "Client Layer", value: "React 19 SPA built with Vite and Tailwind CSS" },
+                { label: "API Layer", value: "Node.js and Express 5 REST API for auth, business logic, and persistence" },
+                { label: "Scheduler", value: "Python FastAPI service using Google OR-Tools for constraint solving" },
+                { label: "Data Layer", value: "MongoDB with Mongoose for institutional data and generated schedules" },
+                { label: "Auth", value: "JWT and bcrypt for secure authentication and authorization" },
+            ],
+            snippet: {
+                title: "Local Setup",
+                code: `cd backend
+npm install
+npm start
+
+cd scheduler_core
+python -m venv venv
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+
+cd frontend
+npm install
+npm run dev`,
+            },
+        },
     },
     {
         title: "DevCalander",
