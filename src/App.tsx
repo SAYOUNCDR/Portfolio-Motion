@@ -16,7 +16,7 @@ import BlogDetail from "./Components/Blogs/BlogDetail";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import BottomDockMode from "./Components/Navigation/BottomDockMode";
 import LivePingOverlay from "./Components/LiveFeatures/LivePingOverlay";
-import Loader from "./Components/Layout/Loader";
+import MacbookLoader from "./Components/Layout/MacbookLoader";
 import { useState } from "react";
 import AboutMe from "./Components/About/AboutMe";
 import Experience from "./Components/About/Experience";
@@ -32,12 +32,12 @@ const HomePage = () => {
       <main className="min-h-screen max-w-3xl mx-auto flex items-center flex-col">
         <AboutMe />
         <AboutContent />
+        <Experience />
         <Projects
           limit={4}
           featuredTitles={["Okunix", "OpenDesk", "Auto-Timetable", "Pebble"]}
           showViewAll={true}
         />
-        <Experience />
         <Contributions limit={3} showViewAll={true} />
         <GithubHeatmap username="SAYOUNCDR" />
         <Blogs />
@@ -56,7 +56,7 @@ function App() {
 
   return (
     <>
-      {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      {isLoading && <MacbookLoader onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <LivePingOverlay />
       <RightSideLabel />
