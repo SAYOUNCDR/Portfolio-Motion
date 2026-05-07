@@ -128,14 +128,13 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
 
                     <div className="absolute left-1/2 bottom-16 z-30 w-[106%] -translate-x-1/2">
                         <motion.div
-                            className="relative h-4 rounded-[10px] border border-slate-300 bg-[linear-gradient(180deg,#fbfbf7_0%,#d9dadd_62%,#aeb2b8_100%)] shadow-[0_14px_28px_rgba(15,23,42,0.18)]"
+                            className="relative h-4 rounded-b-[10px] rounded-t-[3px] border border-slate-300 bg-[linear-gradient(180deg,#fbfbf7_0%,#d9dadd_62%,#aeb2b8_100%)] shadow-[0_14px_28px_rgba(15,23,42,0.18)]"
                             initial={{ y: 18 }}
                             animate={{ y: 0 }}
                             transition={{ delay: 0.12, duration: 0.7, ease: "easeInOut" }}
                         >
-                            <div className="absolute left-1/2 top-0 h-1.5 w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-300 bg-[linear-gradient(180deg,#fbfbf7,#b8bbc0)] shadow-[0_2px_5px_rgba(15,23,42,0.1)]" />
                             <div className="absolute left-1/2 top-0 h-2 w-20 -translate-x-1/2 rounded-b-xl bg-slate-500/22 shadow-inner" />
-                            <div className="absolute inset-x-6 top-1.5 h-px bg-white/70" />
+                            <div className="absolute inset-x-6 top-2.5 h-px bg-white/70" />
                             <div className="absolute inset-x-5 bottom-0 h-0.5 rounded-b-[10px] bg-slate-600/12" />
                         </motion.div>
                     </div>
