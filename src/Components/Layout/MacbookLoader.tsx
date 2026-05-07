@@ -16,10 +16,14 @@ const nameLetters = [
 
 const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
     useEffect(() => {
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
         const completeTimer = setTimeout(onComplete, 3700);
 
         return () => {
             clearTimeout(completeTimer);
+            document.body.style.overflow = previousOverflow;
         };
     }, [onComplete]);
 
@@ -27,7 +31,7 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
         <div
             role="status"
             aria-label="Loading portfolio"
-            className="pointer-events-none fixed inset-0 z-[100] grid place-items-center overflow-hidden text-slate-950"
+            className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#f5f5f2] text-slate-950"
         >
             <motion.div
                 aria-hidden

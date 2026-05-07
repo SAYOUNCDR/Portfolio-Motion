@@ -54,9 +54,12 @@ const HomePage = () => {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+  if (isLoading) {
+    return <MacbookLoader onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <>
-      {isLoading && <MacbookLoader onComplete={() => setIsLoading(false)} />}
       <ScrollToTop />
       <LivePingOverlay />
       <RightSideLabel />
