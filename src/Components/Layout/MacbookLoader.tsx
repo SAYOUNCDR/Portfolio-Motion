@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type MacbookLoaderProps = {
     onComplete: () => void;
@@ -15,42 +15,33 @@ const nameLetters = [
 ];
 
 const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
-    const [isExit, setIsExit] = useState(false);
-
     useEffect(() => {
-        const exitTimer = setTimeout(() => {
-            setIsExit(true);
-        }, 3700);
+        const completeTimer = setTimeout(onComplete, 3700);
 
         return () => {
-            clearTimeout(exitTimer);
+            clearTimeout(completeTimer);
         };
-    }, []);
+    }, [onComplete]);
 
     return (
-        <motion.div
+        <div
             role="status"
             aria-label="Loading portfolio"
             className="pointer-events-none fixed inset-0 z-[100] grid place-items-center overflow-hidden text-slate-950"
-            initial={{ backgroundColor: "rgba(245, 245, 242, 1)" }}
-            animate={{
-                backgroundColor: isExit ? "rgba(245, 245, 242, 0)" : "rgba(245, 245, 242, 1)",
-            }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         >
             <motion.div
                 aria-hidden
                 className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.95),rgba(245,245,242,0)_34%),linear-gradient(180deg,rgba(255,255,255,0.8),rgba(226,232,240,0.5))]"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: isExit ? 0 : 1 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.7 }}
             />
 
             <motion.div
                 className="relative flex w-full max-w-[560px] flex-col items-center px-6"
                 initial={{ opacity: 0, y: 26, scale: 0.96 }}
-                animate={isExit ? { opacity: 0, y: 64, scale: 1.18 } : { opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: isExit ? 0.55 : 0.75, ease: [0.22, 1, 0.36, 1] }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             >
                 <div className="relative h-[340px] w-full max-w-[460px]">
                     <div
@@ -149,33 +140,7 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
                 </div>
 
             </motion.div>
-
-            <motion.div
-                aria-hidden
-                className="absolute left-1/2 top-1/2 z-40 aspect-[16/10] overflow-hidden rounded-2xl bg-slate-950 shadow-[0_0_80px_rgba(15,23,42,0.3)]"
-                style={{ width: "min(420px, 82vw)", x: "-50%", y: "-50%" }}
-                initial={false}
-                animate={
-                    isExit
-                        ? {
-                            opacity: [0, 1, 1, 0],
-                            scale: [1, 1.04, 8, 8],
-                            borderRadius: ["1rem", "1rem", "0rem", "0rem"],
-                        }
-                        : { opacity: 0, scale: 1, borderRadius: "1rem" }
-                }
-                transition={
-                    isExit
-                        ? { duration: 1.35, times: [0, 0.16, 0.78, 1], ease: [0.76, 0, 0.24, 1] }
-                        : { duration: 0 }
-                }
-                onAnimationComplete={() => {
-                    if (isExit) onComplete();
-                }}
-            >
-                <div className="h-full w-full bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(135deg,#020617,#0f172a)]" />
-            </motion.div>
-        </motion.div>
+        </div>
     );
 };
 
