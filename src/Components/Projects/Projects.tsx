@@ -458,15 +458,15 @@ const Projects = ({ limit, showViewAll = true, featuredTitles }: ProjectsProps) 
 
     const categories: (ProjectCategory | "All")[] = ["All", "Web2", "AI", "Extensions", "Developer Tools"];
 
-    const visibleProjects = featuredTitles?.length
+    const featuredProjects = featuredTitles?.length
         ? featuredTitles
             .map((title) => projects.find((project) => project.title.toLowerCase() === title.toLowerCase()))
             .filter((project): project is Project => Boolean(project))
         : projects;
 
     const filteredProjects = activeTab === "All"
-        ? visibleProjects
-        : visibleProjects.filter(project => project.category === activeTab);
+        ? featuredProjects
+        : projects.filter(project => project.category === activeTab);
 
     const items = typeof limit === "number" ? filteredProjects.slice(0, limit) : filteredProjects;
 
@@ -477,6 +477,7 @@ const Projects = ({ limit, showViewAll = true, featuredTitles }: ProjectsProps) 
             ? "text-white border border-zinc-800 bg-gradient-to-r from-zinc-900/80 via-zinc-900/60 to-black/20 hover:border-zinc-700"
             : "text-slate-800 border border-slate-200 bg-gradient-to-b from-white to-gray-50/50 hover:border-slate-300";
     const timeColor = theme === "dark" ? "text-neutral-400" : "text-slate-500";
+    const activePeriodColor = theme === "dark" ? "text-amber-400" : "text-orange-600";
     const descriptionColor = theme === "dark" ? "text-neutral-400" : "text-slate-600";
     const tagStyles = theme === "dark" ? "bg-neutral-800 text-white" : "bg-white/80 text-slate-800 border border-slate-200";
     const actionButton =
@@ -561,7 +562,7 @@ const Projects = ({ limit, showViewAll = true, featuredTitles }: ProjectsProps) 
 
                             <div className="flex flex-col px-3 py-2">
                                 <h3 className="font-semibold tracking-tight text-base mt-1 pb-2">{project.title}</h3>
-                                <time className={`text-xs pb-2 ${timeColor}`}>{project.period}</time>
+                                <time className={`text-xs pb-2 ${project.period === "In Progress" ? activePeriodColor : timeColor}`}>{project.period}</time>
                                 <p className={`text-xs mt-1 ${descriptionColor}`}>{project.description}</p>
                             </div>
 

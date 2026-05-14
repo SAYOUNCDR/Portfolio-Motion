@@ -142,6 +142,12 @@ const MacbookLoader = ({ onComplete }: MacbookLoaderProps) => {
                     <div className="absolute bottom-8 left-1/2 z-0 h-3 w-[78%] -translate-x-1/2 rounded-b-full bg-slate-400/24 blur-sm" />
                 </div>
 
+                {/* Loader status text intentionally disabled for now.
+                <div className="mt-5 flex min-h-6 items-center gap-2 font-mono text-[12px] uppercase tracking-[0.24em] text-orange-500">
+                    ...
+                </div>
+                */}
+
             </motion.div>
         </div>
     );

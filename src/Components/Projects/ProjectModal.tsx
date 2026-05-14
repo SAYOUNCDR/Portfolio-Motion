@@ -36,6 +36,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
     const subtlePanel = theme === "dark" ? "border-zinc-800 bg-zinc-950/40" : "border-slate-200 bg-slate-50";
     const detailText = theme === "dark" ? "text-zinc-300" : "text-slate-600";
     const fineText = theme === "dark" ? "text-zinc-400" : "text-slate-500";
+    const activePeriodColor = theme === "dark" ? "text-amber-400" : "text-orange-600";
 
     return (
         <AnimatePresence>
@@ -94,7 +95,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                                         <div>
                                             <h2 id="modal-title" className={`text-2xl font-bold ${textColor}`}>{project.title}</h2>
-                                            <p className={`text-sm ${subTextColor}`}>{project.period} - {project.category}</p>
+                                            <p className={`text-sm ${subTextColor}`}>
+                                                <span className={project.period === "In Progress" ? activePeriodColor : ""}>{project.period}</span>
+                                                <span> - {project.category}</span>
+                                            </p>
                                         </div>
                                         <div className="flex gap-2">
                                             {project.website.url && (
