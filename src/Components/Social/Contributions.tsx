@@ -24,9 +24,9 @@ const contributions: Contribution[] = [
         companyUrl: "https://umami.is/",
         companyGithub: "https://github.com/umami-software",
         prUrl: "https://github.com/umami-software/umami/pull/4236",
-        prState: "open",
+        prState: "closed",
         description: "Open-source, privacy-focused web analytics platform and a self-hostable alternative to Google Analytics, Mixpanel, and Amplitude.",
-        contribution: "Open PR #4236: added Firefox :autofill support and theme-aware autofill styling so autofilled fields match the active Umami theme.",
+        contribution: "Merged PR #4236: added Firefox :autofill support and theme-aware autofill styling so autofilled fields match the active Umami theme.",
         period: "May 2026",
         icon: {
             src: "/images/conribution/umami.svg",
